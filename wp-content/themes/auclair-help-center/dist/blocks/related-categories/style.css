@@ -1,0 +1,1 @@
+.auclair-related-categories{display:grid;grid-template-columns:repeat(3,1fr);grid-gap:16px;gap:16px}@media (max-width:720px){.auclair-related-categories{grid-template-columns:1fr}}

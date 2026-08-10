@@ -1,0 +1,51 @@
+.auclair-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 12px 24px;
+	border-radius: var(--wp--custom--radius--field);
+	font-weight: 700;
+	font-size: var(--wp--preset--font-size--body);
+	text-decoration: none;
+	cursor: pointer;
+	transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+	border: 1px solid transparent;
+}
+
+.auclair-button.is-primary {
+	background: var(--wp--preset--color--accent-gold);
+	color: var(--wp--preset--color--background);
+}
+
+.auclair-button.is-primary:hover {
+	background: var(--wp--preset--color--accent-gold-dark);
+	transform: translateY(-1px);
+}
+
+.auclair-button.is-secondary {
+	background: var(--wp--preset--color--surface);
+	border-color: var(--wp--preset--color--border);
+	color: var(--wp--preset--color--foreground-primary);
+}
+
+.auclair-button.is-secondary:hover {
+	border-color: var(--wp--preset--color--accent-gold);
+}
+
+.auclair-button.is-ghost {
+	background: transparent;
+	border-color: var(--wp--preset--color--border);
+	color: var(--wp--preset--color--foreground-primary);
+}
+
+.auclair-button.is-ghost:hover {
+	border-color: var(--wp--preset--color--accent-gold);
+	color: var(--wp--preset--color--accent-gold);
+}
+
+@media (max-width: 720px) {
+	.auclair-button.is-full-width-mobile {
+		display: flex;
+		width: 100%;
+	}
+}

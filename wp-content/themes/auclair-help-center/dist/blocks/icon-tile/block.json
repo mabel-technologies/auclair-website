@@ -1,0 +1,28 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "auclair/icon-tile",
+    "title": "Icon Tile",
+    "category": "auclair",
+    "description": "Rounded icon square with an accent glow behind it.",
+    "textdomain": "auclair",
+    "attributes": {
+        "icon": {
+            "type": "string",
+            "default": "life-buoy"
+        },
+        "accent": {
+            "type": "string",
+            "default": "#E9CA75"
+        },
+        "size": {
+            "type": "string",
+            "default": "default"
+        }
+    },
+    "supports": {
+        "html": false,
+        "align": false
+    },
+    "editorScript": "file:./index.tsx"
+}

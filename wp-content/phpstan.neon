@@ -1,0 +1,8 @@
+includes:
+	- phpstan/default.neon
+
+parameters:
+	paths:
+		- themes/auclair-help-center
+		- mu-plugins/auclair-core
+		- mu-plugins/auclair-core-loader.php

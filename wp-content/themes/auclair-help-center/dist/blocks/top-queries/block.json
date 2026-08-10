@@ -1,0 +1,30 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "auclair/top-queries",
+    "title": "Top Queries",
+    "category": "auclair",
+    "description": "Vertical list of article links with dividers between.",
+    "textdomain": "auclair",
+    "attributes": {
+        "source": {
+            "type": "string",
+            "default": "sticky"
+        },
+        "posts": {
+            "type": "array",
+            "default": []
+        },
+        "limit": {
+            "type": "number",
+            "default": 10
+        }
+    },
+    "supports": {
+        "html": false,
+        "align": false
+    },
+    "editorScript": "file:./index.tsx",
+    "style": "file:./style.css",
+    "render": "file:./render.php"
+}

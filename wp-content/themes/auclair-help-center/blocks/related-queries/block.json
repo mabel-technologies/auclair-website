@@ -1,0 +1,38 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "auclair/related-queries",
+	"title": "Related Queries",
+	"category": "auclair",
+	"description": "Related queries heading + bordered list of sibling/related article links.",
+	"textdomain": "auclair",
+	"attributes": {
+		"postId": {
+			"type": "number",
+			"default": 0
+		},
+		"heading": {
+			"type": "string",
+			"default": "Related queries"
+		},
+		"source": {
+			"type": "string",
+			"default": "same-category"
+		},
+		"posts": {
+			"type": "array",
+			"default": []
+		},
+		"limit": {
+			"type": "number",
+			"default": 4
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": false
+	},
+	"editorScript": "file:./index.tsx",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}

@@ -1,0 +1,30 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "auclair/search-bar",
+    "title": "Search Bar",
+    "category": "auclair",
+    "description": "Typeable search field. Enter searches kb_article.",
+    "textdomain": "auclair",
+    "attributes": {
+        "placeholder": {
+            "type": "string",
+            "default": "Search for help…"
+        },
+        "action": {
+            "type": "string",
+            "default": "/?s=%s&post_type=kb_article"
+        },
+        "liveSuggest": {
+            "type": "boolean",
+            "default": true
+        }
+    },
+    "supports": {
+        "html": false,
+        "align": false
+    },
+    "editorScript": "file:./index.tsx",
+    "style": "file:./style.css",
+    "viewScriptModule": "file:./view.js"
+}

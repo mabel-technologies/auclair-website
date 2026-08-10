@@ -1,0 +1,10 @@
+.auclair-pill {
+	display: inline-flex;
+	align-items: center;
+	padding: 6px 16px;
+	border-radius: 999px;
+	background: var(--wp--preset--color--accent-gold-glow);
+	color: var(--wp--preset--color--accent-gold);
+	font-size: 18px;
+	font-weight: 500;
+}

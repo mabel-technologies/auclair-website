@@ -1,0 +1,26 @@
+html {
+	scroll-behavior: smooth;
+}
+
+main.wp-block-group {
+	padding-bottom: 64px;
+}
+
+@media (max-width: 720px) {
+	main.wp-block-group {
+		padding-bottom: 32px;
+	}
+}
+
+.has-global-padding :where(.has-global-padding.is-layout-constrained) {
+	padding-left: var(--wp--style--root--padding-left);
+	padding-right: var(--wp--style--root--padding-right);
+}
+
+.is-layout-constrained .wp-block-image.alignwide {
+	max-width: min(100%, var(--wp--style--global--wide-size)) !important;
+}
+
+.wp-block-post-template.is-layout-flex {
+	align-items: stretch;
+}

@@ -1,0 +1,42 @@
+{
+	"name": "auclair-help-center",
+	"version": "1.0.0",
+	"scripts": {
+		"start": "npm run watch",
+		"watch": "10up-toolkit watch --port=5020",
+		"build": "10up-toolkit build",
+		"build:analyze": "10up-toolkit build --analyze",
+		"format-js": "10up-toolkit format-js",
+		"lint-js": "10up-toolkit lint-js",
+		"lint-style": "10up-toolkit lint-style",
+		"test": "10up-toolkit test-unit-jest --passWithNoTests",
+		"clean-dist": "rm -rf ./dist",
+		"wp-compat": "wp-gutenberg-compat analyze",
+		"wp-compat:fix": "wp-gutenberg-compat install",
+		"wp-compat:info": "wp-gutenberg-compat info",
+		"scaffold:block": "cd blocks/ && wp-create-block --no-plugin --template ../../../../bin/create-block-template"
+	},
+	"10up-toolkit": {
+		"useBlockAssets": true,
+		"useScriptModules": true,
+		"loadBlockSpecificStyles": true,
+		"entry": {
+			"editor-frame-style-overrides": "./assets/css/editor-frame-style-overrides.css",
+			"editor-canvas-style-overrides": "./assets/css/editor-canvas-style-overrides.css",
+			"frontend": "./assets/js/frontend.ts",
+			"block-extensions": "./assets/js/block-extensions.ts"
+		},
+		"paths": {
+			"blocksDir": "./blocks"
+		}
+	},
+	"dependencies": {
+		"@10up/block-components": "^1.22.1",
+		"10up-toolkit": "^6.5.1"
+	},
+	"devDependencies": {
+		"@types/wordpress__block-editor": "^15.0.5",
+		"@types/wordpress__blocks": "^15.10.2",
+		"@ravi.nder/wp-gutenberg-compat": "^0.5.1"
+	}
+}

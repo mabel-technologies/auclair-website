@@ -1,0 +1,23 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "auclair/logo-bar",
+	"title": "Logo Bar",
+	"category": "auclair",
+	"description": "Full-width, centred AuClair wordmark + \"by AiSound\" logotype.",
+	"textdomain": "auclair",
+	"attributes": {
+		"homeUrl": {
+			"type": "string",
+			"default": "/"
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": [ "full" ],
+		"anchor": false
+	},
+	"editorScript": "file:./index.tsx",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}

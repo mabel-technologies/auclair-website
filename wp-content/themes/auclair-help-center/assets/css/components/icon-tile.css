@@ -1,0 +1,36 @@
+.auclair-icon-tile {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 48px;
+	height: 48px;
+	border-radius: 16px;
+	background: var(--wp--preset--color--surface);
+	border: 1px solid var(--wp--preset--color--border);
+	color: var(--auclair-icon-accent, var(--wp--preset--color--accent-gold));
+}
+
+.auclair-icon-tile.is-large {
+	width: 72px;
+	height: 72px;
+	border-radius: var(--wp--custom--radius--panel);
+}
+
+.auclair-icon-tile__glow {
+	position: absolute;
+	inset: 0;
+	margin: auto;
+	width: var(--wp--custom--radius--glow);
+	height: var(--wp--custom--radius--glow);
+	background: var(--auclair-icon-accent, var(--wp--preset--color--accent-gold));
+	opacity: 0.1;
+	filter: blur(var(--wp--custom--glow-blur));
+	border-radius: 50%;
+	pointer-events: none;
+}
+
+.auclair-icon-tile__icon {
+	position: relative;
+	display: inline-flex;
+}

@@ -1,0 +1,50 @@
+.auclair-help-hero {
+	position: relative;
+	overflow: hidden;
+	padding: var(--wp--preset--spacing--56-112) var(--wp--custom--site-outer-padding) var(--wp--preset--spacing--40-80);
+	border-bottom-left-radius: var(--wp--custom--radius--panel);
+	border-bottom-right-radius: var(--wp--custom--radius--panel);
+	background: var(--wp--preset--color--background);
+	text-align: center;
+}
+
+.auclair-help-hero__glow {
+	position: absolute;
+	inset: 0;
+	background: radial-gradient(44% 51% at 13% 95%, rgba(233, 202, 117, 0.3) 0%, rgba(233, 202, 117, 0) 100%);
+	pointer-events: none;
+}
+
+.auclair-help-hero__content {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 24px;
+	max-width: 720px;
+	margin-inline: auto;
+}
+
+.auclair-help-hero__eyebrow {
+	display: inline-flex;
+	padding: 6px 16px;
+	border-radius: 999px;
+	background: var(--wp--preset--color--accent-gold-glow);
+	color: var(--wp--preset--color--accent-gold);
+	font-size: 18px;
+	font-weight: 500;
+}
+
+.auclair-help-hero__heading {
+	margin: 0;
+	font-size: var(--wp--preset--font-size--display);
+	font-weight: 700;
+	color: var(--wp--preset--color--foreground-primary);
+	letter-spacing: -0.02em;
+}
+
+.auclair-help-hero__subheading {
+	margin: 0;
+	font-size: var(--wp--preset--font-size--body);
+	color: var(--wp--preset--color--foreground-secondary);
+}

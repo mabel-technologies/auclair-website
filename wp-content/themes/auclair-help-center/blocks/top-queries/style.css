@@ -1,0 +1,34 @@
+.auclair-top-queries {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: flex;
+	flex-direction: column;
+}
+
+.auclair-top-queries__item {
+	border-bottom: 1px solid var(--wp--preset--color--border);
+}
+
+.auclair-top-queries__item:last-child {
+	border-bottom: none;
+}
+
+.auclair-top-queries__item a {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 16px 4px;
+	color: var(--wp--preset--color--foreground-primary);
+	text-decoration: none;
+	font-size: var(--wp--preset--font-size--body);
+}
+
+.auclair-top-queries__item a:hover {
+	color: var(--wp--preset--color--accent-gold);
+}
+
+.auclair-top-queries__item a svg {
+	flex-shrink: 0;
+	color: var(--wp--preset--color--foreground-secondary);
+}

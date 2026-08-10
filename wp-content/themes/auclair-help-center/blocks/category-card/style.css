@@ -1,0 +1,89 @@
+.auclair-category-card {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 16px;
+	padding: 16px;
+	border-radius: 12px;
+	outline: 1px solid rgba(241, 240, 237, 0.1);
+	outline-offset: -1px;
+	background: var(--wp--preset--color--surface);
+	overflow: hidden;
+	text-decoration: none;
+	color: inherit;
+}
+
+.auclair-category-card__icon-wrap {
+	position: relative;
+	display: inline-flex;
+}
+
+.auclair-category-card__glow {
+	position: absolute;
+	inset: 0;
+	margin: auto;
+	width: 100px;
+	height: 100px;
+	background: var(--auclair-icon-accent, currentColor);
+	opacity: 0.15;
+	filter: blur(20px);
+	border-radius: 50%;
+	pointer-events: none;
+}
+
+.auclair-category-card__icon {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 46px;
+	height: 46px;
+	border-radius: 12px;
+	outline: 1px solid color-mix(in srgb, var(--auclair-icon-accent, currentColor) 19%, transparent);
+	outline-offset: -1px;
+}
+
+.auclair-category-card__row {
+	display: flex;
+	align-items: flex-end;
+	justify-content: space-between;
+	width: 100%;
+	gap: 8px;
+}
+
+.auclair-category-card__body {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.auclair-category-card__title {
+	font-size: var(--wp--preset--font-size--body);
+	font-weight: 500;
+	color: var(--wp--preset--color--foreground-primary);
+}
+
+.auclair-category-card__count {
+	font-size: var(--wp--preset--font-size--meta);
+	color: var(--wp--preset--color--foreground-secondary);
+}
+
+.auclair-category-card__chevron {
+	display: inline-flex;
+	color: var(--wp--preset--color--foreground-secondary);
+	flex-shrink: 0;
+}
+
+@media (max-width: 720px) {
+	.auclair-category-card {
+		flex-direction: row;
+		align-items: center;
+		gap: 16px;
+	}
+
+	.auclair-category-card__row {
+		flex: 1;
+		align-items: center;
+	}
+}

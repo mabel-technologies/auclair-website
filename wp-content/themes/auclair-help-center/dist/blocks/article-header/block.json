@@ -1,0 +1,22 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "auclair/article-header",
+    "title": "Article Header",
+    "category": "auclair",
+    "description": "Article title and intro paragraph.",
+    "textdomain": "auclair",
+    "attributes": {
+        "postId": {
+            "type": "number",
+            "default": 0
+        }
+    },
+    "supports": {
+        "html": false,
+        "align": false
+    },
+    "editorScript": "file:./index.tsx",
+    "style": "file:./style.css",
+    "render": "file:./render.php"
+}

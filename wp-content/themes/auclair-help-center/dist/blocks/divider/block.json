@@ -1,0 +1,21 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "auclair/divider",
+    "title": "Divider",
+    "category": "auclair",
+    "description": "1px hairline rule.",
+    "textdomain": "auclair",
+    "attributes": {
+        "inset": {
+            "type": "boolean",
+            "default": false
+        }
+    },
+    "supports": {
+        "html": false,
+        "align": false
+    },
+    "editorScript": "file:./index.tsx",
+    "style": "file:./style.css"
+}

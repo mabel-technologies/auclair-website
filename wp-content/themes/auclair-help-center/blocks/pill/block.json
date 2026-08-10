@@ -1,0 +1,21 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "auclair/pill",
+	"title": "Pill",
+	"category": "auclair",
+	"description": "Small eyebrow badge, e.g. “Help Center”.",
+	"textdomain": "auclair",
+	"attributes": {
+		"label": {
+			"type": "string",
+			"default": "Help Center"
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": false
+	},
+	"editorScript": "file:./index.tsx",
+	"style": "file:./style.css"
+}

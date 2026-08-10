@@ -1,0 +1,111 @@
+/**
+ * Shared behaviours used across multiple blocks: the hover ring animation
+ * (category-card, cta-banner), the accent glow, and the keyboard focus ring.
+ */
+
+.auclair-ring-hover {
+	position: relative;
+	transition: transform 0.2s ease;
+}
+
+/*
+ * The ring is a thin (1.5px) stroke traced around the element's actual
+ * rounded-rect perimeter via the mask-composite "gradient border" technique
+ * (padding sets the stroke width; the two masks cancel out everywhere except
+ * that band). The gradient shape itself is *fixed* (a permanent gap, not a
+ * full loop) — confirmed against two independent prototype instances
+ * (category-card and the cta-banner "Still need help?" panel) — set
+ * per-usage via the --auclair-ring-* custom properties, defaulted here to
+ * category-card's. On top of that fixed shape, the prototype's own
+ * `spinRing` interaction handler (found verbatim, unminified, in the
+ * bundle's inline script) does two things on hover/touch: reveals the ring
+ * via opacity, and forces a one-shot 360deg spin — literally
+ * `ring.style.animation = "ringSpin 900ms cubic-bezier(.2,.7,.2,1) both"`,
+ * replayed from scratch on every re-hover via an animation:none + reflow
+ * trick. CSS's own :hover re-trigger does that restart for free, so it's
+ * reproduced below as a plain :hover-scoped animation.
+ */
+.auclair-ring-hover::after {
+	content: "";
+	position: absolute;
+	/*
+	 * Flush with the box edge (not inset negatively) so the ring never
+	 * extends past the element's own bounds — cta-banner has
+	 * `overflow: hidden` (to clip its glow), which would otherwise clip
+	 * the ring itself if it were drawn outside the border box.
+	 */
+	inset: 0;
+	border-radius: inherit;
+	padding: 1.5px;
+	background: conic-gradient(
+		from var(--auclair-ring-from, 125deg),
+		transparent 0deg,
+		transparent var(--auclair-ring-gap-in, 26deg),
+		var(--auclair-ring-accent, var(--wp--preset--color--accent-gold)) var(--auclair-ring-solid-start, 80deg),
+		var(--auclair-ring-accent, var(--wp--preset--color--accent-gold)) var(--auclair-ring-solid-end, 300deg),
+		transparent var(--auclair-ring-gap-out, 356deg)
+	);
+	-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+	-webkit-mask-composite: xor;
+	mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+	mask-composite: exclude;
+	opacity: 0;
+	transition: opacity 0.2s ease;
+	pointer-events: none;
+}
+
+.auclair-ring-hover:hover,
+.auclair-ring-hover:focus-visible {
+	transform: translateY(var(--auclair-ring-lift, -2px));
+}
+
+.auclair-ring-hover:hover::after,
+.auclair-ring-hover:focus-visible::after {
+	opacity: 1;
+}
+
+@media not all and (prefers-reduced-motion: reduce) {
+	.auclair-ring-hover:hover::after,
+	.auclair-ring-hover:focus-visible::after {
+		animation: auclair-ring-spin 900ms cubic-bezier(0.2, 0.7, 0.2, 1);
+	}
+}
+
+@keyframes auclair-ring-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.auclair-ring-hover,
+	.auclair-ring-hover::after {
+		transition: none;
+	}
+
+	.auclair-ring-hover:hover,
+	.auclair-ring-hover:focus-visible {
+		transform: none;
+	}
+}
+
+.auclair-accent-glow {
+	position: absolute;
+	inset: 0;
+	margin: auto;
+	width: var(--wp--custom--radius--glow);
+	height: var(--wp--custom--radius--glow);
+	background: var(--auclair-glow-accent, var(--wp--preset--color--accent-gold));
+	opacity: 0.1;
+	filter: blur(var(--wp--custom--glow-blur));
+	border-radius: 50%;
+	pointer-events: none;
+}
+
+:focus-visible {
+	outline: 2px solid var(--wp--preset--color--accent-gold);
+	outline-offset: 2px;
+}

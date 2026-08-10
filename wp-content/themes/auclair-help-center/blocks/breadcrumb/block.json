@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "auclair/breadcrumb",
+	"title": "Breadcrumb",
+	"category": "auclair",
+	"description": "“Help center / Category / Article” trail with back chevron.",
+	"textdomain": "auclair",
+	"attributes": {
+		"showBack": {
+			"type": "boolean",
+			"default": true
+		},
+		"overrideLabel": {
+			"type": "string",
+			"default": ""
+		},
+		"overrideUrl": {
+			"type": "string",
+			"default": ""
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": false
+	},
+	"editorScript": "file:./index.tsx",
+	"style": "file:./style.css",
+	"render": "file:./render.php"
+}

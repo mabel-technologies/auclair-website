@@ -1,0 +1,75 @@
+.wp-block-auclair-search-bar {
+	align-self: stretch;
+	width: 100%;
+}
+
+.auclair-search-bar {
+	position: relative;
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	width: 100%;
+	height: 48px;
+	box-sizing: border-box;
+	padding: 0 16px;
+	border-radius: 12px;
+	border: 1px solid transparent;
+	background: rgba(241, 240, 237, 0.1);
+}
+
+.auclair-search-bar:focus-within {
+	border-color: var(--wp--preset--color--accent-gold);
+	outline: 2px solid var(--wp--preset--color--accent-gold);
+	outline-offset: 2px;
+}
+
+.auclair-search-bar__icon {
+	display: inline-flex;
+	color: var(--wp--preset--color--foreground-secondary);
+	flex-shrink: 0;
+}
+
+.auclair-search-bar__input {
+	flex: 1;
+	border: none;
+	background: transparent;
+	color: var(--wp--preset--color--foreground-primary);
+	font-size: var(--wp--preset--font-size--body);
+	font-family: inherit;
+}
+
+.auclair-search-bar__input:focus-visible {
+	outline: none;
+}
+
+.auclair-search-bar__input::placeholder {
+	color: var(--wp--preset--color--foreground-secondary);
+}
+
+.auclair-search-bar__suggestions {
+	position: absolute;
+	top: calc(100% + 8px);
+	left: 0;
+	right: 0;
+	z-index: 10;
+	margin: 0;
+	padding: 8px;
+	list-style: none;
+	border-radius: var(--wp--custom--radius--field);
+	border: 1px solid var(--wp--preset--color--border);
+	background: var(--wp--preset--color--surface);
+}
+
+.auclair-search-bar__suggestions li a {
+	display: block;
+	padding: 8px 12px;
+	border-radius: calc(var(--wp--custom--radius--field) - 4px);
+	color: var(--wp--preset--color--foreground-primary);
+	text-decoration: none;
+	font-size: var(--wp--preset--font-size--body);
+}
+
+.auclair-search-bar__suggestions li a:hover {
+	background: var(--wp--preset--color--background);
+	color: var(--wp--preset--color--accent-gold);
+}

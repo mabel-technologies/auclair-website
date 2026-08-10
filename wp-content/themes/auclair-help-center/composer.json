@@ -1,0 +1,31 @@
+{
+  "name": "10up/auclair-help-center",
+  "type": "wordpress-theme",
+  "authors": [
+    {
+      "name": "10up",
+      "email": "me@kt12.in"
+    }
+  ],
+  "require": {
+    "php": ">=8.4",
+    "10up/wp-framework": "~1.3.1"
+  },
+  "require-dev": {
+    "10up/phpcs-composer": "dev-trunk"
+  },
+  "scripts": {
+    "lint": "phpcs .",
+    "lint-fix": "phpcbf ."
+  },
+  "autoload": {
+    "psr-4": {
+      "AuclairHelpCenter\\": "src/"
+    }
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}

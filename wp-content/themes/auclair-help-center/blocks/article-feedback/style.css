@@ -1,0 +1,79 @@
+.auclair-article-feedback {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	margin-top: 32px;
+	padding-top: 16px;
+	border-top: 1px solid var(--wp--preset--color--border);
+}
+
+.auclair-article-feedback__question {
+	margin: 0;
+	font-size: var(--wp--preset--font-size--body);
+	font-weight: 500;
+	color: var(--wp--preset--color--foreground-secondary);
+}
+
+.auclair-article-feedback__response {
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+}
+
+.auclair-article-feedback__buttons {
+	display: flex;
+	align-items: stretch;
+	gap: 10px;
+}
+
+.auclair-article-feedback__button {
+	display: flex;
+	flex: 1 0 0;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 9px 22px;
+	border: none;
+	border-radius: 10px;
+	background: var(--wp--preset--color--surface);
+	color: var(--wp--preset--color--foreground-primary);
+	font-family: inherit;
+	font-size: 14px;
+	font-weight: 500;
+	cursor: pointer;
+}
+
+.auclair-article-feedback__button svg {
+	flex-shrink: 0;
+}
+
+.auclair-article-feedback__button:disabled {
+	opacity: 0.7;
+	cursor: default;
+}
+
+.auclair-article-feedback__thanks {
+	margin: 0;
+	font-size: 14px;
+	font-weight: 500;
+	color: var(--wp--preset--color--accent-gold);
+}
+
+.auclair-article-feedback__error {
+	margin: 0;
+	font-size: 14px;
+	color: var(--wp--preset--color--foreground-secondary);
+}
+
+@media (min-width: 721px) {
+	.auclair-article-feedback {
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		gap: 16px;
+	}
+
+	.auclair-article-feedback__button {
+		flex: 0 0 auto;
+	}
+}

@@ -1,0 +1,49 @@
+.auclair-quick-help-chips {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 12px;
+	width: 100%;
+	justify-content: center;
+}
+
+.auclair-quick-help-chips__label {
+	font-size: var(--wp--preset--font-size--meta);
+	font-weight: 500;
+	color: var(--wp--preset--color--foreground-secondary);
+}
+
+.auclair-quick-help-chips__list {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.auclair-quick-help-chips__chip {
+	background: var(--wp--preset--color--border);
+	border: none;
+	border-radius: 999px;
+	padding: 4px 10px;
+	color: var(--wp--preset--color--foreground-primary);
+	font-size: var(--wp--preset--font-size--meta);
+	font-weight: 500;
+	font-family: inherit;
+	cursor: pointer;
+	text-decoration: none;
+}
+
+.auclair-quick-help-chips__chip:hover {
+	color: var(--wp--preset--color--accent-gold);
+}
+
+.auclair-quick-help-chips__divider {
+	display: none;
+}
+
+@media (max-width: 720px) {
+	.auclair-quick-help-chips {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+}

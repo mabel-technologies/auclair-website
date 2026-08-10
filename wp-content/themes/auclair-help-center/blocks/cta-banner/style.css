@@ -1,0 +1,62 @@
+.auclair-cta-banner {
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-align: center;
+	gap: 16px;
+	padding: 24px 16px;
+	/*
+	 * !important: WP's generated global styles include
+	 * `:root :where(.is-layout-constrained) > :last-child { margin-block-end: 0; }`,
+	 * printed after this block's own inline stylesheet — since this block is
+	 * always the pattern's last child, that rule otherwise zeroes this out
+	 * regardless of source order. Matches WP core's own convention for the
+	 * same class of conflict (its generated alignment CSS uses !important
+	 * for exactly this reason).
+	 */
+	margin-bottom: 64px !important;
+	border-radius: 16px;
+	background: rgba(4, 6, 8, 0.5);
+	background-image: radial-gradient(74% 86% at 87% 94%, rgba(0, 191, 179, 0.2) 0%, rgba(0, 191, 179, 0) 100%);
+}
+
+.auclair-cta-banner__body {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+}
+
+.auclair-cta-banner__heading {
+	margin: 0;
+	font-size: var(--wp--preset--font-size--section);
+	font-weight: 700;
+	color: var(--wp--preset--color--foreground-primary);
+}
+
+.auclair-cta-banner__text {
+	margin: 0;
+	font-size: var(--wp--preset--font-size--body);
+	color: var(--wp--preset--color--foreground-secondary);
+	max-width: 480px;
+}
+
+.auclair-cta-banner__button {
+	margin-top: 8px;
+	background: linear-gradient(var(--wp--preset--color--accent-gold) 0%, var(--wp--preset--color--accent-gold-dark) 100%);
+	color: var(--wp--preset--color--background);
+	border: none;
+}
+
+@media (max-width: 720px) {
+	.auclair-cta-banner {
+		align-items: flex-start;
+		text-align: left;
+		margin-bottom: 40px !important;
+	}
+
+	.auclair-cta-banner__button {
+		align-self: stretch;
+	}
+}

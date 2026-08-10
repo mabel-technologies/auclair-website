@@ -1,0 +1,22 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "auclair/category-header",
+    "title": "Category Header",
+    "category": "auclair",
+    "description": "Icon tile with glow, term name, and term description for the category page.",
+    "textdomain": "auclair",
+    "attributes": {
+        "termId": {
+            "type": "number",
+            "default": 0
+        }
+    },
+    "supports": {
+        "html": false,
+        "align": false
+    },
+    "editorScript": "file:./index.tsx",
+    "style": "file:./style.css",
+    "render": "file:./render.php"
+}

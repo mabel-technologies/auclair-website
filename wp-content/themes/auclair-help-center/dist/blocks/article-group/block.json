@@ -1,0 +1,22 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "auclair/article-group",
+    "title": "Article Group",
+    "category": "auclair",
+    "description": "Articles for the current category, grouped by their sub-heading and ordered by menu order.",
+    "textdomain": "auclair",
+    "attributes": {
+        "termId": {
+            "type": "number",
+            "default": 0
+        }
+    },
+    "supports": {
+        "html": false,
+        "align": false
+    },
+    "editorScript": "file:./index.tsx",
+    "style": "file:./style.css",
+    "render": "file:./render.php"
+}

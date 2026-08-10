@@ -1,0 +1,37 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "auclair/cta-banner",
+	"title": "CTA Banner",
+	"category": "auclair",
+	"description": "“Still need help?” panel with icon, body copy, and a CTA button.",
+	"textdomain": "auclair",
+	"attributes": {
+		"heading": {
+			"type": "string",
+			"default": "Still need help?"
+		},
+		"body": {
+			"type": "string",
+			"default": "Our support team is available 7 days a week. Raise a ticket and we will follow up asap."
+		},
+		"buttonLabel": {
+			"type": "string",
+			"default": "Raise A Ticket"
+		},
+		"buttonUrl": {
+			"type": "string",
+			"default": "/help/raise-a-ticket/"
+		},
+		"accent": {
+			"type": "string",
+			"default": "#E9CA75"
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": false
+	},
+	"editorScript": "file:./index.tsx",
+	"style": "file:./style.css"
+}

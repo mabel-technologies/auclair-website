@@ -1,0 +1,21 @@
+.auclair-article-header {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	margin-top: 32px;
+}
+
+.auclair-article-header__title {
+	margin: 0;
+	font-size: clamp(28px, 5vw, 48px);
+	font-weight: 700;
+	line-height: 48px;
+	color: var(--wp--preset--color--foreground-primary);
+}
+
+.auclair-article-header__intro {
+	margin: 0;
+	font-size: var(--wp--preset--font-size--body);
+	line-height: 1.4;
+	color: var(--wp--preset--color--foreground-primary);
+}
