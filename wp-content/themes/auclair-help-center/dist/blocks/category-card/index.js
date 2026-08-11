@@ -1,16 +1,1 @@
-import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
-import { registerBlockType } from '@wordpress/blocks';
-import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl, ToggleControl } from '@wordpress/components';
-import ServerSideRender from '@wordpress/server-side-render';
-import { __ } from '@wordpress/i18n';
-import metadata from './block.json';
-registerBlockType(metadata.name, {
-    edit: ({ attributes, setAttributes }) => {
-        const termId = attributes.termId;
-        const animate = attributes.animate;
-        const blockProps = useBlockProps();
-        return (_jsxs(_Fragment, { children: [_jsx(InspectorControls, { children: _jsxs(PanelBody, { title: __('Settings', 'auclair'), children: [_jsx(TextControl, { label: __('Term ID', 'auclair'), type: "number", value: termId ? String(termId) : '', onChange: (value) => setAttributes({ termId: Number(value) || 0 }) }), _jsx(ToggleControl, { label: __('Ring animation on hover', 'auclair'), checked: !!animate, onChange: (animate) => setAttributes({ animate }) })] }) }), _jsx("div", { ...blockProps, children: termId ? (_jsx(ServerSideRender, { block: metadata.name, attributes: attributes })) : (_jsx("p", { children: __('Choose a help_category term ID in the sidebar.', 'auclair') })) })] }));
-    },
-    save: () => null,
-});
+!function(){"use strict";var e={n:function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,{a:n}),n},d:function(t,n){for(var r in n)e.o(n,r)&&!e.o(t,r)&&Object.defineProperty(t,r,{enumerable:!0,get:n[r]})},o:function(e,t){return Object.prototype.hasOwnProperty.call(e,t)}},t=window.wp.element,n=window.wp.blocks,r=window.wp.blockEditor,o=window.wp.components,a=window.wp.serverSideRender,l=e.n(a),i=window.wp.i18n,c=JSON.parse('{"UU":"auclair/category-card"}');(0,n.registerBlockType)(c.UU,{edit:({attributes:e,setAttributes:n})=>{const a=e.termId,u=e.animate,d=(0,r.useBlockProps)();return(0,t.createElement)(t.Fragment,null,(0,t.createElement)(r.InspectorControls,null,(0,t.createElement)(o.PanelBody,{title:(0,i.__)("Settings","auclair")},(0,t.createElement)(o.TextControl,{label:(0,i.__)("Term ID","auclair"),type:"number",value:a?String(a):"",onChange:e=>n({termId:Number(e)||0})}),(0,t.createElement)(o.ToggleControl,{label:(0,i.__)("Ring animation on hover","auclair"),checked:!!u,onChange:e=>n({animate:e})}))),(0,t.createElement)("div",d,a?(0,t.createElement)(l(),{block:c.UU,attributes:e}):(0,t.createElement)("p",null,(0,i.__)("Choose a help_category term ID in the sidebar.","auclair"))))},save:()=>null})}();

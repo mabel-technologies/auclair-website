@@ -1,15 +1,1 @@
-import { jsx as _jsx } from "react/jsx-runtime";
-import { registerBlockType } from '@wordpress/blocks';
-import { useBlockProps, RichText } from '@wordpress/block-editor';
-import metadata from './block.json';
-registerBlockType(metadata.name, {
-    edit: ({ attributes, setAttributes }) => {
-        const label = attributes.label;
-        const blockProps = useBlockProps({ className: 'auclair-pill' });
-        return (_jsx(RichText, { ...blockProps, tagName: "span", value: label, onChange: (label) => setAttributes({ label }), allowedFormats: [] }));
-    },
-    save: ({ attributes }) => {
-        const blockProps = useBlockProps.save({ className: 'auclair-pill' });
-        return _jsx(RichText.Content, { ...blockProps, tagName: "span", value: attributes.label });
-    },
-});
+!function(){"use strict";var e=window.wp.element,a=window.wp.blocks,t=window.wp.blockEditor,l=JSON.parse('{"UU":"auclair/pill"}');function r(){return r=Object.assign?Object.assign.bind():function(e){for(var a=1;a<arguments.length;a++){var t=arguments[a];for(var l in t)({}).hasOwnProperty.call(t,l)&&(e[l]=t[l])}return e},r.apply(null,arguments)}(0,a.registerBlockType)(l.UU,{edit:({attributes:a,setAttributes:l})=>{const n=a.label,s=(0,t.useBlockProps)({className:"auclair-pill"});return(0,e.createElement)(t.RichText,r({},s,{tagName:"span",value:n,onChange:e=>l({label:e}),allowedFormats:[]}))},save:({attributes:a})=>{const l=t.useBlockProps.save({className:"auclair-pill"});return(0,e.createElement)(t.RichText.Content,r({},l,{tagName:"span",value:a.label}))}})}();

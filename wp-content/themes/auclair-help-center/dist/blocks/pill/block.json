@@ -1,21 +1,22 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "name": "auclair/pill",
-    "title": "Pill",
-    "category": "auclair",
-    "description": "Small eyebrow badge, e.g. “Help Center”.",
-    "textdomain": "auclair",
-    "attributes": {
-        "label": {
-            "type": "string",
-            "default": "Help Center"
-        }
-    },
-    "supports": {
-        "html": false,
-        "align": false
-    },
-    "editorScript": "file:./index.tsx",
-    "style": "file:./style.css"
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "auclair/pill",
+  "title": "Pill",
+  "category": "auclair",
+  "description": "Small eyebrow badge, e.g. “Help Center”.",
+  "textdomain": "auclair",
+  "attributes": {
+    "label": {
+      "type": "string",
+      "default": "Help Center"
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
+  "version": "6801d52698b50af670218071fb65dcdcb59e9037e6012619c437e3e83f342503"
 }

@@ -1,12 +1,1 @@
-import { store, getContext } from '@wordpress/interactivity';
-// Get a live reference to the shared 'auclair' state, owned by
-// search-bar/view.ts, so a chip click can write into the same search query.
-const { state } = store('auclair');
-store('auclair', {
-    actions: {
-        fillSearchFromChip() {
-            const context = getContext();
-            state.searchQuery = context.chipLabel;
-        },
-    },
-});
+import{getContext as t,store as a}from"@wordpress/interactivity";const{state:r}=a("auclair");a("auclair",{actions:{fillSearchFromChip(){const a=t();r.searchQuery=a.chipLabel}}});

@@ -1,29 +1,30 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "name": "auclair/section-heading",
-    "title": "Section Heading",
-    "category": "auclair",
-    "description": "Section title with an optional subtitle.",
-    "textdomain": "auclair",
-    "attributes": {
-        "title": {
-            "type": "string",
-            "default": "Section title"
-        },
-        "subtitle": {
-            "type": "string",
-            "default": ""
-        },
-        "align": {
-            "type": "string",
-            "default": "left"
-        }
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "auclair/section-heading",
+  "title": "Section Heading",
+  "category": "auclair",
+  "description": "Section title with an optional subtitle.",
+  "textdomain": "auclair",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": "Section title"
     },
-    "supports": {
-        "html": false,
-        "align": false
+    "subtitle": {
+      "type": "string",
+      "default": ""
     },
-    "editorScript": "file:./index.tsx",
-    "style": "file:./style.css"
+    "align": {
+      "type": "string",
+      "default": "left"
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
+  "version": "864dffe7c51ad916afebb811e70d2e06ac0e93cf26e6d9dad7f1c84c4cb5d49f"
 }

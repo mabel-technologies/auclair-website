@@ -1,15 +1,1 @@
-import { jsx as _jsx, Fragment as _Fragment, jsxs as _jsxs } from "react/jsx-runtime";
-import { registerBlockType } from '@wordpress/blocks';
-import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, TextControl } from '@wordpress/components';
-import ServerSideRender from '@wordpress/server-side-render';
-import { __ } from '@wordpress/i18n';
-import metadata from './block.json';
-registerBlockType(metadata.name, {
-    edit: ({ attributes, setAttributes }) => {
-        const homeUrl = attributes.homeUrl;
-        const blockProps = useBlockProps();
-        return (_jsxs(_Fragment, { children: [_jsx(InspectorControls, { children: _jsx(PanelBody, { title: __('Settings', 'auclair'), children: _jsx(TextControl, { label: __('Home URL', 'auclair'), value: homeUrl, onChange: (homeUrl) => setAttributes({ homeUrl }) }) }) }), _jsx("div", { ...blockProps, children: _jsx(ServerSideRender, { block: metadata.name, attributes: attributes }) })] }));
-    },
-    save: () => null,
-});
+!function(){"use strict";var e={n:function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,{a:n}),n},d:function(t,n){for(var r in n)e.o(n,r)&&!e.o(t,r)&&Object.defineProperty(t,r,{enumerable:!0,get:n[r]})},o:function(e,t){return Object.prototype.hasOwnProperty.call(e,t)}},t=window.wp.element,n=window.wp.blocks,r=window.wp.blockEditor,o=window.wp.components,l=window.wp.serverSideRender,a=e.n(l),i=window.wp.i18n,c=JSON.parse('{"UU":"auclair/logo-bar"}');(0,n.registerBlockType)(c.UU,{edit:({attributes:e,setAttributes:n})=>{const l=e.homeUrl,u=(0,r.useBlockProps)();return(0,t.createElement)(t.Fragment,null,(0,t.createElement)(r.InspectorControls,null,(0,t.createElement)(o.PanelBody,{title:(0,i.__)("Settings","auclair")},(0,t.createElement)(o.TextControl,{label:(0,i.__)("Home URL","auclair"),value:l,onChange:e=>n({homeUrl:e})}))),(0,t.createElement)("div",u,(0,t.createElement)(a(),{block:c.UU,attributes:e})))},save:()=>null})}();

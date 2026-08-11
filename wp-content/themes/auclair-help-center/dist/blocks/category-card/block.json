@@ -1,30 +1,31 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "name": "auclair/category-card",
-    "title": "Category Card",
-    "category": "auclair",
-    "description": "Icon, title, article count, with the hover ring animation.",
-    "textdomain": "auclair",
-    "attributes": {
-        "termId": {
-            "type": "number",
-            "default": 0
-        },
-        "accent": {
-            "type": "string",
-            "default": ""
-        },
-        "animate": {
-            "type": "boolean",
-            "default": true
-        }
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "auclair/category-card",
+  "title": "Category Card",
+  "category": "auclair",
+  "description": "Icon, title, article count, with the hover ring animation.",
+  "textdomain": "auclair",
+  "attributes": {
+    "termId": {
+      "type": "number",
+      "default": 0
     },
-    "supports": {
-        "html": false,
-        "align": false
+    "accent": {
+      "type": "string",
+      "default": ""
     },
-    "editorScript": "file:./index.tsx",
-    "style": "file:./style.css",
-    "render": "file:./render.php"
+    "animate": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
+  "render": "file:./render.php",
+  "version": "5393e30c0e3dceb76dfdd74a6cd860f688d8a6d0b2e2f8e2dd81c902d192ac32"
 }

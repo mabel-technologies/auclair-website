@@ -5,6 +5,7 @@
 		"start": "npm run watch",
 		"watch": "10up-toolkit watch --port=5020",
 		"build": "10up-toolkit build",
+		"postbuild": "node ./bin/fix-block-json.mjs",
 		"build:analyze": "10up-toolkit build --analyze",
 		"format-js": "10up-toolkit format-js",
 		"lint-js": "10up-toolkit lint-js",

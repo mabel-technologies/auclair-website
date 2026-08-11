@@ -1,35 +1,36 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "name": "auclair/quick-help-chips",
-    "title": "Quick Help Chips",
-    "category": "auclair",
-    "description": "“Quick help” label + chips separated by hairline dividers.",
-    "textdomain": "auclair",
-    "attributes": {
-        "label": {
-            "type": "string",
-            "default": "Top Searches:"
-        },
-        "source": {
-            "type": "string",
-            "default": "popular"
-        },
-        "items": {
-            "type": "array",
-            "default": []
-        },
-        "limit": {
-            "type": "number",
-            "default": 4
-        }
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "auclair/quick-help-chips",
+  "title": "Quick Help Chips",
+  "category": "auclair",
+  "description": "“Quick help” label + chips separated by hairline dividers.",
+  "textdomain": "auclair",
+  "attributes": {
+    "label": {
+      "type": "string",
+      "default": "Top Searches:"
     },
-    "supports": {
-        "html": false,
-        "align": false
+    "source": {
+      "type": "string",
+      "default": "popular"
     },
-    "editorScript": "file:./index.tsx",
-    "style": "file:./style.css",
-    "render": "file:./render.php",
-    "viewScriptModule": "file:./view.js"
+    "items": {
+      "type": "array",
+      "default": []
+    },
+    "limit": {
+      "type": "number",
+      "default": 4
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
+  "render": "file:./render.php",
+  "viewScriptModule": "file:./view.js",
+  "version": "ba7b8649aa685839501f3be1e7b418f682e2aadfb887967709efe96b7a0ed89b"
 }

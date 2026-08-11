@@ -1,30 +1,31 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "name": "auclair/related-categories",
-    "title": "Related Categories",
-    "category": "auclair",
-    "description": "Sibling category cards, excluding the current category.",
-    "textdomain": "auclair",
-    "attributes": {
-        "termId": {
-            "type": "number",
-            "default": 0
-        },
-        "exclude": {
-            "type": "array",
-            "default": []
-        },
-        "limit": {
-            "type": "number",
-            "default": 3
-        }
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "auclair/related-categories",
+  "title": "Related Categories",
+  "category": "auclair",
+  "description": "Sibling category cards, excluding the current category.",
+  "textdomain": "auclair",
+  "attributes": {
+    "termId": {
+      "type": "number",
+      "default": 0
     },
-    "supports": {
-        "html": false,
-        "align": false
+    "exclude": {
+      "type": "array",
+      "default": []
     },
-    "editorScript": "file:./index.tsx",
-    "style": "file:./style.css",
-    "render": "file:./render.php"
+    "limit": {
+      "type": "number",
+      "default": 3
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
+  "render": "file:./render.php",
+  "version": "2e9c2cfa0fca885f3ab7d3cb3469cae251f33d7edc5470475565c3ab4b3a5614"
 }

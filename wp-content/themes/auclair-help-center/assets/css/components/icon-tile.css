@@ -17,6 +17,17 @@
 	border-radius: var(--wp--custom--radius--panel);
 }
 
+/* cta-banner's icon-tile is a distinct, smaller treatment in the prototype:
+   44x44, ~12px radius, near-black background (not the surface color) — not
+   the same "large" tile used by category-header. Scoped to cta-banner so
+   category-header's `render_icon_tile(..., 'large')` output is unaffected. */
+.auclair-cta-banner .auclair-icon-tile.is-large {
+	width: 44px;
+	height: 44px;
+	border-radius: 12px;
+	background: var(--wp--preset--color--background);
+}
+
 .auclair-icon-tile__glow {
 	position: absolute;
 	inset: 0;
