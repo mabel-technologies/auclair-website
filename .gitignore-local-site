@@ -1,0 +1,29 @@
+# Local (by WP Engine) generated / environment-specific
+conf/
+logs/
+app/.envrc
+app/public/wp-config.php
+
+# WordPress core noise
+app/public/wp-content/uploads/
+app/public/wp-content/upgrade/
+app/public/wp-content/debug.log
+
+# Composer-managed WP plugins (wpackagist) — regenerated via composer install
+app/public/wp-content/plugins/*
+!app/public/wp-content/plugins/index.php
+
+# Node / PHP dependencies
+node_modules/
+vendor/
+*/node_modules/
+*/vendor/
+
+# Build output
+dist/
+build/
+
+# OS / editor
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
