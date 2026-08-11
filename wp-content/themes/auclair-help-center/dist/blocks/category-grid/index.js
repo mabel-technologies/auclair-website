@@ -1,16 +1,1 @@
-import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
-import { registerBlockType } from '@wordpress/blocks';
-import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, RangeControl, ToggleControl } from '@wordpress/components';
-import ServerSideRender from '@wordpress/server-side-render';
-import { __ } from '@wordpress/i18n';
-import metadata from './block.json';
-registerBlockType(metadata.name, {
-    edit: ({ attributes, setAttributes }) => {
-        const columns = attributes.columns;
-        const showCount = attributes.showCount;
-        const blockProps = useBlockProps();
-        return (_jsxs(_Fragment, { children: [_jsx(InspectorControls, { children: _jsxs(PanelBody, { title: __('Settings', 'auclair'), children: [_jsx(RangeControl, { label: __('Columns', 'auclair'), value: columns, min: 2, max: 4, onChange: (columns) => setAttributes({ columns: columns || 4 }) }), _jsx(ToggleControl, { label: __('Show article count', 'auclair'), checked: !!showCount, onChange: (showCount) => setAttributes({ showCount }) })] }) }), _jsx("div", { ...blockProps, children: _jsx(ServerSideRender, { block: metadata.name, attributes: attributes }) })] }));
-    },
-    save: () => null,
-});
+!function(){"use strict";var e={n:function(t){var n=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(n,{a:n}),n},d:function(t,n){for(var o in n)e.o(n,o)&&!e.o(t,o)&&Object.defineProperty(t,o,{enumerable:!0,get:n[o]})},o:function(e,t){return Object.prototype.hasOwnProperty.call(e,t)}},t=window.wp.element,n=window.wp.blocks,o=window.wp.blockEditor,r=window.wp.components,l=window.wp.serverSideRender,a=e.n(l),c=window.wp.i18n,i=JSON.parse('{"UU":"auclair/category-grid"}');(0,n.registerBlockType)(i.UU,{edit:({attributes:e,setAttributes:n})=>{const l=e.columns,u=e.showCount,s=(0,o.useBlockProps)();return(0,t.createElement)(t.Fragment,null,(0,t.createElement)(o.InspectorControls,null,(0,t.createElement)(r.PanelBody,{title:(0,c.__)("Settings","auclair")},(0,t.createElement)(r.RangeControl,{label:(0,c.__)("Columns","auclair"),value:l,min:2,max:4,onChange:e=>n({columns:e||4})}),(0,t.createElement)(r.ToggleControl,{label:(0,c.__)("Show article count","auclair"),checked:!!u,onChange:e=>n({showCount:e})}))),(0,t.createElement)("div",s,(0,t.createElement)(a(),{block:i.UU,attributes:e})))},save:()=>null})}();

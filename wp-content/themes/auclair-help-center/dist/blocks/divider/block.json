@@ -1,21 +1,22 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "name": "auclair/divider",
-    "title": "Divider",
-    "category": "auclair",
-    "description": "1px hairline rule.",
-    "textdomain": "auclair",
-    "attributes": {
-        "inset": {
-            "type": "boolean",
-            "default": false
-        }
-    },
-    "supports": {
-        "html": false,
-        "align": false
-    },
-    "editorScript": "file:./index.tsx",
-    "style": "file:./style.css"
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "auclair/divider",
+  "title": "Divider",
+  "category": "auclair",
+  "description": "1px hairline rule.",
+  "textdomain": "auclair",
+  "attributes": {
+    "inset": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
+  "version": "74eb73bfed1b61a64ee4348ea0278eca447815126c7531e8670ac3e77a54b77d"
 }

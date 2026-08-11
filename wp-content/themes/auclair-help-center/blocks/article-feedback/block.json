@@ -11,6 +11,10 @@
 			"type": "number",
 			"default": 0
 		},
+		"question": {
+			"type": "string",
+			"default": "Was this article helpful?"
+		},
 		"upLabel": {
 			"type": "string",
 			"default": "Yes, thanks"

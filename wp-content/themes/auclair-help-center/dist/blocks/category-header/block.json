@@ -1,22 +1,23 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "name": "auclair/category-header",
-    "title": "Category Header",
-    "category": "auclair",
-    "description": "Icon tile with glow, term name, and term description for the category page.",
-    "textdomain": "auclair",
-    "attributes": {
-        "termId": {
-            "type": "number",
-            "default": 0
-        }
-    },
-    "supports": {
-        "html": false,
-        "align": false
-    },
-    "editorScript": "file:./index.tsx",
-    "style": "file:./style.css",
-    "render": "file:./render.php"
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "auclair/category-header",
+  "title": "Category Header",
+  "category": "auclair",
+  "description": "Icon tile with glow, term name, and term description for the category page.",
+  "textdomain": "auclair",
+  "attributes": {
+    "termId": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
+  "render": "file:./render.php",
+  "version": "fe99d23b2a2724e3b70e6edc80dd824342cd4c086ad4e18ee53b2abf86f14587"
 }

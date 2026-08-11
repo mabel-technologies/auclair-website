@@ -1,17 +1,1 @@
-import { jsx as _jsx, jsxs as _jsxs, Fragment as _Fragment } from "react/jsx-runtime";
-import { registerBlockType } from '@wordpress/blocks';
-import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, ToggleControl, TextControl } from '@wordpress/components';
-import ServerSideRender from '@wordpress/server-side-render';
-import { __ } from '@wordpress/i18n';
-import metadata from './block.json';
-registerBlockType(metadata.name, {
-    edit: ({ attributes, setAttributes }) => {
-        const showBack = attributes.showBack;
-        const overrideLabel = attributes.overrideLabel;
-        const overrideUrl = attributes.overrideUrl;
-        const blockProps = useBlockProps();
-        return (_jsxs(_Fragment, { children: [_jsx(InspectorControls, { children: _jsxs(PanelBody, { title: __('Settings', 'auclair'), children: [_jsx(ToggleControl, { label: __('Show back chevron', 'auclair'), checked: !!showBack, onChange: (showBack) => setAttributes({ showBack }) }), _jsx(TextControl, { label: __('Override last crumb label', 'auclair'), help: __('Leave empty to derive from the current page.', 'auclair'), value: overrideLabel, onChange: (overrideLabel) => setAttributes({ overrideLabel }) }), _jsx(TextControl, { label: __('Override last crumb URL', 'auclair'), value: overrideUrl, onChange: (overrideUrl) => setAttributes({ overrideUrl }) })] }) }), _jsx("div", { ...blockProps, children: _jsx(ServerSideRender, { block: metadata.name, attributes: attributes }) })] }));
-    },
-    save: () => null,
-});
+!function(){"use strict";var e={n:function(r){var t=r&&r.__esModule?function(){return r.default}:function(){return r};return e.d(t,{a:t}),t},d:function(r,t){for(var n in t)e.o(t,n)&&!e.o(r,n)&&Object.defineProperty(r,n,{enumerable:!0,get:t[n]})},o:function(e,r){return Object.prototype.hasOwnProperty.call(e,r)}},r=window.wp.element,t=window.wp.blocks,n=window.wp.blockEditor,l=window.wp.components,o=window.wp.serverSideRender,a=e.n(o),c=window.wp.i18n,i=JSON.parse('{"UU":"auclair/breadcrumb"}');(0,t.registerBlockType)(i.UU,{edit:({attributes:e,setAttributes:t})=>{const o=e.showBack,u=e.overrideLabel,d=e.overrideUrl,s=(0,n.useBlockProps)();return(0,r.createElement)(r.Fragment,null,(0,r.createElement)(n.InspectorControls,null,(0,r.createElement)(l.PanelBody,{title:(0,c.__)("Settings","auclair")},(0,r.createElement)(l.ToggleControl,{label:(0,c.__)("Show back chevron","auclair"),checked:!!o,onChange:e=>t({showBack:e})}),(0,r.createElement)(l.TextControl,{label:(0,c.__)("Override last crumb label","auclair"),help:(0,c.__)("Leave empty to derive from the current page.","auclair"),value:u,onChange:e=>t({overrideLabel:e})}),(0,r.createElement)(l.TextControl,{label:(0,c.__)("Override last crumb URL","auclair"),value:d,onChange:e=>t({overrideUrl:e})}))),(0,r.createElement)("div",s,(0,r.createElement)(a(),{block:i.UU,attributes:e})))},save:()=>null})}();

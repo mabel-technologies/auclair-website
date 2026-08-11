@@ -20,6 +20,7 @@ if ( ! $post_id ) {
 	return;
 }
 
+$question    = ! empty( $attributes['question'] ) ? $attributes['question'] : __( 'Was this article helpful?', 'auclair' );
 $up_label    = ! empty( $attributes['upLabel'] ) ? $attributes['upLabel'] : __( 'Yes, thanks', 'auclair' );
 $down_label  = ! empty( $attributes['downLabel'] ) ? $attributes['downLabel'] : __( 'Not really', 'auclair' );
 $thanks_up   = ! empty( $attributes['thanksUp'] ) ? $attributes['thanksUp'] : __( 'Thanks — glad it helped.', 'auclair' );
@@ -56,7 +57,7 @@ $wrapper_attributes = get_block_wrapper_attributes( [ 'class' => 'auclair-articl
 	data-wp-interactive="auclair"
 	data-wp-context="<?php echo esc_attr( wp_json_encode( $context ) ); ?>"
 >
-	<p class="auclair-article-feedback__question"><?php esc_html_e( 'Was this article helpful?', 'auclair' ); ?></p>
+	<p class="auclair-article-feedback__question"><?php echo esc_html( $question ); ?></p>
 	<div class="auclair-article-feedback__response">
 		<div class="auclair-article-feedback__buttons">
 			<button

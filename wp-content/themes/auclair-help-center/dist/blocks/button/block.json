@@ -1,32 +1,32 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "name": "auclair/button",
-    "title": "Button",
-    "category": "auclair",
-    "description": "Primary / secondary / ghost button.",
-    "textdomain": "auclair",
-    "attributes": {
-        "label": {
-            "type": "string",
-            "default": "Button"
-        },
-        "href": {
-            "type": "string",
-            "default": ""
-        },
-        "variant": {
-            "type": "string",
-            "default": "primary"
-        },
-        "fullWidthMobile": {
-            "type": "boolean",
-            "default": false
-        }
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "auclair/button",
+  "title": "Button",
+  "category": "auclair",
+  "description": "Primary / secondary / ghost button.",
+  "textdomain": "auclair",
+  "attributes": {
+    "label": {
+      "type": "string",
+      "default": "Button"
     },
-    "supports": {
-        "html": false,
-        "align": false
+    "href": {
+      "type": "string",
+      "default": ""
     },
-    "editorScript": "file:./index.tsx"
+    "variant": {
+      "type": "string",
+      "default": "primary"
+    },
+    "fullWidthMobile": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  },
+  "editorScript": "file:./index.js"
 }

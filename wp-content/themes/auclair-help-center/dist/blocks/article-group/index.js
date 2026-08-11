@@ -1,12 +1,1 @@
-import { jsx as _jsx } from "react/jsx-runtime";
-import { registerBlockType } from '@wordpress/blocks';
-import { useBlockProps } from '@wordpress/block-editor';
-import ServerSideRender from '@wordpress/server-side-render';
-import metadata from './block.json';
-registerBlockType(metadata.name, {
-    edit: ({ attributes }) => {
-        const blockProps = useBlockProps();
-        return (_jsx("div", { ...blockProps, children: _jsx(ServerSideRender, { block: metadata.name, attributes: attributes }) }));
-    },
-    save: () => null,
-});
+!function(){"use strict";var e={n:function(t){var r=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(r,{a:r}),r},d:function(t,r){for(var n in r)e.o(r,n)&&!e.o(t,n)&&Object.defineProperty(t,n,{enumerable:!0,get:r[n]})},o:function(e,t){return Object.prototype.hasOwnProperty.call(e,t)}},t=window.wp.element,r=window.wp.blocks,n=window.wp.blockEditor,o=window.wp.serverSideRender,i=e.n(o),u=JSON.parse('{"UU":"auclair/article-group"}');(0,r.registerBlockType)(u.UU,{edit:({attributes:e})=>{const r=(0,n.useBlockProps)();return(0,t.createElement)("div",r,(0,t.createElement)(i(),{block:u.UU,attributes:e}))},save:()=>null})}();

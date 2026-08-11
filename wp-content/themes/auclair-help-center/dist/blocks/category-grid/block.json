@@ -1,34 +1,35 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "name": "auclair/category-grid",
-    "title": "Category Grid",
-    "category": "auclair",
-    "description": "Grid of category cards, one row of 4 on desktop, one per row on mobile.",
-    "textdomain": "auclair",
-    "attributes": {
-        "taxonomy": {
-            "type": "string",
-            "default": "help_category"
-        },
-        "include": {
-            "type": "array",
-            "default": []
-        },
-        "columns": {
-            "type": "number",
-            "default": 4
-        },
-        "showCount": {
-            "type": "boolean",
-            "default": true
-        }
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "auclair/category-grid",
+  "title": "Category Grid",
+  "category": "auclair",
+  "description": "Grid of category cards, one row of 4 on desktop, one per row on mobile.",
+  "textdomain": "auclair",
+  "attributes": {
+    "taxonomy": {
+      "type": "string",
+      "default": "help_category"
     },
-    "supports": {
-        "html": false,
-        "align": false
+    "include": {
+      "type": "array",
+      "default": []
     },
-    "editorScript": "file:./index.tsx",
-    "style": "file:./style.css",
-    "render": "file:./render.php"
+    "columns": {
+      "type": "number",
+      "default": 4
+    },
+    "showCount": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
+  "render": "file:./render.php",
+  "version": "95684330abc43c09aa191941140922e5adee5d79ded7cb31a8f609805c2d3506"
 }

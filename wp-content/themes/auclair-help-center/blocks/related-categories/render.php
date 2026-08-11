@@ -16,7 +16,21 @@ if ( $term_id ) {
 } elseif ( is_tax( HelpCategory::NAME ) ) {
 	$term = get_queried_object();
 } else {
-	$term = null;
+	// Template-editing context (e.g. previewing this block in the Site
+	// Editor's taxonomy-help_category template, which has no real queried
+	// term): fall back to a representative sample category so the block
+	// shows real content instead of rendering empty.
+	$sample = get_terms(
+		[
+			'taxonomy'   => HelpCategory::NAME,
+			'hide_empty' => false,
+			'number'     => 1,
+			'meta_key'   => 'order', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- single-row lookup.
+			'orderby'    => 'meta_value_num',
+			'order'      => 'ASC',
+		]
+	);
+	$term = ! empty( $sample ) && ! is_wp_error( $sample ) ? $sample[0] : null;
 }
 
 if ( ! $term || is_wp_error( $term ) ) {

@@ -1,23 +1,26 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "name": "auclair/logo-bar",
-    "title": "Logo Bar",
-    "category": "auclair",
-    "description": "Full-width, centred AuClair wordmark + \"by AiSound\" logotype.",
-    "textdomain": "auclair",
-    "attributes": {
-        "homeUrl": {
-            "type": "string",
-            "default": "/"
-        }
-    },
-    "supports": {
-        "html": false,
-        "align": ["full"],
-        "anchor": false
-    },
-    "editorScript": "file:./index.tsx",
-    "style": "file:./style.css",
-    "render": "file:./render.php"
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "auclair/logo-bar",
+  "title": "Logo Bar",
+  "category": "auclair",
+  "description": "Full-width, centred AuClair wordmark + \"by AiSound\" logotype.",
+  "textdomain": "auclair",
+  "attributes": {
+    "homeUrl": {
+      "type": "string",
+      "default": "/"
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": [
+      "full"
+    ],
+    "anchor": false
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
+  "render": "file:./render.php",
+  "version": "2a6a6f2eaf98e3fbbccb5383f7c12ab48d3d418c65d054072361bed2b86f3e0e"
 }

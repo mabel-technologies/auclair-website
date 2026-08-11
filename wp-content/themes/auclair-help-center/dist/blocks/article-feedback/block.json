@@ -1,39 +1,44 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "name": "auclair/article-feedback",
-    "title": "Article Feedback",
-    "category": "auclair",
-    "description": "“Was this article helpful?” + Yes/No, then thank-you message. Writes to kb_article meta via REST.",
-    "textdomain": "auclair",
-    "attributes": {
-        "postId": {
-            "type": "number",
-            "default": 0
-        },
-        "upLabel": {
-            "type": "string",
-            "default": "Yes, thanks"
-        },
-        "downLabel": {
-            "type": "string",
-            "default": "Not really"
-        },
-        "thanksUp": {
-            "type": "string",
-            "default": "Thanks — glad it helped."
-        },
-        "thanksDown": {
-            "type": "string",
-            "default": "Thanks for letting us know — we’ll work on it."
-        }
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "auclair/article-feedback",
+  "title": "Article Feedback",
+  "category": "auclair",
+  "description": "“Was this article helpful?” + Yes/No, then thank-you message. Writes to kb_article meta via REST.",
+  "textdomain": "auclair",
+  "attributes": {
+    "postId": {
+      "type": "number",
+      "default": 0
     },
-    "supports": {
-        "html": false,
-        "align": false
+    "question": {
+      "type": "string",
+      "default": "Was this article helpful?"
     },
-    "editorScript": "file:./index.tsx",
-    "style": "file:./style.css",
-    "render": "file:./render.php",
-    "viewScriptModule": "file:./view.js"
+    "upLabel": {
+      "type": "string",
+      "default": "Yes, thanks"
+    },
+    "downLabel": {
+      "type": "string",
+      "default": "Not really"
+    },
+    "thanksUp": {
+      "type": "string",
+      "default": "Thanks — glad it helped."
+    },
+    "thanksDown": {
+      "type": "string",
+      "default": "Thanks for letting us know — we’ll work on it."
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
+  "render": "file:./render.php",
+  "viewScriptModule": "file:./view.js",
+  "version": "33990e40a200aeb19dc4f27e8b78adfb4555f4e239c5c3fbe1f418eaa0459a67"
 }

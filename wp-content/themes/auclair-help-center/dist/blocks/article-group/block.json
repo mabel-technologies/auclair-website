@@ -1,22 +1,23 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "name": "auclair/article-group",
-    "title": "Article Group",
-    "category": "auclair",
-    "description": "Articles for the current category, grouped by their sub-heading and ordered by menu order.",
-    "textdomain": "auclair",
-    "attributes": {
-        "termId": {
-            "type": "number",
-            "default": 0
-        }
-    },
-    "supports": {
-        "html": false,
-        "align": false
-    },
-    "editorScript": "file:./index.tsx",
-    "style": "file:./style.css",
-    "render": "file:./render.php"
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "auclair/article-group",
+  "title": "Article Group",
+  "category": "auclair",
+  "description": "Articles for the current category, grouped by their sub-heading and ordered by menu order.",
+  "textdomain": "auclair",
+  "attributes": {
+    "termId": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
+  "render": "file:./render.php",
+  "version": "b482dbaf2eebc5a5f5c9562b300de2fc032c6f0bc88bb6fa89bfca7e837d628e"
 }

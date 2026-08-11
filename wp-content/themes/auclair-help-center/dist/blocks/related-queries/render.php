@@ -86,9 +86,18 @@ if ( empty( $items ) ) {
 }
 
 $wrapper_attributes = get_block_wrapper_attributes( [ 'class' => 'auclair-related-queries' ] );
+
+// The block editor's live preview (ServerSideRender, via the block-renderer
+// REST endpoint) renders this heading itself as an inline-editable RichText
+// field positioned above this same markup — suppress the PHP-rendered
+// heading only in that context so it isn't shown twice. On every real page
+// load (REST_REQUEST unset) this renders normally.
+$is_editor_preview = defined( 'REST_REQUEST' ) && REST_REQUEST;
 ?>
 <div <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- pre-escaped. ?>>
-	<h2 class="auclair-related-queries__heading"><?php echo esc_html( $attributes['heading'] ?? __( 'Related queries', 'auclair' ) ); ?></h2>
+	<?php if ( ! $is_editor_preview ) : ?>
+		<h2 class="auclair-related-queries__heading"><?php echo esc_html( $attributes['heading'] ?? __( 'Related queries', 'auclair' ) ); ?></h2>
+	<?php endif; ?>
 	<ul class="auclair-related-queries__list">
 		<?php foreach ( $items as $index => $item ) : ?>
 			<?php if ( $index > 0 ) : ?>

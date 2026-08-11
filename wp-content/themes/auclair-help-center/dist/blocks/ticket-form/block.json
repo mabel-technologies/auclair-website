@@ -1,35 +1,41 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "name": "auclair/ticket-form",
-    "title": "Ticket Form",
-    "category": "auclair",
-    "description": "Raise-a-ticket form: category dropdown, subject, description, email, attachment. Creates a support_ticket via REST.",
-    "textdomain": "auclair",
-    "attributes": {
-        "successUrl": {
-            "type": "string",
-            "default": "/help/ticket-submitted/"
-        },
-        "defaultCategory": {
-            "type": "number",
-            "default": 0
-        },
-        "maxUploadMb": {
-            "type": "number",
-            "default": 5
-        },
-        "allowedTypes": {
-            "type": "array",
-            "default": ["image/png", "image/jpeg", "image/webp", "application/pdf"]
-        }
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "auclair/ticket-form",
+  "title": "Ticket Form",
+  "category": "auclair",
+  "description": "Raise-a-ticket form: category dropdown, subject, description, email, attachment. Creates a support_ticket via REST.",
+  "textdomain": "auclair",
+  "attributes": {
+    "successUrl": {
+      "type": "string",
+      "default": "/help/ticket-submitted/"
     },
-    "supports": {
-        "html": false,
-        "align": false
+    "defaultCategory": {
+      "type": "number",
+      "default": 0
     },
-    "editorScript": "file:./index.tsx",
-    "style": "file:./style.css",
-    "render": "file:./render.php",
-    "viewScriptModule": "file:./view.js"
+    "maxUploadMb": {
+      "type": "number",
+      "default": 5
+    },
+    "allowedTypes": {
+      "type": "array",
+      "default": [
+        "image/png",
+        "image/jpeg",
+        "image/webp",
+        "application/pdf"
+      ]
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
+  "render": "file:./render.php",
+  "viewScriptModule": "file:./view.js",
+  "version": "1a5477589f426f110a71a7c5f372c697db69644728108d750fcfac70bf7cdd49"
 }

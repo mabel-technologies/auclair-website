@@ -1,22 +1,23 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "name": "auclair/article-body",
-    "title": "Article Body",
-    "category": "auclair",
-    "description": "Ordered step list (steps meta) followed by the article's post content.",
-    "textdomain": "auclair",
-    "attributes": {
-        "postId": {
-            "type": "number",
-            "default": 0
-        }
-    },
-    "supports": {
-        "html": false,
-        "align": false
-    },
-    "editorScript": "file:./index.tsx",
-    "style": "file:./style.css",
-    "render": "file:./render.php"
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "auclair/article-body",
+  "title": "Article Body",
+  "category": "auclair",
+  "description": "Ordered step list (steps meta) followed by the article's post content.",
+  "textdomain": "auclair",
+  "attributes": {
+    "postId": {
+      "type": "number",
+      "default": 0
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": false
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
+  "render": "file:./render.php",
+  "version": "287836be073c21ec44e9d8fbf8fe38dcb4ecaf5e6581492f0cdded9d7da58e31"
 }

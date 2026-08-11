@@ -1,29 +1,32 @@
 {
-    "$schema": "https://schemas.wp.org/trunk/block.json",
-    "apiVersion": 3,
-    "name": "auclair/help-hero",
-    "title": "Help Hero",
-    "category": "auclair",
-    "description": "Full-bleed hero: eyebrow pill + heading + search + quick-help chips.",
-    "textdomain": "auclair",
-    "attributes": {
-        "eyebrow": {
-            "type": "string",
-            "default": "Help Center"
-        },
-        "heading": {
-            "type": "string",
-            "default": "How can we help you today?"
-        },
-        "subheading": {
-            "type": "string",
-            "default": ""
-        }
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "auclair/help-hero",
+  "title": "Help Hero",
+  "category": "auclair",
+  "description": "Full-bleed hero: eyebrow pill + heading + search + quick-help chips.",
+  "textdomain": "auclair",
+  "attributes": {
+    "eyebrow": {
+      "type": "string",
+      "default": "Help Center"
     },
-    "supports": {
-        "html": false,
-        "align": ["full"]
+    "heading": {
+      "type": "string",
+      "default": "How can we help you today?"
     },
-    "editorScript": "file:./index.tsx",
-    "style": "file:./style.css"
+    "subheading": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "supports": {
+    "html": false,
+    "align": [
+      "full"
+    ]
+  },
+  "editorScript": "file:./index.js",
+  "style": "file:./style.css",
+  "version": "d6d6977c13df10dbe6b622b849805e0ab9b31acbb13c2aeafe4e43bb92b097cf"
 }

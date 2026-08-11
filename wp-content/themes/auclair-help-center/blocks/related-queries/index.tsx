@@ -1,6 +1,6 @@
 import { registerBlockType } from '@wordpress/blocks';
-import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { PanelBody, SelectControl, RangeControl, TextControl } from '@wordpress/components';
+import { useBlockProps, InspectorControls, RichText } from '@wordpress/block-editor';
+import { PanelBody, SelectControl, RangeControl } from '@wordpress/components';
 import ServerSideRender from '@wordpress/server-side-render';
 import { __ } from '@wordpress/i18n';
 import metadata from './block.json';
@@ -21,11 +21,6 @@ registerBlockType( metadata.name, {
 			<>
 				<InspectorControls>
 					<PanelBody title={ __( 'Settings', 'auclair' ) }>
-						<TextControl
-							label={ __( 'Heading', 'auclair' ) }
-							value={ heading }
-							onChange={ ( heading: string ) => setAttributes( { heading } ) }
-						/>
 						<SelectControl
 							label={ __( 'Source', 'auclair' ) }
 							value={ source }
@@ -42,6 +37,13 @@ registerBlockType( metadata.name, {
 					</PanelBody>
 				</InspectorControls>
 				<div { ...blockProps }>
+					<RichText
+						tagName="h2"
+						className="auclair-related-queries__heading"
+						value={ heading }
+						onChange={ ( heading: string ) => setAttributes( { heading } ) }
+						allowedFormats={ [] }
+					/>
 					<ServerSideRender block={ metadata.name } attributes={ attributes } />
 				</div>
 			</>
