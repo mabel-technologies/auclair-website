@@ -78,7 +78,8 @@ if ( empty( $items ) ) {
 	return;
 }
 
-$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => 'auclair-top-queries' ] );
+$classes             = 'auclair-top-queries' . ( ! empty( $attributes['boxed'] ) ? ' auclair-top-queries--boxed' : '' );
+$wrapper_attributes = get_block_wrapper_attributes( [ 'class' => $classes ] );
 ?>
 <ol <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- pre-escaped. ?>>
 	<?php foreach ( $items as $item ) : ?>

@@ -1,0 +1,27 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "auclair/search-results",
+	"title": "Search Results",
+	"category": "auclair",
+	"description": "Live-search input over kb_article, with results updating on every keystroke.",
+	"textdomain": "auclair",
+	"attributes": {
+		"placeholder": {
+			"type": "string",
+			"default": "Search queries or topics"
+		},
+		"limit": {
+			"type": "number",
+			"default": 12
+		}
+	},
+	"supports": {
+		"html": false,
+		"align": false
+	},
+	"editorScript": "file:./index.tsx",
+	"style": "file:./style.css",
+	"viewScriptModule": "file:./view.js",
+	"render": "file:./render.php"
+}

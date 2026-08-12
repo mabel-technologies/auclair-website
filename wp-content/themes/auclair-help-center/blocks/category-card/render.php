@@ -24,6 +24,25 @@ $accent      = $accent ? $accent : '#E9CA75';
 $animate     = ! isset( $attributes['animate'] ) || $attributes['animate'];
 $card_class  = 'auclair-category-card' . ( $animate ? ' auclair-ring-hover' : '' );
 
+/*
+ * Per-accent glow color/opacity, taken verbatim from the design prototype —
+ * the glow's hue occasionally differs from the tile accent (e.g. Getting
+ * started pairs a #6BA8F0 tile with a pure-blue glow), and its opacity is
+ * hand-tuned per hue rather than uniform.
+ */
+$glow_map = [
+	'#6BA8F0' => [ 'rgb(0, 117, 255)', '0.10' ],
+	'#22D0D0' => [ '#22D0D0', '0.15' ],
+	'#E9CA75' => [ '#E9CA75', '0.18' ],
+	'#00BFB3' => [ '#00BFB3', '0.15' ],
+	'#BC7EFF' => [ 'rgb(176, 126, 255)', '0.15' ],
+	'#FF7096' => [ '#FF7096', '0.10' ],
+	'#FF9F3E' => [ '#FF9F3E', '0.15' ],
+	'#ABFF8F' => [ '#ABFF8F', '0.10' ],
+];
+$glow_key    = strtoupper( $accent );
+$glow        = isset( $glow_map[ $glow_key ] ) ? $glow_map[ $glow_key ] : [ $accent, '0.15' ];
+
 $wrapper_attributes = get_block_wrapper_attributes(
 	[
 		'class' => $card_class,
@@ -33,7 +52,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 ?>
 <a href="<?php echo esc_url( get_term_link( $term ) ); ?>" <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- pre-escaped. ?>>
 	<span class="auclair-category-card__icon-wrap" style="--auclair-icon-accent:<?php echo esc_attr( $accent ); ?>;">
-		<span class="auclair-category-card__glow"></span>
+		<span class="auclair-category-card__glow" style="background:<?php echo esc_attr( $glow[0] ); ?>;--auclair-glow-alpha:<?php echo esc_attr( $glow[1] ); ?>;"></span>
 		<span class="auclair-category-card__icon" style="background:color-mix(in srgb, <?php echo esc_attr( $accent ); ?> 9%, transparent); color:<?php echo esc_attr( $accent ); ?>;">
 			<?php echo get_icon_svg( $icon, 20 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- trusted, static icon markup. ?>
 		</span>

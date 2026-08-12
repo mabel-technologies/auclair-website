@@ -29,7 +29,7 @@
 				{
 					"slug": "border",
 					"name": "Border",
-					"color": "rgba(241,240,237,0.08)"
+					"color": "rgba(241,240,237,0.10)"
 				},
 				{
 					"slug": "accent-gold",
@@ -133,7 +133,7 @@
 		},
 		"layout": {
 			"allowCustomContentAndWideSize": false,
-			"contentSize": "min(650px, var(--wp--custom--site-content-width))",
+			"contentSize": "min(688px, var(--wp--custom--site-content-width))",
 			"wideSize": "min(1200px, var(--wp--custom--site-content-width))"
 		},
 		"spacing": {
@@ -229,6 +229,13 @@
 					"fontFace": [
 						{
 							"fontFamily": "Satoshi",
+							"fontWeight": "400",
+							"fontStyle": "normal",
+							"fontDisplay": "swap",
+							"src": [ "file:./assets/fonts/satoshi-400.woff2" ]
+						},
+						{
+							"fontFamily": "Satoshi",
 							"fontWeight": "500",
 							"fontStyle": "normal",
 							"fontDisplay": "swap",
@@ -263,10 +270,10 @@
 				{
 					"slug": "section",
 					"name": "Section",
-					"size": "24px",
+					"size": "20px",
 					"fluid": {
-						"min": "24px",
-						"max": "28px"
+						"min": "20px",
+						"max": "24px"
 					}
 				},
 				{
@@ -300,7 +307,7 @@
 			"fontFamily": "var(--wp--preset--font-family--satoshi)",
 			"fontSize": "var(--wp--preset--font-size--body)",
 			"fontWeight": "500",
-			"lineHeight": "1.5"
+			"lineHeight": "1.4"
 		},
 		"elements": {
 			"link": {

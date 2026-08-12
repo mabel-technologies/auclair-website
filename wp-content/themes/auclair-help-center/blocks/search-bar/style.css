@@ -25,7 +25,7 @@
 
 .auclair-search-bar__icon {
 	display: inline-flex;
-	color: var(--wp--preset--color--foreground-secondary);
+	color: var(--wp--preset--color--foreground-primary);
 	flex-shrink: 0;
 }
 
@@ -44,32 +44,4 @@
 
 .auclair-search-bar__input::placeholder {
 	color: var(--wp--preset--color--foreground-secondary);
-}
-
-.auclair-search-bar__suggestions {
-	position: absolute;
-	top: calc(100% + 8px);
-	left: 0;
-	right: 0;
-	z-index: 10;
-	margin: 0;
-	padding: 8px;
-	list-style: none;
-	border-radius: var(--wp--custom--radius--field);
-	border: 1px solid var(--wp--preset--color--border);
-	background: var(--wp--preset--color--surface);
-}
-
-.auclair-search-bar__suggestions li a {
-	display: block;
-	padding: 8px 12px;
-	border-radius: calc(var(--wp--custom--radius--field) - 4px);
-	color: var(--wp--preset--color--foreground-primary);
-	text-decoration: none;
-	font-size: var(--wp--preset--font-size--body);
-}
-
-.auclair-search-bar__suggestions li a:hover {
-	background: var(--wp--preset--color--background);
-	color: var(--wp--preset--color--accent-gold);
 }

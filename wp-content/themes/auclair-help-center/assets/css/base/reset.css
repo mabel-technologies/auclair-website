@@ -33,11 +33,10 @@ html {
 }
 
 /*
- * Improve text rendering
+ * Match the design prototype's text rendering: it uses the browser default
+ * (subpixel) antialiasing, and forcing `antialiased` makes light-on-dark
+ * Satoshi render visibly thinner than the design.
  */
-body {
-	-webkit-font-smoothing: antialiased;
-}
 
 /*
  * Improve media defaults

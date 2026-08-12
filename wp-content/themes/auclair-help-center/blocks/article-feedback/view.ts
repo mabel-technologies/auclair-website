@@ -4,7 +4,9 @@ interface Context {
 	postId: number;
 	nonce: string;
 	endpoint: string;
-	voted: boolean;
+	currentVote: '' | 'up' | 'down';
+	votedUp: boolean;
+	votedDown: boolean;
 	submitting: boolean;
 	error: string;
 	thanksUp: string;
@@ -24,14 +26,18 @@ store< { actions: Actions } >( 'auclair', {
 		*castVote() {
 			const context = getContext< Context >();
 
-			if ( context.voted || context.submitting ) {
-				return;
-			}
-
 			const { ref } = getElement();
 			const value = ref?.getAttribute( 'data-vote-value' );
 
 			if ( 'up' !== value && 'down' !== value ) {
+				return;
+			}
+
+			// Re-clicking the already-selected choice is a no-op — nothing
+			// changed, so skip the round trip. Clicking the *other* button is
+			// always allowed, even after a previous vote, so a visitor can
+			// change their mind.
+			if ( context.submitting || context.currentVote === value ) {
 				return;
 			}
 
@@ -50,7 +56,9 @@ store< { actions: Actions } >( 'auclair', {
 					throw new Error();
 				}
 
-				context.voted = true;
+				context.currentVote = value;
+				context.votedUp = 'up' === value;
+				context.votedDown = 'down' === value;
 				context.thanksMessage = 'up' === value ? context.thanksUp : context.thanksDown;
 				context.showThanks = true;
 				setTimeout( () => {

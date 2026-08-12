@@ -13,11 +13,7 @@
     },
     "action": {
       "type": "string",
-      "default": "/?s=%s&post_type=kb_article"
-    },
-    "liveSuggest": {
-      "type": "boolean",
-      "default": true
+      "default": "/help/search/?q=%s"
     }
   },
   "supports": {
@@ -27,5 +23,5 @@
   "editorScript": "file:./index.js",
   "style": "file:./style.css",
   "viewScriptModule": "file:./view.js",
-  "version": "fe525b876073f2d54144afe9b942ef72f9b838f2241cefe82cea657b6adb838b"
+  "version": "31ed99c345936b82c22bc278c22aa6686023867c65b84f23912bc3f724daa728"
 }

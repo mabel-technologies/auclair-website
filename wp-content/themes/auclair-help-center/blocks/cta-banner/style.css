@@ -18,8 +18,18 @@
 	 */
 	margin-bottom: 64px !important;
 	border-radius: 16px;
+	outline: 1px solid var(--wp--preset--color--border);
+	outline-offset: -1px;
 	background: rgba(4, 6, 8, 0.5);
-	background-image: radial-gradient(74% 86% at 87% 94%, rgba(0, 191, 179, 0.2) 0%, rgba(0, 191, 179, 0) 100%);
+	background-image: radial-gradient(ellipse 45.43% 50.17% at 86.53% 93.7%, rgba(0, 191, 179, 0.2) 0%, rgba(0, 191, 179, 0) 100%);
+	/* Ring hover shape + behaviour per the prototype's banner: a 105° gold arc
+	   starting from 140°, revealed in place with no lift. */
+	--auclair-ring-from: 140deg;
+	--auclair-ring-gap-in: 24deg;
+	--auclair-ring-solid-start: 90deg;
+	--auclair-ring-solid-end: 195deg;
+	--auclair-ring-gap-out: 250deg;
+	--auclair-ring-lift: 0px;
 }
 
 .auclair-cta-banner__body {
@@ -32,21 +42,39 @@
 	margin: 0;
 	font-size: var(--wp--preset--font-size--section);
 	font-weight: 700;
+	line-height: 1.2;
 	color: var(--wp--preset--color--foreground-primary);
 }
 
 .auclair-cta-banner__text {
 	margin: 0;
 	font-size: var(--wp--preset--font-size--body);
+	font-weight: 400;
+	line-height: 1.4;
 	color: var(--wp--preset--color--foreground-secondary);
-	max-width: 480px;
+	max-width: 390px;
+	/* The prototype hard-breaks the copy after the first sentence; the body
+	   attribute carries that break as a newline. */
+	white-space: pre-line;
 }
 
 .auclair-cta-banner__button {
+	width: 238px;
+	height: 40px;
 	margin-top: 8px;
-	background: linear-gradient(var(--wp--preset--color--accent-gold) 0%, var(--wp--preset--color--accent-gold-dark) 100%);
+	padding: 4px 8px;
+	background: linear-gradient(180deg, var(--wp--preset--color--accent-gold) 0%, var(--wp--preset--color--accent-gold-dark) 100%);
 	color: var(--wp--preset--color--background);
 	border: none;
+	outline: 2px solid var(--wp--preset--color--border);
+	outline-offset: -2px;
+	transition: opacity 0.15s ease;
+}
+
+.auclair-cta-banner__button:hover {
+	opacity: 0.7;
+	background: linear-gradient(180deg, var(--wp--preset--color--accent-gold) 0%, var(--wp--preset--color--accent-gold-dark) 100%);
+	transform: none;
 }
 
 @media (max-width: 720px) {
@@ -57,6 +85,6 @@
 	}
 
 	.auclair-cta-banner__button {
-		align-self: stretch;
+		width: 100%;
 	}
 }

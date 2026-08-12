@@ -18,6 +18,10 @@
 		"limit": {
 			"type": "number",
 			"default": 10
+		},
+		"boxed": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"supports": {

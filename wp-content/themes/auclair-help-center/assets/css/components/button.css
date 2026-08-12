@@ -2,10 +2,10 @@
 	display: inline-flex;
 	align-items: center;
 	justify-content: center;
-	padding: 12px 24px;
+	padding: 8px 24px;
 	border-radius: var(--wp--custom--radius--field);
 	font-weight: 700;
-	font-size: var(--wp--preset--font-size--body);
+	font-size: 14px;
 	text-decoration: none;
 	cursor: pointer;
 	transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;

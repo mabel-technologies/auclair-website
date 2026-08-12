@@ -4,8 +4,8 @@ Living build log for the WordPress Help Center build, tracked against the plan i
 `sites-template/wordpress/`. Updated after each task completes — see `MEMORY.md`-style
 "most recent state" at the top, full history below.
 
-**Last updated:** 2026-08-10 (bugfix session — Site Editor template editing issues)
-**Current phase:** Pages 1–4 completed (landing + category + article + raise-a-ticket with fidelity verification). Next: Page 5 (ticket-submitted).
+**Last updated:** 2026-08-12 (Page 6 — Search Results with live AJAX-as-you-type search)
+**Current phase:** Pages 1–4 completed with comprehensive fidelity verification. Page 6 (Search Results) completed with live AJAX search. Page 5 (ticket-submitted) not yet started.
 
 **Process:** This file is meant to be kept current by a dedicated subagent
 (`.claude/agents/progress-tracker.md`), invoked after each task completes. Claude Code only
@@ -365,7 +365,125 @@ Verification: reloaded `/help/raise-a-ticket/` in Chrome post-fix, screenshotted
 
 **Gotcha for follow-up:** Any other hand-written pattern PHP files that declare a `style` JSON attr on a static core block should be audited for this same silent-drop bug — it won't throw errors/warnings, the style JSON just gets ignored, so it's easy to miss without live visual diff. Worth checking pages 1, 2, and eventually 3/5 before considering them fully fidelity-verified.
 
+### Full-template extraction + comprehensive fidelity overhaul session
+
+**Breakthrough methodology:** Reverse-engineered all 5 prototype screens' actual rendered markup from their bundled HTML source (`sites-template/html/0N-*.html` files). Each bundle ships a `<script type="__bundler/template">` JSON payload containing:
+1. **Complete static markup** of all 5 screens — every element with inline styles, not just CSS class names.
+2. **Runtime responsive-variables map** — per-breakpoint token/scale overrides mapped to `mob = vw <= 720` and `desk = vw > 720`.
+
+Extraction technique: parsed `__bundler/template` JSON → prettified to readable markup → created per-screen element digest (element path + every computed style attribute) indexed by `data-layer` IDs. This became the definitive source of truth — bypasses sampling from browser DevTools which can miss or misinterpret styles, and captures the designer's exact intent.
+
+**16 root-cause fixes applied (all verified against side-by-side screenshots at ~1460px viewport, prototype vs. live):**
+
+1. **`assets/css/base/reset.css` — Removed `body { -webkit-font-smoothing: antialiased }`**. This was forcing subpixel-AA rendering off, making all light-on-dark text appear thinner than the prototype (which uses browser default). Font files/metrics were byte-identical; the rendering algorithm difference was the culprit.
+
+2. **`theme.json` — Three critical design-token corrections:**
+   - `--wp--custom--typography--line-height` global default: `1.5 → 1.4` (prototype uses 1.4 everywhere: 22.4/16, 19.6/14, 25.2/18, 28.8/24 all exactly 1.4×).
+   - `--wp--custom--color--border` alpha correction: `rgba(241,240,237,0.08) → 0.10` (prototype's pervasive "alpha-10" border tone).
+   - `--wp--custom--sizes--content-width`: `720px → 688px` (prototype's content column is 720px container minus 16px padding per side; CTA banner alone is truly 720px, handled by per-block override).
+
+3. **`blocks/help-hero/style.css` — Four hero-specific fixes:**
+   - Background overlay: `rgba(4,6,8,0.5)` (not `#101820` solid — proto has a translucent overlay, not opaque background).
+   - Glow gradient: `radial-gradient(ellipse 44.31% 50.8% at 13.33% 95.45%, gold 0.30)` (exact stops from designer's export).
+   - H1 title: `clamp(32px, 5.6vw, 64px) / line-height 1.05 / max-width 530px` (proto title has tighter line-height to prevent gap-between-title-lines regression).
+   - Eyebrow pill: `padding 4px 12px` (was missing).
+
+4. **`assets/css/components/shared-behaviours.css` — Ring hover & vertical rhythm overhaul:**
+   - Ring animation: thickness `1.5px → 1px`; technique switched from rotated-2-sided-border to conic-gradient with registered `@property --auclair-ring-angle` animating from 0→360deg via `cubic-bezier(.2,.7,.2,1)` 900ms both (matches prototype's spin, not the prior "sweep-draw" misreading). Fully closes loop with no permanent gap.
+   - Vertical rhythm rules added: `section-heading` margin-top 40px; `heading → list` 16px gap; `cta-banner` margin-top 40px + max-width 720px constraint; `breadcrumb`/`category-header`/`divider`/`article-group` margin-top 32px.
+
+5. **`blocks/logo-bar/style.css` — Styling corrections:**
+   - Background: `#0A0F14` (darker than page background #101820).
+   - Bottom border: `0.5px` (vs. missing).
+   - Padding: `24px clamp(16px, 7vw, 100px)`.
+
+6. **Grid gap corrections:**
+   - `blocks/category-grid` gap: `16px → 8px`.
+   - `blocks/related-categories` gap: `16px → 8px`.
+
+7. **`blocks/category-card` — Icon tile & glow redesign:**
+   - Icon outline: `0.5px` accent @ 19% opacity.
+   - Icon background: `9%-opacity` accent via `color-mix()` (not bordered square).
+   - Icon glow: `100px/20px-blur` positioned at card's top-left corner (not centered), with per-accent hand-tuned color+alpha map in render.php (e.g., "Getting started" pairs `#6BA8F0` tile with pure-blue rgb(0,117,255) glow @ 0.10; gold @ 0.18; teal @ 0.15).
+
+8. **`blocks/cta-banner` — Full overhaul:**
+   - Panel background: `rgba(4,6,8,0.5)` with fixed teal radial glow at `45.43% 50.17% at 86.53% 93.7%` (was 74%×86%, a mistaken value from a no-op proto layer).
+   - Button: `height 40px`, `outline 2px` @ alpha-10, `hover: opacity 0.7` (no lift/darken).
+   - Ring shape: defaults from shared CSS (from 140deg, gap 24, solid 90–195, out 250, lift 0).
+   - Mobile: left-aligned layout + full-width button (restored — earlier removal was based on poisoned `resize_window` measurements).
+   - Icon: `question-circle` SVG (not life-buoy).
+   - Text: `max-width 390px` with `white-space: pre-line` and hard newline in body attr after "…7 days a week." to match proto's `<br>`.
+
+9. **`blocks/top-queries` — Layout restructuring:**
+   - Flat rows: `padding 16px 0` with `4px` breathing around dividers (proto renders dividers as flex children in `gap: 4px` column).
+   - Boxed variant: exact `padding 12px 12px 12px 16px`, `0.5px outline`, unpadded rows with `16px gaps`.
+
+10. **`blocks/article-group` — Card styling:**
+    - Same as boxed top-queries; group label fixed to `16px/500/lh 20px/letter-spacing 1px` (was 14px/700/0.04em).
+
+11. **`blocks/section-heading` — Tightened metrics:**
+    - Internal gap: `4px`; title line-height: `1.2`.
+    - `blocks/category-header` — outer + text gaps both `16px`; title lh `1.0`.
+    - Large icon-tile: `64px/16.7px radius/accent-9% bg/1px accent-19% outline/116px glow` (was 72px surface-colored).
+    - CTA banner icon-tile: `radius 11.48px + 1px outline`.
+
+12. **`blocks/related-queries` — Typography & borders:**
+    - Heading: `font-weight 900` (proto declares 900; no 900 face in Satoshi so browser synthesizes from 700 — matching the request makes both render identically).
+    - List: `0.5px outline`.
+
+13. **`blocks/article-feedback` — Exact dimensions:**
+    - Border-top: `0.72px rgba(255,255,255,0.07)` (not repeat of border token).
+    - Buttons: `1px outline + hover opacity 0.7`.
+    - Desktop layout: question + buttons each `flex 1 1 0` (buttons pair spans half row).
+
+14. **`blocks/article-header` — Font weight restoration:**
+    - Intro text: `font-weight 400` (was inheriting 500).
+
+15. **`blocks/ticket-form` — Prototype-exact dimensions:**
+    - Fields: `72px tall total` (proto: `56px content-box + 16px padding`).
+    - Field outlines: `1.5px`.
+    - Panel: `1px outline + exact gold ellipse`.
+    - Field gap: `32px → 16px` with submit `+8px` (24px before submit group).
+    - Label: `lh 14 + padding-bottom 4px`.
+    - Dropdown: `top 60px + 1px outline`.
+    - Submit: `outline 2px + hover opacity 0.7`.
+    - Helper text: `margin 16px`.
+
+16. **Minor component fixes:**
+    - `blocks/search-bar` icon: `foreground-primary` (was secondary).
+    - `blocks/quick-help-chips` chip: `min-height 24px / lh 14px`; bg now `alpha-10` via border token change.
+    - `blocks/breadcrumb` separator: removed `opacity 0.5` (proto has none).
+
+**Verification:** Full side-by-side screenshot audit (prototype `sites-template/html/*.html` vs. live at matched scroll positions) across all 4 built pages (landing, category, article, raise-a-ticket) for: hero, quick-help section, card grids, top-queries list, CTA banner, article header/body/feedback/related, full ticket form. Ring hover verified animating live. `npm run build` completed cleanly; debug.log empty.
+
+**Files modified:** `theme.json`, `templates/page.html`, `templates/taxonomy-help_category.html`, `patterns/help-center-home.php`, `patterns/category-page.php`, `patterns/article-page.php`, `patterns/raise-ticket-page.php`, plus 16 block-specific `.css` files across `blocks/*/style.css`.
+
+### 11. Page 6 — Search Results
+
+**Context:** User supplied new prototype export `~/Desktop/search.zip` (Figma bundled HTML export, same unpack technique as `sites-template/html/*.html`) containing `export/html/06-search.html` with a new "Search Result" screen not in the original 5-page spec. Prototype uses `hasResults`/`noResults` state machine; user explicitly requested live AJAX-as-you-type search (not the prototype's own Enter-to-submit model) — visual design reused, interaction model upgraded per explicit request.
+
+**New block `auclair/search-results` (D+I)** at `themes/auclair-help-center/blocks/search-results/`:
+- `render.php`: reads `$_GET['q']`, runs server-side `get_posts()` search scoped to `kb_article` (posts-per-page from `limit` attribute, default 12), renders one of three states matching prototype exactly — results list (boxed surface panel, 16px row gaps, divider-separated with chevron), no-results panel ("No results for \"{query}\""), or nothing (empty query). First paint + no-JS visitors see real results immediately from server, not empty shell.
+- `view.ts`: on `input` event, debounces 300ms then fetches `/wp-json/wp/v2/kb_article?search=...&per_page={limit}&_fields=title,link` (reuses exact REST endpoint already used by `search-bar`'s suggestion dropdown — no new backend endpoint needed). Replaces results container innerHTML via hand-written `renderResults()` template-literal that mirrors `render.php`'s three states byte-for-byte. **Deliberately does NOT use `data-wp-each`/`<template>` directive** — same hydration-crash workaround pattern already applied to `ticket-form` to avoid SSR'd markup mismatch. Includes request-id race-guard (newer keystroke's response discards stale earlier responses), matching pattern in `search-bar/view.ts`. Updates `?q=` in URL via `history.replaceState` on every keystroke (no page reload, results bookmarkable/shareable).
+- `style.css`: new scoped `.auclair-search-results__*` classes (panel, boxed list, divider, empty-state) — 12px 12px 12px 16px panel padding, 0.5px border-token outline, 16px row gaps, 18px/700 empty-state title. Block remains self-contained per codebase convention.
+
+**New page**: `/help/search/` (page ID 46, title "Search Result" — `breadcrumb` block's `is_page()` branch uses `get_the_title()` verbatim), child of "Help Center" (ID 8). Template `templates/page-search.html` mirrors `page-raise-a-ticket.html` (bare `main` group, inner `constrained` group with explicit `contentSize:"720px"` since design's search bar/results panel are literally 720px wide). Pattern `patterns/search-results-page.php` (logo-bar → breadcrumb `showBack:false` → `auclair/search-results`).
+
+**Routing**: added `'search'` to `AuclairCore\Rewrite\StaticPageRoutes::SLUGS` (mu-plugins/auclair-core/src/Rewrite/StaticPageRoutes.php) — same top-priority-rewrite-ahead-of-taxonomy-catch-all mechanism already used for `raise-a-ticket`/`ticket-submitted`. Ran `wp rewrite flush`.
+
+**Hero search bar hookup**: Changed `auclair/search-bar` default `action` attribute from `/?s=%s&post_type=kb_article` (WP's native unstyled search) to `/help/search/?q=%s` in `blocks/search-bar/block.json`. Updated hand-authored saved markup in `patterns/help-center-home.php`'s `data-wp-context` to match (static-block silent-drop gotcha: saved HTML doesn't regenerate from attribute defaults). Pressing Enter in landing hero's search bar now lands on styled results page instead of WP's default template.
+
+**Verification**: live-tested end to end — typed in results page's own search box, confirmed single debounced REST call per pause in typing (e.g. "hearing test" produced exactly one request for full phrase, not per-keystroke), results updated in-place with no reload, URL updated to `?q=...` via replaceState, empty-state and populated-state pixel-match prototype, direct navigation to `/help/search/?q=playlist` server-renders identical result via `render.php`'s initial query, landing hero's Enter key correctly routes to `/help/search/?q=<query>` with live results showing. Console clean, no PHP warnings in debug.log, `npm run build` green (23 blocks now, up from 22).
+
+**Known gotcha carried forward**: mobile-viewport visual verification NOT done — `resize_window` tool silently no-ops in this session's browser window (documented in earlier PROGRESS entries). Page's CSS has no fixed widths beyond shared 720px content-column max-width (same pattern as `top-queries`/`article-group`, both already verified responsive), expected to be fine, but is inference not verification — worth explicit mobile check in future session.
+
 ### Known gotchas / follow-ups
+
+- **Chrome test window has `prefers-reduced-motion: ON`** — ring spin animations are suppressed there (reveal still works). Also `resize_window` macOS-fullscreen edge case silently no-ops, so any earlier "mobile measurements" contradicting template's `mob` variables were wrong; **template's responsive-variables map is the authoritative mobile truth**. Pages 3, 4, and 6 have not had explicit mobile viewport visual verification due to this tool limitation — all use the shared 720px content-column max-width pattern which is expected to be responsive, but should be spot-checked in a future session.
+
+- **Prototype bundle inner document uses content-box box-sizing (no universal reset)** — inline height/width values are content-box. When porting dimensions to border-box live theme, always add padding.
+
+- **Page 5 (ticket-submitted) spec fully extracted in digest** — screen `isSubmitted`, markup lines ~1525-1561 of prettified template: `72px circle icon-tile, clamp(20px,3vw,24px)/700 title, 420px max-width body, 222px gradient button min-height 44 + outline 2px, section padding 48px 16px 64px`. Spec is complete and ready for build.
 
 - **Admin password:** reset to `password` per explicit request — not a placeholder, this is the
   real current value.
@@ -390,5 +508,5 @@ Verification: reloaded `/help/raise-a-ticket/` in Chrome post-fix, screenshotted
 
 ## Remaining tasks
 
-- **11. Page 5 — Ticket submitted** (`/help/ticket-submitted`): `ticket-success` block;
+- **12. Page 5 — Ticket submitted** (`/help/ticket-submitted`): `ticket-success` block;
   one-time-token/transient gate so direct hits redirect back to the ticket form.

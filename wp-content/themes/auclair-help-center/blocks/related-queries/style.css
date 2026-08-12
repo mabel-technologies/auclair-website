@@ -8,7 +8,10 @@
 .auclair-related-queries__heading {
 	margin: 0;
 	font-size: clamp(17px, 2.2vw, 20px);
-	font-weight: 700;
+	/* The prototype declares 900; Satoshi ships no 900 face, so the browser
+	   synthesizes extra-bold from the 700 file — reproduce the same request so
+	   both render identically. */
+	font-weight: 900;
 	line-height: 24px;
 	color: var(--wp--preset--color--foreground-primary);
 }
@@ -22,6 +25,8 @@
 	gap: 16px;
 	border-radius: 12px;
 	background: var(--wp--preset--color--surface);
+	outline: 0.5px solid var(--wp--preset--color--border);
+	outline-offset: -0.5px;
 }
 
 .auclair-related-queries__divider {

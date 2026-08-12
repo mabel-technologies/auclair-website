@@ -2,24 +2,27 @@
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
-	gap: 24px;
+	gap: 16px;
 }
 
 .auclair-category-header__text {
 	display: flex;
 	flex-direction: column;
-	gap: 8px;
+	gap: 16px;
 }
 
 .auclair-category-header__title {
 	margin: 0;
-	font-size: var(--wp--preset--font-size--display);
+	font-size: 40px;
 	font-weight: 700;
+	line-height: 1;
 	color: var(--wp--preset--color--foreground-primary);
 }
 
 .auclair-category-header__description {
 	margin: 0;
 	font-size: var(--wp--preset--font-size--body);
+	font-weight: 400;
+	line-height: 1.4;
 	color: var(--wp--preset--color--foreground-secondary);
 }
