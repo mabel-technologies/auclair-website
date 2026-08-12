@@ -13,11 +13,12 @@
 .auclair-article-group__label {
 	display: flex;
 	align-items: center;
-	gap: 8px;
+	gap: 10px;
 	margin: 0;
-	font-size: var(--wp--preset--font-size--meta);
-	font-weight: 700;
-	letter-spacing: 0.04em;
+	font-size: var(--wp--preset--font-size--body);
+	font-weight: 500;
+	line-height: 20px;
+	letter-spacing: 1px;
 	text-transform: uppercase;
 	color: var(--wp--preset--color--foreground-secondary);
 }
@@ -30,31 +31,44 @@
 	flex-shrink: 0;
 }
 
+/* Same surface-card treatment as the landing "Quick help" panel: 12px padding
+   (16px left edge), hairline outline, rows separated by 16px gaps around each
+   divider rather than padded rows. */
 .auclair-article-group__list {
 	list-style: none;
 	margin: 0;
-	padding: 0 24px;
-	border-radius: var(--wp--custom--radius--card);
-	border: 1px solid var(--wp--preset--color--border);
+	padding: 12px 12px 12px 16px;
+	border-radius: 12px;
+	outline: 0.5px solid var(--wp--preset--color--border);
+	outline-offset: -0.5px;
 	background: var(--wp--preset--color--surface);
 }
 
 .auclair-article-group__item {
 	border-bottom: 1px solid var(--wp--preset--color--border);
+	padding-bottom: 16px;
+}
+
+.auclair-article-group__item + .auclair-article-group__item {
+	padding-top: 16px;
 }
 
 .auclair-article-group__item:last-child {
 	border-bottom: none;
+	padding-bottom: 0;
 }
 
 .auclair-article-group__item a {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 16px 0;
+	gap: 12px;
+	padding: 0;
 	color: var(--wp--preset--color--foreground-primary);
 	text-decoration: none;
 	font-size: var(--wp--preset--font-size--body);
+	font-weight: 500;
+	line-height: 1.4;
 }
 
 .auclair-article-group__item a:hover {

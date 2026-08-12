@@ -4,7 +4,7 @@
 	gap: 12px;
 	margin-top: 32px;
 	padding-top: 16px;
-	border-top: 1px solid var(--wp--preset--color--border);
+	border-top: 0.72px solid rgba(255, 255, 255, 0.07);
 }
 
 .auclair-article-feedback__question {
@@ -35,21 +35,47 @@
 	padding: 9px 22px;
 	border: none;
 	border-radius: 10px;
+	outline: 1px solid var(--wp--preset--color--border);
+	outline-offset: -1px;
 	background: var(--wp--preset--color--surface);
 	color: var(--wp--preset--color--foreground-primary);
 	font-family: inherit;
 	font-size: 14px;
 	font-weight: 500;
+	line-height: 1.4;
 	cursor: pointer;
+	transition: opacity 0.15s ease;
+}
+
+.auclair-article-feedback__button:hover:not(:disabled) {
+	opacity: 0.7;
 }
 
 .auclair-article-feedback__button svg {
 	flex-shrink: 0;
+	color: var(--wp--preset--color--foreground-secondary);
 }
 
 .auclair-article-feedback__button:disabled {
-	opacity: 0.7;
 	cursor: default;
+}
+
+/* The vote this visitor has already cast (this visit or a remembered one from
+   a prior visit, via cookie) — gold fill, matching the site's accent, so it's
+   unambiguous which choice is currently recorded. The other button stays
+   clickable to change it. */
+.auclair-article-feedback__button.is-selected {
+	background: var(--wp--preset--color--accent-gold-glow);
+	outline-color: var(--wp--preset--color--accent-gold);
+	color: var(--wp--preset--color--accent-gold);
+}
+
+.auclair-article-feedback__button.is-selected svg {
+	color: var(--wp--preset--color--accent-gold);
+}
+
+.auclair-article-feedback__button.is-selected:disabled {
+	opacity: 1;
 }
 
 .auclair-article-feedback__thanks {
@@ -69,11 +95,20 @@
 	.auclair-article-feedback {
 		flex-direction: row;
 		align-items: center;
-		justify-content: space-between;
-		gap: 16px;
+		gap: 0;
 	}
 
-	.auclair-article-feedback__button {
-		flex: 0 0 auto;
+	/* Desktop: question and button pair each take exactly half the row, so the
+	   two buttons together span 50% and split it evenly between them. */
+	.auclair-article-feedback__question {
+		flex: 1 1 0;
+	}
+
+	.auclair-article-feedback__response {
+		flex: 1 1 0;
+	}
+
+	.auclair-article-feedback__buttons {
+		flex: 1 1 0;
 	}
 }

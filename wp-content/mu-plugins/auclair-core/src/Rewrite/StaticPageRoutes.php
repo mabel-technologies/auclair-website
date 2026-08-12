@@ -27,7 +27,7 @@ class StaticPageRoutes implements ModuleInterface {
 	 *
 	 * @var string[]
 	 */
-	const SLUGS = [ 'raise-a-ticket', 'ticket-submitted' ];
+	const SLUGS = [ 'raise-a-ticket', 'ticket-submitted', 'search' ];
 
 	/**
 	 * Can this module be registered?

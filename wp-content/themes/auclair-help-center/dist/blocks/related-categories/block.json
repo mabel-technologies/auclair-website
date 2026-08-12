@@ -27,5 +27,5 @@
   "editorScript": "file:./index.js",
   "style": "file:./style.css",
   "render": "file:./render.php",
-  "version": "2e9c2cfa0fca885f3ab7d3cb3469cae251f33d7edc5470475565c3ab4b3a5614"
+  "version": "a4a56fb18f5bc031dacb4ea840842ed16d562b22a63d301d6e3dc88e953950f8"
 }

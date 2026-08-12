@@ -16,6 +16,7 @@
 .auclair-article-header__intro {
 	margin: 0;
 	font-size: var(--wp--preset--font-size--body);
+	font-weight: 400;
 	line-height: 1.4;
 	color: var(--wp--preset--color--foreground-primary);
 }

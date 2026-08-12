@@ -13,11 +13,7 @@
 		},
 		"action": {
 			"type": "string",
-			"default": "/?s=%s&post_type=kb_article"
-		},
-		"liveSuggest": {
-			"type": "boolean",
-			"default": true
+			"default": "/help/search/?q=%s"
 		}
 	},
 	"supports": {
