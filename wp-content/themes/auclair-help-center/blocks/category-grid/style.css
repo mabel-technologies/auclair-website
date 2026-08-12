@@ -1,7 +1,7 @@
 .auclair-category-grid {
 	display: grid;
 	grid-template-columns: repeat(var(--auclair-grid-columns, 4), minmax(0, 1fr));
-	gap: 16px;
+	gap: 8px;
 }
 
 @media (max-width: 720px) {

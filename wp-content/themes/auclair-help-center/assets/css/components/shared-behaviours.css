@@ -25,6 +25,12 @@
  * trick. CSS's own :hover re-trigger does that restart for free, so it's
  * reproduced below as a plain :hover-scoped animation.
  */
+@property --auclair-ring-angle {
+	syntax: "<angle>";
+	inherits: false;
+	initial-value: 0deg;
+}
+
 .auclair-ring-hover::after {
 	content: "";
 	position: absolute;
@@ -36,9 +42,9 @@
 	 */
 	inset: 0;
 	border-radius: inherit;
-	padding: 1.5px;
+	padding: 1px;
 	background: conic-gradient(
-		from var(--auclair-ring-from, 125deg),
+		from calc(var(--auclair-ring-from, 125deg) + var(--auclair-ring-angle, 0deg)),
 		transparent 0deg,
 		transparent var(--auclair-ring-gap-in, 26deg),
 		var(--auclair-ring-accent, var(--wp--preset--color--accent-gold)) var(--auclair-ring-solid-start, 80deg),
@@ -67,16 +73,21 @@
 @media not all and (prefers-reduced-motion: reduce) {
 	.auclair-ring-hover:hover::after,
 	.auclair-ring-hover:focus-visible::after {
-		animation: auclair-ring-spin 900ms cubic-bezier(0.2, 0.7, 0.2, 1);
+		animation: auclair-ring-spin 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
 	}
 }
 
+/*
+ * Rotating the gradient's from-angle (not the pseudo-element's box) sweeps
+ * the fixed gapped arc once around the perimeter, exactly like the
+ * prototype's `ringSpin` rotating its oversized conic layer behind a cover.
+ */
 @keyframes auclair-ring-spin {
 	from {
-		transform: rotate(0deg);
+		--auclair-ring-angle: 0deg;
 	}
 	to {
-		transform: rotate(360deg);
+		--auclair-ring-angle: 360deg;
 	}
 }
 
@@ -108,4 +119,32 @@
 :focus-visible {
 	outline: 2px solid var(--wp--preset--color--accent-gold);
 	outline-offset: 2px;
+}
+
+/*
+ * Prototype vertical rhythm: 40px between page sections, 32px between the
+ * blocks inside a page's header region (breadcrumb/header/divider/groups),
+ * 16px from a section heading to its list. The theme's global blockGap is
+ * 24px; these doubled-class overrides out-specify the `:root :where(...)`
+ * global-styles margin rules that would otherwise win on source order.
+ */
+.auclair-section-heading.auclair-section-heading {
+	margin-block-start: 40px;
+}
+
+.auclair-section-heading.auclair-section-heading + * {
+	margin-block-start: 16px;
+}
+
+.auclair-cta-banner.auclair-cta-banner {
+	margin-block-start: 40px;
+	/* Prototype's banner box is 720px — 32px wider than the 688px content column. */
+	max-width: 720px;
+}
+
+.auclair-breadcrumb.auclair-breadcrumb,
+.auclair-category-header.auclair-category-header,
+.auclair-divider.auclair-divider,
+.auclair-article-group.auclair-article-group {
+	margin-block-start: 32px;
 }

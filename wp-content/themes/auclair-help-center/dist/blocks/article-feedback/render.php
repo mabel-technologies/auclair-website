@@ -37,15 +37,22 @@ $context = [
 	'postId'        => $post_id,
 	'nonce'         => wp_create_nonce( 'wp_rest' ),
 	'endpoint'      => esc_url_raw( rest_url( 'auclair/v1/vote' ) ),
-	'voted'         => (bool) $already_vote,
+	// The remembered choice (if any) drives which button renders highlighted
+	// on first paint — read server-side from the same cookie the REST
+	// endpoint sets, so a returning visitor sees their prior vote without a
+	// client-side round trip. Voting again with a different value is
+	// allowed and switches this.
+	'currentVote'   => $already_vote,
+	'votedUp'       => 'up' === $already_vote,
+	'votedDown'     => 'down' === $already_vote,
 	'submitting'    => false,
 	'error'         => '',
 	'thanksUp'      => $thanks_up,
 	'thanksDown'    => $thanks_down,
 	// Transient — the thanks message only appears right after a vote is cast
 	// in this visit (auto-hides itself a few seconds later, see view.ts) and
-	// does not reappear on a later page load just because `voted` is still
-	// true from a remembered cookie.
+	// does not reappear on a later page load just because a vote is already
+	// remembered from a prior visit.
 	'showThanks'    => false,
 	'thanksMessage' => '',
 ];
@@ -62,9 +69,10 @@ $wrapper_attributes = get_block_wrapper_attributes( [ 'class' => 'auclair-articl
 		<div class="auclair-article-feedback__buttons">
 			<button
 				type="button"
-				class="auclair-article-feedback__button"
+				class="auclair-article-feedback__button<?php echo $already_vote === 'up' ? ' is-selected' : ''; ?>"
+				data-wp-class--is-selected="context.votedUp"
 				data-wp-on--click="actions.castVote"
-				data-wp-bind--disabled="context.voted"
+				data-wp-bind--disabled="context.submitting"
 				data-vote-value="up"
 			>
 				<?php echo get_thumb_icon_svg( 'up' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- trusted, static icon markup. ?>
@@ -72,9 +80,10 @@ $wrapper_attributes = get_block_wrapper_attributes( [ 'class' => 'auclair-articl
 			</button>
 			<button
 				type="button"
-				class="auclair-article-feedback__button"
+				class="auclair-article-feedback__button<?php echo $already_vote === 'down' ? ' is-selected' : ''; ?>"
+				data-wp-class--is-selected="context.votedDown"
 				data-wp-on--click="actions.castVote"
-				data-wp-bind--disabled="context.voted"
+				data-wp-bind--disabled="context.submitting"
 				data-vote-value="down"
 			>
 				<?php echo get_thumb_icon_svg( 'down' ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- trusted, static icon markup. ?>

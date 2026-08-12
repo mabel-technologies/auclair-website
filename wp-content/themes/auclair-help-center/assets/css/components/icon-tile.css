@@ -11,10 +11,22 @@
 	color: var(--auclair-icon-accent, var(--wp--preset--color--accent-gold));
 }
 
+/* Large tile (category-header): accent-tinted square, not the surface-colored
+   default — 64px, ~16.7px radius, 9% accent fill with a 19% accent outline,
+   and a 116px centered glow. */
 .auclair-icon-tile.is-large {
-	width: 72px;
-	height: 72px;
-	border-radius: var(--wp--custom--radius--panel);
+	width: 64px;
+	height: 64px;
+	border-radius: 16.7px;
+	background: color-mix(in srgb, var(--auclair-icon-accent, var(--wp--preset--color--accent-gold)) 9%, transparent);
+	border: none;
+	outline: 1px solid color-mix(in srgb, var(--auclair-icon-accent, var(--wp--preset--color--accent-gold)) 19%, transparent);
+	outline-offset: -1px;
+}
+
+.auclair-icon-tile.is-large .auclair-icon-tile__glow {
+	width: 116px;
+	height: 116px;
 }
 
 /* cta-banner's icon-tile is a distinct, smaller treatment in the prototype:
@@ -24,8 +36,10 @@
 .auclair-cta-banner .auclair-icon-tile.is-large {
 	width: 44px;
 	height: 44px;
-	border-radius: 12px;
+	border-radius: 11.48px;
 	background: var(--wp--preset--color--background);
+	outline: 1px solid var(--wp--preset--color--border);
+	outline-offset: -1px;
 }
 
 .auclair-icon-tile__glow {

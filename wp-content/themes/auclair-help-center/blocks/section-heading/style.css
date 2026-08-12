@@ -1,7 +1,7 @@
 .auclair-section-heading {
 	display: flex;
 	flex-direction: column;
-	gap: 8px;
+	gap: 4px;
 }
 
 .auclair-section-heading.has-text-align-center {
@@ -18,11 +18,13 @@
 	margin: 0;
 	font-size: var(--wp--preset--font-size--section);
 	font-weight: 700;
+	line-height: 1.2;
 	color: var(--wp--preset--color--foreground-primary);
 }
 
 .auclair-section-heading__subtitle {
 	margin: 0;
-	font-size: var(--wp--preset--font-size--body);
+	font-size: var(--wp--preset--font-size--meta);
+	font-weight: 400;
 	color: var(--wp--preset--color--foreground-secondary);
 }

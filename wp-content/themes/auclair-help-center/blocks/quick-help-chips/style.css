@@ -8,8 +8,8 @@
 }
 
 .auclair-quick-help-chips__label {
-	font-size: var(--wp--preset--font-size--meta);
-	font-weight: 500;
+	font-size: 12px;
+	font-weight: 400;
 	color: var(--wp--preset--color--foreground-secondary);
 }
 
@@ -21,13 +21,19 @@
 }
 
 .auclair-quick-help-chips__chip {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 24px;
 	background: var(--wp--preset--color--border);
 	border: none;
 	border-radius: 999px;
 	padding: 4px 10px;
+	box-sizing: border-box;
 	color: var(--wp--preset--color--foreground-primary);
 	font-size: var(--wp--preset--font-size--meta);
 	font-weight: 500;
+	line-height: 14px;
 	font-family: inherit;
 	cursor: pointer;
 	text-decoration: none;

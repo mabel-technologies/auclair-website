@@ -1,1 +1,1 @@
-.auclair-category-grid{display:grid;grid-template-columns:repeat(var(--auclair-grid-columns,4),minmax(0,1fr));grid-gap:16px;gap:16px}@media (max-width:720px){.auclair-category-grid{grid-template-columns:1fr}}
+.auclair-category-grid{display:grid;grid-template-columns:repeat(var(--auclair-grid-columns,4),minmax(0,1fr));grid-gap:8px;gap:8px}@media (max-width:720px){.auclair-category-grid{grid-template-columns:1fr}}

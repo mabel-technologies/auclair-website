@@ -87,38 +87,56 @@ class VoteEndpoint implements ModuleInterface {
 			return new WP_Error( 'auclair_invalid_vote', __( 'Invalid vote value.', 'auclair' ), [ 'status' => 400 ] );
 		}
 
-		if ( $this->has_already_voted( $post_id ) ) {
-			return new WP_Error( 'auclair_already_voted', __( 'You have already voted on this article.', 'auclair' ), [ 'status' => 409 ] );
+		// A visitor is allowed to change their mind — the previous choice (if
+		// any) is looked up rather than treated as a hard block, so switching
+		// from up to down moves one vote across the two counters instead of
+		// just accumulating an extra one.
+		$previous = $this->get_previous_vote( $post_id );
+
+		if ( $previous !== $value ) {
+			if ( $previous ) {
+				$previous_key = 'up' === $previous ? 'vote_up' : 'vote_down';
+				update_post_meta( $post_id, $previous_key, max( 0, (int) get_post_meta( $post_id, $previous_key, true ) - 1 ) );
+			}
+
+			$meta_key = 'up' === $value ? 'vote_up' : 'vote_down';
+			update_post_meta( $post_id, $meta_key, (int) get_post_meta( $post_id, $meta_key, true ) + 1 );
+
+			$up    = (int) get_post_meta( $post_id, 'vote_up', true );
+			$down  = (int) get_post_meta( $post_id, 'vote_down', true );
+			$total = $up + $down;
+
+			update_post_meta( $post_id, 'vote_score', $total > 0 ? round( ( $up / $total ) * 100, 1 ) : 0 );
+			update_post_meta( $post_id, 'vote_last', current_time( 'mysql' ) );
 		}
-
-		$meta_key = 'up' === $value ? 'vote_up' : 'vote_down';
-		update_post_meta( $post_id, $meta_key, (int) get_post_meta( $post_id, $meta_key, true ) + 1 );
-
-		$up    = (int) get_post_meta( $post_id, 'vote_up', true );
-		$down  = (int) get_post_meta( $post_id, 'vote_down', true );
-		$total = $up + $down;
-
-		update_post_meta( $post_id, 'vote_score', $total > 0 ? round( ( $up / $total ) * 100, 1 ) : 0 );
-		update_post_meta( $post_id, 'vote_last', current_time( 'mysql' ) );
 
 		$this->remember_vote( $post_id, $value );
 
-		return new WP_REST_Response( [ 'success' => true, 'value' => $value ], 200 );
+		return new WP_REST_Response( [ 'success' => true, 'value' => $value, 'changed' => $previous !== $value ], 200 );
 	}
 
 	/**
-	 * Has this visitor already voted on this article, via cookie or IP transient?
+	 * The value this visitor voted last time, if any — cookie first (it's
+	 * what the browser itself will show as already-selected), falling back
+	 * to the IP transient so a cleared cookie still resolves to the same
+	 * prior choice rather than being treated as a fresh voter.
 	 *
 	 * @param int $post_id The article post ID.
 	 *
-	 * @return bool
+	 * @return string 'up', 'down', or '' if this visitor hasn't voted before.
 	 */
-	protected function has_already_voted( $post_id ) {
+	protected function get_previous_vote( $post_id ) {
 		if ( ! empty( $_COOKIE[ self::COOKIE_PREFIX . $post_id ] ) ) {
-			return true;
+			$cookie_value = sanitize_key( wp_unslash( $_COOKIE[ self::COOKIE_PREFIX . $post_id ] ) ); // phpcs:ignore WordPress.Security.ValidatedSanitizedInput.MissingUnslash -- unslashed above.
+
+			if ( in_array( $cookie_value, [ 'up', 'down' ], true ) ) {
+				return $cookie_value;
+			}
 		}
 
-		return (bool) get_transient( self::IP_TRANSIENT_PREFIX . $post_id . '_' . md5( $this->get_client_ip() ) );
+		$transient_value = get_transient( self::IP_TRANSIENT_PREFIX . $post_id . '_' . md5( $this->get_client_ip() ) );
+
+		return in_array( $transient_value, [ 'up', 'down' ], true ) ? $transient_value : '';
 	}
 
 	/**

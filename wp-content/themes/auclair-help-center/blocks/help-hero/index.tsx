@@ -17,6 +17,11 @@ registerBlockType( metadata.name, {
 		return (
 			<div { ...blockProps }>
 				<div className="auclair-help-hero__glow" />
+					<div className="auclair-help-hero__rings" aria-hidden="true">
+						<span className="auclair-help-hero__ring auclair-help-hero__ring--1" />
+						<span className="auclair-help-hero__ring auclair-help-hero__ring--2" />
+						<span className="auclair-help-hero__ring auclair-help-hero__ring--3" />
+					</div>
 				<div className="auclair-help-hero__content">
 					<RichText
 						tagName="span"
@@ -58,6 +63,11 @@ registerBlockType( metadata.name, {
 		return (
 			<div { ...blockProps }>
 				<div className="auclair-help-hero__glow" />
+					<div className="auclair-help-hero__rings" aria-hidden="true">
+						<span className="auclair-help-hero__ring auclair-help-hero__ring--1" />
+						<span className="auclair-help-hero__ring auclair-help-hero__ring--2" />
+						<span className="auclair-help-hero__ring auclair-help-hero__ring--3" />
+					</div>
 				<div className="auclair-help-hero__content">
 					<RichText.Content tagName="span" className="auclair-help-hero__eyebrow" value={ eyebrow } />
 					<RichText.Content tagName="h1" className="auclair-help-hero__heading" value={ heading } />

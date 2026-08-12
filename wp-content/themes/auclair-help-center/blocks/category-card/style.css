@@ -3,11 +3,12 @@
 	display: flex;
 	flex-direction: column;
 	align-items: flex-start;
+	justify-content: space-between;
 	gap: 16px;
 	padding: 16px;
 	border-radius: 12px;
-	outline: 1px solid rgba(241, 240, 237, 0.1);
-	outline-offset: -1px;
+	outline: 0.5px solid var(--wp--preset--color--border);
+	outline-offset: -0.5px;
 	background: var(--wp--preset--color--surface);
 	overflow: hidden;
 	text-decoration: none;
@@ -19,14 +20,17 @@
 	display: inline-flex;
 }
 
+/* The prototype anchors the 100px blurred glow to the card's top-left corner
+   (behind the icon tile), not centered on the icon. --auclair-glow-alpha is
+   set per-card from the accent's design value (0.10–0.18). */
 .auclair-category-card__glow {
 	position: absolute;
-	inset: 0;
-	margin: auto;
+	left: -16px;
+	top: -16px;
 	width: 100px;
 	height: 100px;
 	background: var(--auclair-icon-accent, currentColor);
-	opacity: 0.15;
+	opacity: var(--auclair-glow-alpha, 0.15);
 	filter: blur(20px);
 	border-radius: 50%;
 	pointer-events: none;
@@ -40,8 +44,8 @@
 	width: 46px;
 	height: 46px;
 	border-radius: 12px;
-	outline: 1px solid color-mix(in srgb, var(--auclair-icon-accent, currentColor) 19%, transparent);
-	outline-offset: -1px;
+	outline: 0.72px solid color-mix(in srgb, var(--auclair-icon-accent, currentColor) 19%, transparent);
+	outline-offset: -0.72px;
 }
 
 .auclair-category-card__row {
@@ -61,11 +65,13 @@
 .auclair-category-card__title {
 	font-size: var(--wp--preset--font-size--body);
 	font-weight: 500;
+	line-height: 1.4;
 	color: var(--wp--preset--color--foreground-primary);
 }
 
 .auclair-category-card__count {
 	font-size: var(--wp--preset--font-size--meta);
+	font-weight: 400;
 	color: var(--wp--preset--color--foreground-secondary);
 }
 
@@ -79,6 +85,7 @@
 	.auclair-category-card {
 		flex-direction: row;
 		align-items: center;
+		justify-content: flex-start;
 		gap: 16px;
 	}
 

@@ -18,6 +18,10 @@
     "limit": {
       "type": "number",
       "default": 10
+    },
+    "boxed": {
+      "type": "boolean",
+      "default": false
     }
   },
   "supports": {
@@ -27,5 +31,5 @@
   "editorScript": "file:./index.js",
   "style": "file:./style.css",
   "render": "file:./render.php",
-  "version": "2cd4943a83f4ca5efb4ecbaaea7cb483b2288834a08ea7257b361511780bdeee"
+  "version": "056f2767b62c3dc14ad0cd1f4d019d5047d117dc3daed92b1a317c654ec8812c"
 }

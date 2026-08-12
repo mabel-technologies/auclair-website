@@ -6,22 +6,65 @@
 	flex-direction: column;
 }
 
+/*
+ * Flat (default) variant: rows are 16px-padded links with a hairline divider
+ * that gets 4px of breathing room on each side (the prototype renders the
+ * divider as its own flex child inside a gap: 4px column).
+ */
 .auclair-top-queries__item {
 	border-bottom: 1px solid var(--wp--preset--color--border);
+	padding-bottom: 4px;
+}
+
+.auclair-top-queries__item + .auclair-top-queries__item {
+	padding-top: 4px;
 }
 
 .auclair-top-queries__item:last-child {
 	border-bottom: none;
+	padding-bottom: 0;
 }
 
 .auclair-top-queries__item a {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 16px 4px;
+	gap: 12px;
+	padding: 16px 0;
 	color: var(--wp--preset--color--foreground-primary);
 	text-decoration: none;
 	font-size: var(--wp--preset--font-size--body);
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+/*
+ * Boxed variant (the landing "Quick help" card): 12px panel padding
+ * (16px on the left edge), a hairline outline, and rows separated purely by
+ * 16px gaps around each divider — the rows themselves are unpadded.
+ */
+.auclair-top-queries--boxed {
+	padding: 12px 12px 12px 16px;
+	border-radius: 12px;
+	background: var(--wp--preset--color--surface);
+	outline: 0.5px solid var(--wp--preset--color--border);
+	outline-offset: -0.5px;
+}
+
+.auclair-top-queries--boxed .auclair-top-queries__item {
+	padding-bottom: 16px;
+}
+
+.auclair-top-queries--boxed .auclair-top-queries__item + .auclair-top-queries__item {
+	padding-top: 16px;
+}
+
+.auclair-top-queries--boxed .auclair-top-queries__item:last-child {
+	padding-bottom: 0;
+}
+
+.auclair-top-queries--boxed .auclair-top-queries__item a {
+	padding: 0;
 }
 
 .auclair-top-queries__item a:hover {
