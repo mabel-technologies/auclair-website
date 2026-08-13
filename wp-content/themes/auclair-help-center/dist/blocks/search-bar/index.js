@@ -58,7 +58,7 @@ module.exports = window["wp"]["i18n"];
   \**************************************/
 /***/ (function(module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"auclair/search-bar","title":"Search Bar","category":"auclair","description":"Typeable search field. Enter searches kb_article.","textdomain":"auclair","attributes":{"placeholder":{"type":"string","default":"Search for help…"},"action":{"type":"string","default":"/help/search/?q=%s"}},"supports":{"html":false,"align":false},"editorScript":"file:./index.tsx","style":"file:./style.css","viewScriptModule":"file:./view.js"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"auclair/search-bar","title":"Search Bar","category":"auclair","description":"Typeable search field. Enter searches kb_article.","textdomain":"auclair","attributes":{"placeholder":{"type":"string","default":"Search queries or topics"},"action":{"type":"string","default":"/help/search/?q=%s"}},"supports":{"html":false,"align":false},"editorScript":"file:./index.tsx","style":"file:./style.css","viewScriptModule":"file:./view.js","render":"file:./render.php"}');
 
 /***/ })
 
@@ -233,7 +233,39 @@ const markup = (placeholder, action) => (0,_wordpress_element__WEBPACK_IMPORTED_
     lineNumber: 19,
     columnNumber: 3
   }
-}));
+}), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", {
+  type: "button",
+  className: "auclair-search-bar__clear",
+  "aria-label": (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_4__.__)('Clear search', 'auclair'),
+  __self: undefined,
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 28,
+    columnNumber: 3
+  }
+}, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", {
+  width: "24",
+  height: "24",
+  viewBox: "0 0 24 24",
+  fill: "none",
+  "aria-hidden": "true",
+  focusable: "false",
+  __self: undefined,
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 33,
+    columnNumber: 4
+  }
+}, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", {
+  d: "M12 1.25C17.9371 1.25 22.75 6.06294 22.75 12C22.75 17.9371 17.9371 22.75 12 22.75C6.06294 22.75 1.25 17.9371 1.25 12C1.25 6.06294 6.06294 1.25 12 1.25ZM15.707 8.29297C15.3165 7.90246 14.6835 7.90247 14.293 8.29297L12 10.5859L9.70703 8.29297C9.31655 7.9027 8.68344 7.90271 8.29297 8.29297C7.90246 8.68351 7.90243 9.3175 8.29297 9.70801L10.5859 12L8.29297 14.292C7.90243 14.6825 7.90246 15.3165 8.29297 15.707C8.68344 16.0973 9.31655 16.0973 9.70703 15.707L12 13.4141L14.293 15.707C14.6835 16.0975 15.3165 16.0975 15.707 15.707C16.0975 15.3165 16.0975 14.6835 15.707 14.293L13.4141 12L15.707 9.70703C16.0975 9.31652 16.0975 8.6835 15.707 8.29297Z",
+  fill: "currentColor",
+  __self: undefined,
+  __source: {
+    fileName: _jsxFileName,
+    lineNumber: 34,
+    columnNumber: 5
+  }
+}))));
 (0,_wordpress_blocks__WEBPACK_IMPORTED_MODULE_1__.registerBlockType)(_block_json__WEBPACK_IMPORTED_MODULE_5__.name, {
   edit: ({
     attributes,
@@ -246,7 +278,7 @@ const markup = (placeholder, action) => (0,_wordpress_element__WEBPACK_IMPORTED_
       __self: undefined,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 39,
+        lineNumber: 48,
         columnNumber: 5
       }
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
@@ -254,7 +286,7 @@ const markup = (placeholder, action) => (0,_wordpress_element__WEBPACK_IMPORTED_
       __self: undefined,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 40,
+        lineNumber: 49,
         columnNumber: 6
       }
     }, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
@@ -266,7 +298,7 @@ const markup = (placeholder, action) => (0,_wordpress_element__WEBPACK_IMPORTED_
       __self: undefined,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 41,
+        lineNumber: 50,
         columnNumber: 7
       }
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TextControl, {
@@ -279,33 +311,19 @@ const markup = (placeholder, action) => (0,_wordpress_element__WEBPACK_IMPORTED_
       __self: undefined,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 46,
+        lineNumber: 55,
         columnNumber: 7
       }
     }))), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _extends({}, blockProps, {
       __self: undefined,
       __source: {
         fileName: _jsxFileName,
-        lineNumber: 54,
+        lineNumber: 63,
         columnNumber: 5
       }
     }), markup(placeholder, action)));
   },
-  save: ({
-    attributes
-  }) => {
-    const placeholder = attributes.placeholder;
-    const action = attributes.action;
-    const blockProps = _wordpress_block_editor__WEBPACK_IMPORTED_MODULE_2__.useBlockProps.save();
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", _extends({}, blockProps, {
-      __self: undefined,
-      __source: {
-        fileName: _jsxFileName,
-        lineNumber: 63,
-        columnNumber: 10
-      }
-    }), markup(placeholder, action));
-  }
+  save: () => null
 });
 }();
 /******/ })()

@@ -168,6 +168,22 @@ if (document.readyState === 'loading') {
       debounceTimer = setTimeout(() => {
         void fetchResults(value, context.endpoint, context.limit, resultsEl);
       }, DEBOUNCE_MS);
+    },
+    clearSearch(event) {
+      event.preventDefault();
+      const {
+        ref
+      } = (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.getElement)();
+      const root = ref.closest('.auclair-search-results');
+      const input = root?.querySelector('.auclair-search-results__input');
+      if (!input) {
+        return;
+      }
+      input.value = '';
+      input.dispatchEvent(new Event('input', {
+        bubbles: true
+      }));
+      input.focus();
     }
   }
 });

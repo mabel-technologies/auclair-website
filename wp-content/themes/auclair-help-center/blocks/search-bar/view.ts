@@ -11,6 +11,7 @@ interface State {
 interface Actions {
 	setSearchQuery: () => void;
 	handleSearchKeydown: ( event: KeyboardEvent ) => void;
+	clearSearch: ( event: Event ) => void;
 }
 
 const { state } = store< { state: State; actions: Actions } >( 'auclair', {
@@ -41,6 +42,21 @@ const { state } = store< { state: State; actions: Actions } >( 'auclair', {
 
 			const context = getContext< Context >();
 			window.location.href = context.action.replace( '%s', encodeURIComponent( state.searchQuery ) );
+		},
+		clearSearch( event: Event ) {
+			event.preventDefault();
+
+			const { ref } = getElement();
+			const root = ( ref as HTMLElement ).closest( '.auclair-search-bar' );
+			const input = root?.querySelector< HTMLInputElement >( '.auclair-search-bar__input' );
+
+			if ( ! input ) {
+				return;
+			}
+
+			input.value = '';
+			state.searchQuery = '';
+			input.focus();
 		},
 	},
 } );

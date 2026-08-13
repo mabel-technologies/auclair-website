@@ -58,6 +58,8 @@ function get_file_icon_map(): array {
 		'user-star-01'    => 'user-star-01.svg',
 		'shield'          => 'shield-02.svg',
 		'shield-02'       => 'shield-02.svg',
+		'close'           => 'cancel-circle.svg',
+		'cancel-circle'   => 'cancel-circle.svg',
 	];
 }
 

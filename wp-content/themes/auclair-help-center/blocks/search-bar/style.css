@@ -7,35 +7,39 @@
 	position: relative;
 	display: flex;
 	align-items: center;
-	gap: 8px;
 	width: 100%;
 	height: 48px;
 	box-sizing: border-box;
-	padding: 0 16px;
+	padding: 0 4px;
+	overflow: hidden;
+	border: none;
 	border-radius: 12px;
-	border: 1px solid transparent;
 	background: rgba(241, 240, 237, 0.1);
 }
 
-.auclair-search-bar:focus-within {
-	border-color: var(--wp--preset--color--accent-gold);
-	outline: 2px solid var(--wp--preset--color--accent-gold);
-	outline-offset: 2px;
-}
-
 .auclair-search-bar__icon {
-	display: inline-flex;
-	color: var(--wp--preset--color--foreground-primary);
+	display: flex;
+	align-items: center;
+	justify-content: center;
 	flex-shrink: 0;
+	box-sizing: border-box;
+	width: 32px;
+	height: 32px;
+	padding: 4px;
+	color: var(--wp--preset--color--foreground-primary);
 }
 
 .auclair-search-bar__input {
 	flex: 1;
+	min-width: 0;
+	height: 100%;
 	border: none;
 	background: transparent;
 	color: var(--wp--preset--color--foreground-primary);
-	font-size: var(--wp--preset--font-size--body);
 	font-family: inherit;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 1;
 }
 
 .auclair-search-bar__input:focus-visible {
@@ -44,4 +48,38 @@
 
 .auclair-search-bar__input::placeholder {
 	color: var(--wp--preset--color--foreground-secondary);
+}
+
+.auclair-search-bar__clear {
+	display: none;
+	align-items: center;
+	justify-content: center;
+	flex-shrink: 0;
+	box-sizing: border-box;
+	width: 44px;
+	height: 44px;
+	padding: 12px;
+	border: none;
+	border-radius: 8px;
+	background: transparent;
+	color: var(--wp--preset--color--foreground-primary);
+	cursor: pointer;
+}
+
+.auclair-search-bar__clear:focus-visible {
+	outline: none;
+}
+
+.auclair-search-bar:focus-within .auclair-search-bar__clear {
+	display: flex;
+}
+
+@media (max-width: 720px) {
+	.auclair-search-bar {
+		height: 40px;
+	}
+
+	.auclair-search-bar__input {
+		font-size: 14px;
+	}
 }

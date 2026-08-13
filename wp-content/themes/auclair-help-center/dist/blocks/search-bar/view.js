@@ -93,6 +93,20 @@ const {
       }
       const context = (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.getContext)();
       window.location.href = context.action.replace('%s', encodeURIComponent(state.searchQuery));
+    },
+    clearSearch(event) {
+      event.preventDefault();
+      const {
+        ref
+      } = (0,_wordpress_interactivity__WEBPACK_IMPORTED_MODULE_0__.getElement)();
+      const root = ref.closest('.auclair-search-bar');
+      const input = root?.querySelector('.auclair-search-bar__input');
+      if (!input) {
+        return;
+      }
+      input.value = '';
+      state.searchQuery = '';
+      input.focus();
     }
   }
 });

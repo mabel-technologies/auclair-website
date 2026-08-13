@@ -14,6 +14,7 @@ interface RestArticle {
 
 interface Actions {
 	onQueryInput: () => void;
+	clearSearch: ( event: Event ) => void;
 }
 
 const DEBOUNCE_MS = 300;
@@ -137,6 +138,21 @@ store< { actions: Actions } >( 'auclair', {
 			debounceTimer = setTimeout( () => {
 				void fetchResults( value, context.endpoint, context.limit, resultsEl );
 			}, DEBOUNCE_MS );
+		},
+		clearSearch( event: Event ) {
+			event.preventDefault();
+
+			const { ref } = getElement();
+			const root = ( ref as HTMLElement ).closest( '.auclair-search-results' );
+			const input = root?.querySelector< HTMLInputElement >( '.auclair-search-results__input' );
+
+			if ( ! input ) {
+				return;
+			}
+
+			input.value = '';
+			input.dispatchEvent( new Event( 'input', { bubbles: true } ) );
+			input.focus();
 		},
 	},
 } );
