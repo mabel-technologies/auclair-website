@@ -1,1 +1,129 @@
-.auclair-help-hero.auclair-help-hero{margin-block-start:0;margin-top:0}.auclair-help-hero{background:rgba(4,6,8,.5);border-bottom-left-radius:var(--wp--custom--radius--panel);border-bottom-right-radius:var(--wp--custom--radius--panel);overflow:hidden;padding:64px var(--wp--custom--site-outer-padding);position:relative;text-align:center}.auclair-help-hero__glow{background:radial-gradient(ellipse 44.31% 50.8% at 13.33% 95.45%,hsla(44,73%,69%,.3) 0,hsla(44,73%,69%,0) 100%)}.auclair-help-hero__glow,.auclair-help-hero__rings{bottom:0;left:0;pointer-events:none;position:absolute;right:0;top:0}.auclair-help-hero__rings{opacity:.04}.auclair-help-hero__ring{border:.86px solid #c8a76b;border-radius:50%;left:50%;position:absolute;top:50%;transform:translate(-50%,-50%)}.auclair-help-hero__ring--1{height:819px;width:819px}.auclair-help-hero__ring--2{height:573px;width:573px}.auclair-help-hero__ring--3{height:328px;width:328px}.auclair-help-hero__content{align-items:center;display:flex;flex-direction:column;gap:8px;margin-left:auto;margin-right:auto;max-width:720px;position:relative}.auclair-help-hero__eyebrow{background:var(--wp--preset--color--accent-gold-glow);border-radius:999px;color:var(--wp--preset--color--accent-gold);display:inline-flex;font-size:18px;font-weight:500;line-height:1.4;padding:4px 12px}.auclair-help-hero__heading{color:var(--wp--preset--color--foreground-primary);font-size:max(32px,min(5.6vw,64px));font-weight:700;line-height:1.05;margin:4px 0 0;max-width:530px}.auclair-help-hero__subheading{color:var(--wp--preset--color--foreground-secondary);font-size:max(17px,min(2.2vw,20px));font-weight:400;line-height:28px;margin:0}.auclair-help-hero__content>.wp-block-auclair-search-bar{margin-top:24px}.auclair-help-hero__content>.wp-block-auclair-quick-help-chips{margin-top:4px}
+/*!****************************************************************************************************************************************************************************************!*\
+  !*** css ../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./blocks/help-hero/style.css ***!
+  \****************************************************************************************************************************************************************************************/
+.auclair-help-hero.auclair-help-hero {
+	/* Flush against logo-bar: prototype has zero gap between them, but global
+	   styles' `:root :where(.is-layout-flow) > *` blockGap rule (0,1,0 specificity,
+	   loaded after this stylesheet) otherwise wins the plain single-class override
+	   below — doubled selector bumps specificity to (0,2,0) so it always wins.
+	   margin-block-start covered too since logical/physical margin properties
+	   cascade together. */
+	margin-top: 0;
+	margin-block-start: 0;
+}
+
+.auclair-help-hero {
+	position: relative;
+	overflow: hidden;
+	padding: 64px var(--wp--custom--site-outer-padding);
+	border-bottom-left-radius: var(--wp--custom--radius--panel);
+	border-bottom-right-radius: var(--wp--custom--radius--panel);
+	/* The hero's base fill is a half-black overlay over the page background
+	   (≈#0A0F14 over #101820) — the whole panel reads darker than the page,
+	   with the gold glow lifting only the bottom-left. */
+	background: rgba(4, 6, 8, 0.5);
+	text-align: center;
+}
+
+.auclair-help-hero__glow {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: radial-gradient(ellipse 44.31% 50.8% at 13.33% 95.45%, rgba(233, 202, 117, 0.3) 0%, rgba(233, 202, 117, 0) 100%);
+	pointer-events: none;
+}
+
+/* Faint concentric ring pattern behind the hero copy — present in the prototype
+   (three border-only circles, ~0.86px stroke, muted gold, opacity 0.04) but was
+   entirely missing from the build. Clipped by the hero's own overflow: hidden. */
+
+.auclair-help-hero__rings {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	opacity: 0.04;
+	pointer-events: none;
+}
+
+.auclair-help-hero__ring {
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	transform: translate(-50%, -50%);
+	border-radius: 50%;
+	border: 0.86px solid rgb(200, 167, 107);
+}
+
+.auclair-help-hero__ring--1 {
+	width: 819px;
+	height: 819px;
+}
+
+.auclair-help-hero__ring--2 {
+	width: 573px;
+	height: 573px;
+}
+
+.auclair-help-hero__ring--3 {
+	width: 328px;
+	height: 328px;
+}
+
+.auclair-help-hero__content {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
+	max-width: 720px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.auclair-help-hero__eyebrow {
+	display: inline-flex;
+	padding: 4px 12px;
+	border-radius: 999px;
+	background: var(--wp--preset--color--accent-gold-glow);
+	color: var(--wp--preset--color--accent-gold);
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+.auclair-help-hero__heading {
+	margin: 4px 0 0;
+	max-width: 530px;
+	font-size: max(32px, min(5.6vw, 64px));
+	font-weight: 700;
+	line-height: 1.05;
+	color: var(--wp--preset--color--foreground-primary);
+}
+
+.auclair-help-hero__subheading {
+	margin: 0;
+	font-size: max(17px, min(2.2vw, 20px));
+	font-weight: 400;
+	line-height: 28px;
+	color: var(--wp--preset--color--foreground-secondary);
+}
+
+/* Non-uniform gap between hero groups (eyebrow→heading 12px, heading→subheading 8px,
+   subheading→search 32px, search→chips 12px) faked via extra margin-top on top of the
+   flex container's base 8px gap, rather than restructuring saved markup into nested
+   groups (lower risk of static-block validation mismatches). */
+
+.auclair-help-hero__content > .wp-block-auclair-search-bar {
+	margin-top: 24px;
+}
+
+.auclair-help-hero__content > .wp-block-auclair-quick-help-chips {
+	margin-top: 4px;
+}
+
+
+/*# sourceMappingURL=style.css.map*/

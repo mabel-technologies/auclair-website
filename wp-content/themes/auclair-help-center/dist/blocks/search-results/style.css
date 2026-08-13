@@ -1,1 +1,141 @@
-.auclair-search-results{display:flex;flex-direction:column;gap:24px;width:100%}.auclair-search-results__bar{align-items:center;background:hsla(45,12%,94%,.1);border-radius:12px;box-sizing:border-box;cursor:text;display:flex;gap:8px;height:48px;padding:0 16px;width:100%}.auclair-search-results__bar:focus-within{outline:2px solid var(--wp--preset--color--accent-gold);outline-offset:2px}.auclair-search-results__icon{color:var(--wp--preset--color--foreground-secondary);display:inline-flex;flex-shrink:0}.auclair-search-results__input{background:transparent;border:none;color:var(--wp--preset--color--foreground-primary);flex:1;font-family:inherit;font-size:var(--wp--preset--font-size--body);font-weight:500;height:100%}.auclair-search-results__input:focus-visible{outline:none}.auclair-search-results__input::-moz-placeholder{color:var(--wp--preset--color--foreground-secondary)}.auclair-search-results__input::placeholder{color:var(--wp--preset--color--foreground-secondary)}.auclair-search-results__results:empty{display:none}.auclair-search-results__list{background:var(--wp--preset--color--surface);border-radius:12px;box-sizing:border-box;outline:.5px solid var(--wp--preset--color--border);outline-offset:-.5px;padding:12px 12px 12px 16px;width:100%}.auclair-search-results__list,.auclair-search-results__row{display:flex;flex-direction:column;gap:16px}.auclair-search-results__item{align-items:center;color:var(--wp--preset--color--foreground-primary);display:flex;font-size:var(--wp--preset--font-size--body);font-weight:500;gap:12px;justify-content:space-between;line-height:1.4;-webkit-text-decoration:none;text-decoration:none}.auclair-search-results__item:hover{color:var(--wp--preset--color--accent-gold)}.auclair-search-results__item svg{color:var(--wp--preset--color--foreground-secondary);flex-shrink:0}.auclair-search-results__divider{background:var(--wp--preset--color--border);height:1px}.auclair-search-results__empty{align-items:center;background:var(--wp--preset--color--surface);border-radius:12px;box-sizing:border-box;display:flex;flex-direction:column;gap:8px;outline:.5px solid var(--wp--preset--color--border);outline-offset:-.5px;padding:32px 16px;text-align:center;width:100%}.auclair-search-results__empty-title{color:var(--wp--preset--color--foreground-primary);font-size:18px;font-weight:700;line-height:1.4;margin:0}.auclair-search-results__empty-text{color:var(--wp--preset--color--foreground-secondary);font-size:var(--wp--preset--font-size--body);font-weight:400;line-height:1.4;margin:0;max-width:420px}
+/*!*********************************************************************************************************************************************************************************************!*\
+  !*** css ../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./blocks/search-results/style.css ***!
+  \*********************************************************************************************************************************************************************************************/
+.auclair-search-results {
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+	width: 100%;
+}
+
+.auclair-search-results__bar {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+	width: 100%;
+	height: 48px;
+	box-sizing: border-box;
+	padding: 0 16px;
+	border-radius: 12px;
+	background: rgba(241, 240, 237, 0.1);
+	cursor: text;
+}
+
+.auclair-search-results__bar:focus-within {
+	outline: 2px solid var(--wp--preset--color--accent-gold);
+	outline-offset: 2px;
+}
+
+.auclair-search-results__icon {
+	display: inline-flex;
+	flex-shrink: 0;
+	color: var(--wp--preset--color--foreground-secondary);
+}
+
+.auclair-search-results__input {
+	flex: 1;
+	height: 100%;
+	border: none;
+	background: transparent;
+	color: var(--wp--preset--color--foreground-primary);
+	font-family: inherit;
+	font-size: var(--wp--preset--font-size--body);
+	font-weight: 500;
+}
+
+.auclair-search-results__input:focus-visible {
+	outline: none;
+}
+
+.auclair-search-results__input::-moz-placeholder {
+	color: var(--wp--preset--color--foreground-secondary);
+}
+
+.auclair-search-results__input::placeholder {
+	color: var(--wp--preset--color--foreground-secondary);
+}
+
+.auclair-search-results__results:empty {
+	display: none;
+}
+
+.auclair-search-results__list {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 12px 12px 12px 16px;
+	border-radius: 12px;
+	background: var(--wp--preset--color--surface);
+	outline: 0.5px solid var(--wp--preset--color--border);
+	outline-offset: -0.5px;
+}
+
+.auclair-search-results__row {
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+}
+
+.auclair-search-results__item {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 12px;
+	color: var(--wp--preset--color--foreground-primary);
+	-webkit-text-decoration: none;
+	text-decoration: none;
+	font-size: var(--wp--preset--font-size--body);
+	font-weight: 500;
+	line-height: 1.4;
+}
+
+.auclair-search-results__item:hover {
+	color: var(--wp--preset--color--accent-gold);
+}
+
+.auclair-search-results__item svg {
+	flex-shrink: 0;
+	color: var(--wp--preset--color--foreground-secondary);
+}
+
+.auclair-search-results__divider {
+	height: 1px;
+	background: var(--wp--preset--color--border);
+}
+
+.auclair-search-results__empty {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 32px 16px;
+	border-radius: 12px;
+	background: var(--wp--preset--color--surface);
+	outline: 0.5px solid var(--wp--preset--color--border);
+	outline-offset: -0.5px;
+	text-align: center;
+}
+
+.auclair-search-results__empty-title {
+	margin: 0;
+	font-size: 18px;
+	font-weight: 700;
+	line-height: 1.4;
+	color: var(--wp--preset--color--foreground-primary);
+}
+
+.auclair-search-results__empty-text {
+	margin: 0;
+	max-width: 420px;
+	font-size: var(--wp--preset--font-size--body);
+	font-weight: 400;
+	line-height: 1.4;
+	color: var(--wp--preset--color--foreground-secondary);
+}
+
+
+/*# sourceMappingURL=style.css.map*/

@@ -1,1 +1,16 @@
-.auclair-pill{align-items:center;background:var(--wp--preset--color--accent-gold-glow);border-radius:999px;color:var(--wp--preset--color--accent-gold);display:inline-flex;font-size:18px;font-weight:500;padding:6px 16px}
+/*!***********************************************************************************************************************************************************************************!*\
+  !*** css ../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./blocks/pill/style.css ***!
+  \***********************************************************************************************************************************************************************************/
+.auclair-pill {
+	display: inline-flex;
+	align-items: center;
+	padding: 6px 16px;
+	border-radius: 999px;
+	background: var(--wp--preset--color--accent-gold-glow);
+	color: var(--wp--preset--color--accent-gold);
+	font-size: 18px;
+	font-weight: 500;
+}
+
+
+/*# sourceMappingURL=style.css.map*/

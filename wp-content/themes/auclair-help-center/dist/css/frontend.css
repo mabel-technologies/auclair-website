@@ -1,1 +1,489 @@
-*,:after,:before{box-sizing:border-box}.wp-site-blocks,body,html{min-height:100%}html{height:calc(100% - var(--wp-admin--admin-bar--height, 0px))}:root{font-feature-settings:"kern";font-kerning:normal;text-rendering:optimizeLegibility}canvas,img,picture,svg,video{display:block;height:auto;max-width:100%}button,input,select,textarea{font:inherit}h1,h2,h3,h4,h5,h6,p{word-wrap:break-word}h1,h2,h3,h4,h5,h6{text-wrap:balance;text-wrap:pretty}p{text-wrap:pretty}.wp-site-blocks{isolation:isolate}img{font-size:1rem;font-style:italic;line-height:1.5}html{scroll-behavior:smooth}main.wp-block-group{padding-bottom:64px}@media (max-width:720px){main.wp-block-group{padding-bottom:32px}}.has-global-padding :where(.has-global-padding.is-layout-constrained){padding-left:var(--wp--style--root--padding-left);padding-right:var(--wp--style--root--padding-right)}.is-layout-constrained .wp-block-image.alignwide{max-width:min(100%,var(--wp--style--global--wide-size))!important}.wp-block-post-template.is-layout-flex{align-items:stretch}body .is-layout-constrained>.alignright:where(:not(.alignfull):not(.wp-block-image)){margin-right:var(--wp--custom--main-content-width-side-spacing);max-width:calc(var(--wp--style--global--content-size)/2)}body .is-layout-constrained>.alignleft:where(:not(.alignfull):not(.wp-block-image)){margin-left:var(--wp--custom--main-content-width-side-spacing);max-width:calc(var(--wp--style--global--content-size)/2)}body .is-layout-constrained.has-global-padding>.alignleft:where(:not(.alignfull):not(.wp-block-image)){margin-left:calc(var(--wp--custom--main-content-width-side-spacing) - var(--wp--style--root--padding-left))}body .is-layout-constrained.has-global-padding>.alignright:where(:not(.alignfull):not(.wp-block-image)){margin-right:calc(var(--wp--custom--main-content-width-side-spacing) - var(--wp--style--root--padding-right))}body .is-layout-constrained>.is-layout-flow.alignwide .alignleft{margin-left:0}body .is-layout-constrained>.is-layout-flow.alignwide .alignright{margin-right:0}body .has-global-padding>.alignfull{margin-left:calc(var(--wp--style--root--padding-left)*-1);margin-right:calc(var(--wp--style--root--padding-right)*-1)}.auclair-ring-hover{position:relative;transition:transform .2s ease}@property --auclair-ring-angle{syntax:"<angle>";inherits:false;initial-value:0deg}.auclair-ring-hover:after{background:conic-gradient(from calc(var(--auclair-ring-from, 125deg) + var(--auclair-ring-angle, 0deg)),transparent 0deg,transparent var(--auclair-ring-gap-in,26deg),var(--auclair-ring-accent,var(--wp--preset--color--accent-gold)) var(--auclair-ring-solid-start,80deg),var(--auclair-ring-accent,var(--wp--preset--color--accent-gold)) var(--auclair-ring-solid-end,300deg),transparent var(--auclair-ring-gap-out,356deg));border-radius:inherit;bottom:0;content:"";left:0;-webkit-mask:linear-gradient(#000,#000 0) content-box,linear-gradient(#000,#000 0);mask:linear-gradient(#000,#000 0) content-box,linear-gradient(#000,#000 0);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;padding:1px;pointer-events:none;position:absolute;right:0;top:0;transition:opacity .2s ease}.auclair-ring-hover:focus-visible,.auclair-ring-hover:hover{transform:translateY(var(--auclair-ring-lift,-2px))}.auclair-ring-hover:focus-visible:after,.auclair-ring-hover:hover:after{opacity:1}@media not all and (prefers-reduced-motion:reduce){.auclair-ring-hover:focus-visible:after,.auclair-ring-hover:hover:after{animation:auclair-ring-spin .9s cubic-bezier(.2,.7,.2,1) both}}@keyframes auclair-ring-spin{0%{--auclair-ring-angle:0deg}to{--auclair-ring-angle:360deg}}@media (prefers-reduced-motion:reduce){.auclair-ring-hover,.auclair-ring-hover:after{transition:none}.auclair-ring-hover:focus-visible,.auclair-ring-hover:hover{transform:none}}.auclair-accent-glow{background:var(--auclair-glow-accent,var(--wp--preset--color--accent-gold));border-radius:50%;bottom:0;filter:blur(var(--wp--custom--glow-blur));height:var(--wp--custom--radius--glow);left:0;margin:auto;opacity:.1;pointer-events:none;position:absolute;right:0;top:0;width:var(--wp--custom--radius--glow)}:focus-visible{outline:2px solid var(--wp--preset--color--accent-gold);outline-offset:2px}.auclair-section-heading.auclair-section-heading{margin-top:40px}.auclair-section-heading.auclair-section-heading+*{margin-top:16px}.auclair-cta-banner.auclair-cta-banner{margin-top:40px;max-width:720px}.auclair-article-group.auclair-article-group,.auclair-breadcrumb.auclair-breadcrumb,.auclair-category-header.auclair-category-header,.auclair-divider.auclair-divider{margin-top:32px}.auclair-icon-tile{align-items:center;background:var(--wp--preset--color--surface);border:1px solid var(--wp--preset--color--border);border-radius:16px;color:var(--auclair-icon-accent,var(--wp--preset--color--accent-gold));display:inline-flex;height:48px;justify-content:center;position:relative;width:48px}.auclair-icon-tile.is-large{background:color-mix(in srgb,var(--auclair-icon-accent,var(--wp--preset--color--accent-gold)) 9%,transparent);border:none;border-radius:16.7px;height:64px;outline:1px solid color-mix(in srgb,var(--auclair-icon-accent,var(--wp--preset--color--accent-gold)) 19%,transparent);outline-offset:-1px;width:64px}.auclair-icon-tile.is-large .auclair-icon-tile__glow{height:116px;width:116px}.auclair-cta-banner .auclair-icon-tile.is-large{background:var(--wp--preset--color--background);border-radius:11.48px;height:44px;outline:1px solid var(--wp--preset--color--border);outline-offset:-1px;width:44px}.auclair-icon-tile__glow{background:var(--auclair-icon-accent,var(--wp--preset--color--accent-gold));border-radius:50%;bottom:0;filter:blur(var(--wp--custom--glow-blur));height:var(--wp--custom--radius--glow);left:0;margin:auto;opacity:.1;pointer-events:none;position:absolute;right:0;top:0;width:var(--wp--custom--radius--glow)}.auclair-icon-tile__icon{display:inline-flex;position:relative}.auclair-button{align-items:center;border:1px solid transparent;border-radius:var(--wp--custom--radius--field);cursor:pointer;display:inline-flex;font-size:14px;font-weight:700;justify-content:center;padding:8px 24px;-webkit-text-decoration:none;text-decoration:none;transition:transform .15s ease,background .15s ease,border-color .15s ease}.auclair-button.is-primary{background:var(--wp--preset--color--accent-gold);color:var(--wp--preset--color--background)}.auclair-button.is-primary:hover{background:var(--wp--preset--color--accent-gold-dark);transform:translateY(-1px)}.auclair-button.is-secondary{background:var(--wp--preset--color--surface);border-color:var(--wp--preset--color--border);color:var(--wp--preset--color--foreground-primary)}.auclair-button.is-secondary:hover{border-color:var(--wp--preset--color--accent-gold)}.auclair-button.is-ghost{background:transparent;border-color:var(--wp--preset--color--border);color:var(--wp--preset--color--foreground-primary)}.auclair-button.is-ghost:hover{border-color:var(--wp--preset--color--accent-gold);color:var(--wp--preset--color--accent-gold)}@media (max-width:720px){.auclair-button.is-full-width-mobile{display:flex;width:100%}}.visually-hidden{border:0;clip:rect(0,0,0,0);height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px}
+/*!*************************************************************************************************************************************************************************************!*\
+  !*** css ../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./assets/css/frontend.css ***!
+  \*************************************************************************************************************************************************************************************/
+/* --- Base --- */
+
+/*
+ * Use a more-intuitive box-sizing model.
+ */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+/*
+ * Allow percentage-based heights in the application
+ */
+
+html,
+body,
+.wp-site-blocks {
+	min-height: 100%;
+}
+
+/*
+ * Remove height from the admin bar of the overall height
+ */
+
+html {
+	height: calc(100% - var(--wp-admin--admin-bar--height, 0px));
+}
+
+/*
+ * Ensure best type rendering
+ */
+
+:root {
+	font-feature-settings: "kern";
+	font-kerning: normal;
+	text-rendering: optimizeLegibility;
+}
+
+/*
+ * Match the design prototype's text rendering: it uses the browser default
+ * (subpixel) antialiasing, and forcing `antialiased` makes light-on-dark
+ * Satoshi render visibly thinner than the design.
+ */
+
+/*
+ * Improve media defaults
+ */
+
+img,
+picture,
+video,
+canvas,
+svg {
+	display: block;
+	height: auto;
+	max-width: 100%;
+}
+
+/*
+ * Remove built-in form typography styles
+ */
+
+input,
+button,
+textarea,
+select {
+	font: inherit;
+}
+
+/*
+ * Avoid text overflows
+ */
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	word-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	text-wrap: balance;
+	text-wrap: pretty; /* pretty is the nicer result but it isn't supported as well. So balance is here as a fallback */
+}
+
+p {
+	text-wrap: pretty;
+}
+
+/*
+ * Create a root stacking context
+ */
+
+.wp-site-blocks {
+	isolation: isolate;
+}
+
+/*
+ * Ensure the alt text is visible when an image is missing
+ */
+
+img {
+	font-size: 1rem;
+	font-style: italic;
+	line-height: 1.5;
+}
+
+html {
+	scroll-behavior: smooth;
+}
+
+main.wp-block-group {
+	padding-bottom: 64px;
+}
+
+@media (max-width: 720px) {
+	main.wp-block-group {
+		padding-bottom: 32px;
+	}
+}
+
+.has-global-padding :where(.has-global-padding.is-layout-constrained) {
+	padding-left: var(--wp--style--root--padding-left);
+	padding-right: var(--wp--style--root--padding-right);
+}
+
+.is-layout-constrained .wp-block-image.alignwide {
+	max-width: min(100%, var(--wp--style--global--wide-size)) !important;
+}
+
+.wp-block-post-template.is-layout-flex {
+	align-items: stretch;
+}
+
+body .is-layout-constrained > .alignright:where(:not(.alignfull):not(.wp-block-image)) {
+		margin-right: var(--wp--custom--main-content-width-side-spacing);
+		max-width: calc(var(--wp--style--global--content-size) / 2);
+	}
+
+body .is-layout-constrained > .alignleft:where(:not(.alignfull):not(.wp-block-image)) {
+		margin-left: var(--wp--custom--main-content-width-side-spacing);
+		max-width: calc(var(--wp--style--global--content-size) / 2);
+	}
+
+body .is-layout-constrained.has-global-padding > .alignleft:where(:not(.alignfull):not(.wp-block-image)) {
+		margin-left: calc(var(--wp--custom--main-content-width-side-spacing) - var(--wp--style--root--padding-left));
+	}
+
+body .is-layout-constrained.has-global-padding > .alignright:where(:not(.alignfull):not(.wp-block-image)) {
+		margin-right: calc(var(--wp--custom--main-content-width-side-spacing) - var(--wp--style--root--padding-right));
+	}
+
+body .is-layout-constrained > .is-layout-flow.alignwide .alignleft {
+		margin-left: 0;
+	}
+
+body .is-layout-constrained > .is-layout-flow.alignwide .alignright {
+		margin-right: 0;
+	}
+
+body .has-global-padding > .alignfull {
+	margin-left: calc(var(--wp--style--root--padding-left) * -1);
+	margin-right: calc(var(--wp--style--root--padding-right) * -1);
+}
+
+/* --- Templates --- */
+
+/* --- Components --- */
+
+/**
+ * Shared behaviours used across multiple blocks: the hover ring animation
+ * (category-card, cta-banner), the accent glow, and the keyboard focus ring.
+ */
+
+.auclair-ring-hover {
+	position: relative;
+	transition: transform 0.2s ease;
+}
+
+/*
+ * The ring is a thin (1.5px) stroke traced around the element's actual
+ * rounded-rect perimeter via the mask-composite "gradient border" technique
+ * (padding sets the stroke width; the two masks cancel out everywhere except
+ * that band). The gradient shape itself is *fixed* (a permanent gap, not a
+ * full loop) — confirmed against two independent prototype instances
+ * (category-card and the cta-banner "Still need help?" panel) — set
+ * per-usage via the --auclair-ring-* custom properties, defaulted here to
+ * category-card's. On top of that fixed shape, the prototype's own
+ * `spinRing` interaction handler (found verbatim, unminified, in the
+ * bundle's inline script) does two things on hover/touch: reveals the ring
+ * via opacity, and forces a one-shot 360deg spin — literally
+ * `ring.style.animation = "ringSpin 900ms cubic-bezier(.2,.7,.2,1) both"`,
+ * replayed from scratch on every re-hover via an animation:none + reflow
+ * trick. CSS's own :hover re-trigger does that restart for free, so it's
+ * reproduced below as a plain :hover-scoped animation.
+ */
+
+@property --auclair-ring-angle {
+	syntax: "<angle>";
+	inherits: false;
+	initial-value: 0deg;
+}
+
+.auclair-ring-hover::after {
+	content: "";
+	position: absolute;
+	/*
+	 * Flush with the box edge (not inset negatively) so the ring never
+	 * extends past the element's own bounds — cta-banner has
+	 * `overflow: hidden` (to clip its glow), which would otherwise clip
+	 * the ring itself if it were drawn outside the border box.
+	 */
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	border-radius: inherit;
+	padding: 1px;
+	background: conic-gradient(
+		from calc(var(--auclair-ring-from, 125deg) + var(--auclair-ring-angle, 0deg)),
+		transparent 0deg,
+		transparent var(--auclair-ring-gap-in, 26deg),
+		var(--auclair-ring-accent, var(--wp--preset--color--accent-gold)) var(--auclair-ring-solid-start, 80deg),
+		var(--auclair-ring-accent, var(--wp--preset--color--accent-gold)) var(--auclair-ring-solid-end, 300deg),
+		transparent var(--auclair-ring-gap-out, 356deg)
+	);
+	-webkit-mask: linear-gradient(#000 0, #000 0) content-box, linear-gradient(#000 0, #000 0);
+	-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+	-webkit-mask-composite: xor;
+	-webkit-mask: linear-gradient(#000 0, #000 0) content-box, linear-gradient(#000 0, #000 0);
+	        mask: linear-gradient(#000 0, #000 0) content-box, linear-gradient(#000 0, #000 0);
+	-webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+	        mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+	-webkit-mask-composite: xor;
+	        mask-composite: exclude;
+	opacity: 0;
+	transition: opacity 0.2s ease;
+	pointer-events: none;
+}
+
+.auclair-ring-hover:hover,
+.auclair-ring-hover:focus-visible {
+	transform: translateY(var(--auclair-ring-lift, -2px));
+}
+
+.auclair-ring-hover:hover::after,
+.auclair-ring-hover:focus-visible::after {
+	opacity: 1;
+}
+
+@media not all and (prefers-reduced-motion: reduce) {
+	.auclair-ring-hover:hover::after,
+	.auclair-ring-hover:focus-visible::after {
+		animation: auclair-ring-spin 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+	}
+}
+
+/*
+ * Rotating the gradient's from-angle (not the pseudo-element's box) sweeps
+ * the fixed gapped arc once around the perimeter, exactly like the
+ * prototype's `ringSpin` rotating its oversized conic layer behind a cover.
+ */
+
+@keyframes auclair-ring-spin {
+	from {
+		--auclair-ring-angle: 0deg;
+	}
+	to {
+		--auclair-ring-angle: 360deg;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.auclair-ring-hover,
+	.auclair-ring-hover::after {
+		transition: none;
+	}
+
+	.auclair-ring-hover:hover,
+	.auclair-ring-hover:focus-visible {
+		transform: none;
+	}
+}
+
+.auclair-accent-glow {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	width: var(--wp--custom--radius--glow);
+	height: var(--wp--custom--radius--glow);
+	background: var(--auclair-glow-accent, var(--wp--preset--color--accent-gold));
+	opacity: 0.1;
+	filter: blur(var(--wp--custom--glow-blur));
+	border-radius: 50%;
+	pointer-events: none;
+}
+
+:focus-visible {
+	outline: 2px solid var(--wp--preset--color--accent-gold);
+	outline-offset: 2px;
+}
+
+/*
+ * Prototype vertical rhythm: 40px between page sections, 32px between the
+ * blocks inside a page's header region (breadcrumb/header/divider/groups),
+ * 16px from a section heading to its list. The theme's global blockGap is
+ * 24px; these doubled-class overrides out-specify the `:root :where(...)`
+ * global-styles margin rules that would otherwise win on source order.
+ */
+
+.auclair-section-heading.auclair-section-heading {
+	margin-top: 40px;
+}
+
+.auclair-section-heading.auclair-section-heading + * {
+	margin-top: 16px;
+}
+
+.auclair-cta-banner.auclair-cta-banner {
+	margin-top: 40px;
+	max-width: 720px;
+}
+
+.auclair-breadcrumb.auclair-breadcrumb,
+.auclair-category-header.auclair-category-header,
+.auclair-divider.auclair-divider,
+.auclair-article-group.auclair-article-group {
+	margin-top: 32px;
+}
+
+.auclair-icon-tile {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	width: 48px;
+	height: 48px;
+	border-radius: 16px;
+	background: var(--wp--preset--color--surface);
+	border: 1px solid var(--wp--preset--color--border);
+	color: var(--auclair-icon-accent, var(--wp--preset--color--accent-gold));
+}
+
+/* Large tile (category-header): accent-tinted square, not the surface-colored
+   default — 64px, ~16.7px radius, 9% accent fill with a 19% accent outline,
+   and a 116px centered glow. */
+
+.auclair-icon-tile.is-large {
+	width: 64px;
+	height: 64px;
+	border-radius: 16.7px;
+	background: color-mix(in srgb, var(--auclair-icon-accent, var(--wp--preset--color--accent-gold)) 9%, transparent);
+	border: none;
+	outline: 1px solid color-mix(in srgb, var(--auclair-icon-accent, var(--wp--preset--color--accent-gold)) 19%, transparent);
+	outline-offset: -1px;
+}
+
+.auclair-icon-tile.is-large .auclair-icon-tile__glow {
+	width: 116px;
+	height: 116px;
+}
+
+/* cta-banner's icon-tile is a distinct, smaller treatment in the prototype:
+   44x44, ~12px radius, near-black background (not the surface color) — not
+   the same "large" tile used by category-header. Scoped to cta-banner so
+   category-header's `render_icon_tile(..., 'large')` output is unaffected. */
+
+.auclair-cta-banner .auclair-icon-tile.is-large {
+	width: 44px;
+	height: 44px;
+	border-radius: 11.48px;
+	background: var(--wp--preset--color--background);
+	outline: 1px solid var(--wp--preset--color--border);
+	outline-offset: -1px;
+}
+
+.auclair-icon-tile__glow {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	width: var(--wp--custom--radius--glow);
+	height: var(--wp--custom--radius--glow);
+	background: var(--auclair-icon-accent, var(--wp--preset--color--accent-gold));
+	opacity: 0.1;
+	filter: blur(var(--wp--custom--glow-blur));
+	border-radius: 50%;
+	pointer-events: none;
+}
+
+.auclair-icon-tile__icon {
+	position: relative;
+	display: inline-flex;
+}
+
+.auclair-button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	padding: 8px 24px;
+	border-radius: var(--wp--custom--radius--field);
+	font-weight: 700;
+	font-size: 14px;
+	-webkit-text-decoration: none;
+	text-decoration: none;
+	cursor: pointer;
+	transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+	border: 1px solid transparent;
+}
+
+.auclair-button.is-primary {
+	background: var(--wp--preset--color--accent-gold);
+	color: var(--wp--preset--color--background);
+}
+
+.auclair-button.is-primary:hover {
+	background: var(--wp--preset--color--accent-gold-dark);
+	transform: translateY(-1px);
+}
+
+.auclair-button.is-secondary {
+	background: var(--wp--preset--color--surface);
+	border-color: var(--wp--preset--color--border);
+	color: var(--wp--preset--color--foreground-primary);
+}
+
+.auclair-button.is-secondary:hover {
+	border-color: var(--wp--preset--color--accent-gold);
+}
+
+.auclair-button.is-ghost {
+	background: transparent;
+	border-color: var(--wp--preset--color--border);
+	color: var(--wp--preset--color--foreground-primary);
+}
+
+.auclair-button.is-ghost:hover {
+	border-color: var(--wp--preset--color--accent-gold);
+	color: var(--wp--preset--color--accent-gold);
+}
+
+@media (max-width: 720px) {
+	.auclair-button.is-full-width-mobile {
+		display: flex;
+		width: 100%;
+	}
+}
+
+/* --- Utilities --- */
+
+.visually-hidden {
+
+	border: 0;
+
+	clip: rect(0, 0, 0, 0);
+
+	height: 1px;
+
+	margin: -1px;
+
+	overflow: hidden;
+
+	padding: 0;
+
+	position: absolute;
+
+	width: 1px;
+}
+
+
+/*# sourceMappingURL=frontend.css.map*/
