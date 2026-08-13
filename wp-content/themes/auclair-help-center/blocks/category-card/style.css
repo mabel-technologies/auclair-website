@@ -13,6 +13,15 @@
 	overflow: hidden;
 	text-decoration: none;
 	color: inherit;
+	transition: transform 0.2s ease;
+}
+
+/* Scale the card chrome only. Inverse-scale the glow below so its blur
+   spread stays the same size while the rest of the card grows. */
+.auclair-category-card:hover,
+.auclair-category-card:focus-visible {
+	z-index: 1;
+	transform: scale(1.03);
 }
 
 .auclair-category-card__icon-wrap {
@@ -34,6 +43,12 @@
 	filter: blur(20px);
 	border-radius: 50%;
 	pointer-events: none;
+	transition: transform 0.2s ease;
+}
+
+.auclair-category-card:hover .auclair-category-card__glow,
+.auclair-category-card:focus-visible .auclair-category-card__glow {
+	transform: scale(calc(1 / 1.03));
 }
 
 .auclair-category-card__icon {
@@ -144,6 +159,21 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+	.auclair-category-card,
+	.auclair-category-card__glow {
+		transition: none;
+	}
+
+	.auclair-category-card:hover,
+	.auclair-category-card:focus-visible {
+		transform: none;
+	}
+
+	.auclair-category-card:hover .auclair-category-card__glow,
+	.auclair-category-card:focus-visible .auclair-category-card__glow {
+		transform: none;
+	}
+
 	.auclair-category-card.is-featured::before {
 		animation: none;
 	}
