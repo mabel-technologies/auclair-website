@@ -54,7 +54,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 	<span class="auclair-category-card__icon-wrap" style="--auclair-icon-accent:<?php echo esc_attr( $accent ); ?>;">
 		<span class="auclair-category-card__glow" style="background:<?php echo esc_attr( $glow[0] ); ?>;--auclair-glow-alpha:<?php echo esc_attr( $glow[1] ); ?>;"></span>
 		<span class="auclair-category-card__icon" style="background:color-mix(in srgb, <?php echo esc_attr( $accent ); ?> 9%, transparent); color:<?php echo esc_attr( $accent ); ?>;">
-			<?php echo get_icon_svg( $icon, 20 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- trusted, static icon markup. ?>
+			<?php echo get_icon_svg( $icon, 24 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- trusted, static icon markup. ?>
 		</span>
 	</span>
 	<span class="auclair-category-card__row">
