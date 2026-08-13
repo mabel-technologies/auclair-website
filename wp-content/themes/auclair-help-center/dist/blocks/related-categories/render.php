@@ -66,7 +66,10 @@ $wrapper_attributes = get_block_wrapper_attributes( [ 'class' => 'auclair-relate
 		echo render_block(
 			[
 				'blockName' => 'auclair/category-card',
-				'attrs'     => [ 'termId' => $sibling->term_id ],
+				'attrs'     => [
+					'termId'  => $sibling->term_id,
+					'animate' => false,
+				],
 			]
 		); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- render_block() output is trusted block markup.
 	}
