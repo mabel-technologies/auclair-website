@@ -23,6 +23,24 @@
 	background-image: radial-gradient(ellipse 45.43% 50.17% at 86.53% 93.7%, rgba(233, 202, 117, 0.2) 0%, rgba(233, 202, 117, 0) 100%);
 }
 
+.auclair-ticket-page-header__title {
+	margin: 0;
+	font-size: 48px;
+	font-weight: 700;
+	line-height: 1;
+	letter-spacing: -0.5px;
+	color: var(--wp--preset--color--foreground-primary);
+}
+
+.auclair-ticket-page-header__intro {
+	margin: 0;
+	max-width: 455px;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 1.4;
+	color: var(--wp--preset--color--foreground-secondary);
+}
+
 .auclair-ticket-form__field {
 	display: flex;
 	flex-direction: column;
@@ -40,18 +58,18 @@
 .auclair-ticket-form__control {
 	display: flex;
 	align-items: center;
-	height: 72px;
+	height: 56px;
+	box-sizing: border-box;
 	border-radius: 12px;
 	padding: 8px 16px;
 	background: rgba(241, 240, 237, 0.1);
-	outline: 1.5px solid var(--wp--preset--color--border);
-	outline-offset: -1.5px;
+	border: 1.5px solid var(--wp--preset--color--border);
 }
 
 .auclair-ticket-form__control--textarea {
 	align-items: stretch;
 	height: auto;
-	padding: 8px 12px;
+	padding: 8px 16px;
 }
 
 .auclair-ticket-form__control input,
@@ -61,8 +79,8 @@
 	background: transparent;
 	font-family: inherit;
 	font-size: 16px;
-	font-weight: 500;
-	line-height: 22px;
+	font-weight: 400;
+	line-height: 1.4;
 	color: var(--wp--preset--color--foreground-primary);
 	outline: none;
 }
@@ -74,11 +92,15 @@
 
 .auclair-ticket-form__control input::-moz-placeholder, .auclair-ticket-form__control textarea::-moz-placeholder {
 	color: var(--wp--preset--color--foreground-secondary);
+	opacity: 0.5;
+	font-weight: 400;
 }
 
 .auclair-ticket-form__control input::placeholder,
 .auclair-ticket-form__control textarea::placeholder {
 	color: var(--wp--preset--color--foreground-secondary);
+	opacity: 0.5;
+	font-weight: 400;
 }
 
 .auclair-ticket-form__row {
@@ -99,20 +121,19 @@
 .auclair-ticket-form__select-trigger {
 	display: flex;
 	width: 100%;
+	box-sizing: border-box;
 	align-items: center;
 	justify-content: space-between;
 	gap: 12px;
-	border: none;
+	border: 1.5px solid var(--wp--preset--color--border);
 	border-radius: 12px;
-	height: 72px;
+	height: 56px;
 	padding: 8px 16px;
 	background: rgba(241, 240, 237, 0.1);
-	outline: 1.5px solid var(--wp--preset--color--border);
-	outline-offset: -1.5px;
 	font-family: inherit;
 	font-size: 16px;
-	font-weight: 500;
-	line-height: 22px;
+	font-weight: 400;
+	line-height: 1.4;
 	color: var(--wp--preset--color--foreground-primary);
 	cursor: pointer;
 	text-align: left;
@@ -120,11 +141,12 @@
 
 .auclair-ticket-form__select-trigger span.is-placeholder {
 	color: var(--wp--preset--color--foreground-secondary);
+	opacity: 0.5;
 }
 
 .auclair-ticket-form__select-trigger svg {
 	flex-shrink: 0;
-	color: var(--wp--preset--color--foreground-secondary);
+	color: var(--wp--preset--color--foreground-primary);
 	transition: transform 0.15s ease;
 }
 
@@ -135,7 +157,7 @@
 .auclair-ticket-form__select-list {
 	position: absolute;
 	z-index: 20;
-	top: 60px;
+	top: calc(100% + 4px);
 	left: 0;
 	right: 0;
 	margin: 0;
@@ -144,7 +166,7 @@
 	overflow-y: auto;
 	border-radius: 12px;
 	padding: 4px 0;
-	background: var(--wp--preset--color--surface);
+	background: #283037;
 	outline: 1px solid var(--wp--preset--color--border);
 	outline-offset: -1px;
 	box-shadow: 0 16px 40px rgba(4, 6, 8, 0.55);
@@ -172,12 +194,18 @@
 
 .auclair-ticket-form__attachment {
 	gap: 12px;
+	padding: 8px 16px 8px 0;
+	border-style: dashed;
 	cursor: pointer;
 }
 
 .auclair-ticket-form__attachment svg {
+	box-sizing: content-box;
 	flex-shrink: 0;
-	color: var(--wp--preset--color--foreground-secondary);
+	width: 24px;
+	height: 24px;
+	padding: 10px;
+	color: var(--wp--preset--color--foreground-primary);
 }
 
 .auclair-ticket-form__attachment span {
@@ -191,6 +219,8 @@
 
 .auclair-ticket-form__attachment span.is-placeholder {
 	color: var(--wp--preset--color--foreground-secondary);
+	opacity: 0.5;
+	font-weight: 400;
 }
 
 .auclair-ticket-form__file-input {
@@ -231,19 +261,19 @@
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	/* Fields sit 16px apart; the submit group sits 24px below the last field. */
-	margin-top: 8px;
-	min-height: 68px;
+	margin-top: 16px;
+	min-height: 44px;
+	height: 44px;
 	border: none;
 	border-radius: var(--wp--custom--radius--field);
 	padding: 12px 16px;
-	background: linear-gradient(180deg, var(--wp--preset--color--accent-gold) 0%, var(--wp--preset--color--accent-gold-dark) 100%);
+	background: linear-gradient(180deg, var(--wp--preset--color--accent-gold) -10.71%, var(--wp--preset--color--accent-gold-dark) 100%);
 	outline: 2px solid var(--wp--preset--color--border);
 	outline-offset: -2px;
 	font-family: inherit;
 	font-size: 16px;
 	font-weight: 700;
-	line-height: 16px;
+	line-height: 1;
 	color: var(--wp--preset--color--background);
 	cursor: pointer;
 	transition: opacity 0.15s ease;
@@ -273,8 +303,9 @@
 	}
 }
 
-.auclair-ticket-form__helper {
+.auclair-ticket-form + .auclair-ticket-form__helper {
 	margin: 16px 0 0;
+	margin-top: 16px;
 	text-align: center;
 	font-size: 16px;
 	font-weight: 400;
@@ -282,12 +313,30 @@
 }
 
 @media (max-width: 720px) {
+	.auclair-ticket-page-header {
+		gap: 8px !important;
+	}
+
+	.auclair-ticket-page-header__title {
+		font-size: 24px;
+		line-height: 1.2;
+		letter-spacing: 0;
+	}
+
 	.auclair-ticket-form {
-		padding: 16px;
+		padding: 24px 16px;
 	}
 
 	.auclair-ticket-form__row {
 		flex-direction: column;
+	}
+
+	.auclair-ticket-form__submit {
+		margin-top: 8px;
+	}
+
+	.auclair-ticket-form__helper {
+		font-size: 14px;
 	}
 }
 
