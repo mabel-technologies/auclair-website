@@ -9,38 +9,11 @@
 
 .auclair-logo-bar__lockup {
 	display: flex;
-	flex-direction: column;
-	align-items: center;
-	gap: 4px;
 	text-decoration: none;
 }
 
-.auclair-logo-bar__wordmark {
-	position: relative;
-	display: inline-flex;
-	align-items: center;
-	gap: 2px;
-}
-
-.auclair-logo-bar__au,
-.auclair-logo-bar__clair {
-	height: 18px;
-	width: auto;
+.auclair-logo-bar__logo {
 	display: block;
-}
-
-.auclair-logo-bar__tm {
-	position: absolute;
-	top: -2px;
-	right: -14px;
-	font-size: 8px;
-	font-weight: 700;
-	color: var(--wp--preset--color--foreground-secondary);
-}
-
-.auclair-logo-bar__by-aisound {
-	height: 10px;
-	width: auto;
-	display: block;
-	opacity: 0.85;
+	width: 130px;
+	height: 37px;
 }
