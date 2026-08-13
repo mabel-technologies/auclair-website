@@ -10,12 +10,12 @@
 
 .auclair-related-queries__heading {
 	margin: 0;
-	font-size: max(17px, min(2.2vw, 20px));
+	font-size: 20px;
 	/* The prototype declares 900; Satoshi ships no 900 face, so the browser
 	   synthesizes extra-bold from the 700 file — reproduce the same request so
 	   both render identically. */
 	font-weight: 900;
-	line-height: 24px;
+	line-height: 1.2;
 	color: var(--wp--preset--color--foreground-primary);
 }
 
@@ -47,8 +47,9 @@
 	color: var(--wp--preset--color--foreground-primary);
 	-webkit-text-decoration: none;
 	text-decoration: none;
-	font-size: var(--wp--preset--font-size--body);
+	font-size: 16px;
 	font-weight: 500;
+	line-height: 1.4;
 }
 
 .auclair-related-queries__item a:hover {
