@@ -18,6 +18,10 @@
 		"animate": {
 			"type": "boolean",
 			"default": true
+		},
+		"featured": {
+			"type": "boolean",
+			"default": false
 		}
 	},
 	"supports": {

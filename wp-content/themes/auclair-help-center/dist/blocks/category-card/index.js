@@ -68,7 +68,7 @@ module.exports = window["wp"]["serverSideRender"];
   \*****************************************/
 /***/ (function(module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"auclair/category-card","title":"Category Card","category":"auclair","description":"Icon, title, article count, with the hover ring animation.","textdomain":"auclair","attributes":{"termId":{"type":"number","default":0},"accent":{"type":"string","default":""},"animate":{"type":"boolean","default":true}},"supports":{"html":false,"align":false},"editorScript":"file:./index.tsx","style":"file:./style.css","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"auclair/category-card","title":"Category Card","category":"auclair","description":"Icon, title, article count, with the hover ring animation.","textdomain":"auclair","attributes":{"termId":{"type":"number","default":0},"accent":{"type":"string","default":""},"animate":{"type":"boolean","default":true},"featured":{"type":"boolean","default":false}},"supports":{"html":false,"align":false},"editorScript":"file:./index.tsx","style":"file:./style.css","render":"file:./render.php"}');
 
 /***/ })
 
