@@ -125,5 +125,12 @@
 	margin-top: 4px;
 }
 
+@media (max-width: 720px) {
+	.auclair-help-hero {
+		padding-top: 44px;
+		padding-bottom: 24px;
+	}
+}
+
 
 /*# sourceMappingURL=style.css.map*/

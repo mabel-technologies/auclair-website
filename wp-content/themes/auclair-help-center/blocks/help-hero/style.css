@@ -112,3 +112,10 @@
 .auclair-help-hero__content > .wp-block-auclair-quick-help-chips {
 	margin-top: 4px;
 }
+
+@media (max-width: 720px) {
+	.auclair-help-hero {
+		padding-top: 44px;
+		padding-bottom: 24px;
+	}
+}
