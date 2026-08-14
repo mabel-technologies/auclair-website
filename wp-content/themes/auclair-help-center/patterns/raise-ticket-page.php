@@ -9,7 +9,7 @@
  */
 
 ?>
-<!-- wp:auclair/logo-bar {"align":"full","homeUrl":"/help/"} /-->
+<!-- wp:auclair/logo-bar {"align":"full","homeUrl":"/"} /-->
 
 <!-- wp:auclair/breadcrumb {"showBack":false} /-->
 

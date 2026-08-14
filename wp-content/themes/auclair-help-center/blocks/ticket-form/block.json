@@ -9,7 +9,7 @@
 	"attributes": {
 		"successUrl": {
 			"type": "string",
-			"default": "/help/ticket-submitted/"
+			"default": "/ticket-submitted/"
 		},
 		"defaultCategory": {
 			"type": "number",

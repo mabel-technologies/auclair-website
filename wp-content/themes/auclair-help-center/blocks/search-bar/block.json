@@ -13,7 +13,7 @@
 		},
 		"action": {
 			"type": "string",
-			"default": "/help/search/?q=%s"
+			"default": "/search/?q=%s"
 		}
 	},
 	"supports": {

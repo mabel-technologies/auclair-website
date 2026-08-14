@@ -70,7 +70,7 @@ class KbArticle extends AbstractPostType {
 	 * Get the options for the post type.
 	 *
 	 * Category pages are term archives, so this post type has no archive of
-	 * its own. The permalink structure is `help/%help_category%/%postname%`,
+	 * its own. The permalink structure is `%help_category%/%postname%`,
 	 * built via a custom permastruct in after_register() rather than the
 	 * `rewrite` arg, since core rewrite doesn't support taxonomy tokens.
 	 *
@@ -109,7 +109,7 @@ class KbArticle extends AbstractPostType {
 	}
 
 	/**
-	 * Set up the `help/%help_category%/%postname%` permastruct, register
+	 * Set up the `%help_category%/%postname%` permastruct, register
 	 * post meta, and wire the admin-list voting/helpfulness columns.
 	 *
 	 * @return void
@@ -119,10 +119,14 @@ class KbArticle extends AbstractPostType {
 		add_rewrite_tag( '%' . self::NAME . '%', '([^/]+)', self::NAME . '=' );
 		add_permastruct(
 			self::NAME,
-			'help/%help_category%/%' . self::NAME . '%',
+			'%help_category%/%' . self::NAME . '%',
 			[
 				'with_front' => false,
 				'ep_mask'    => EP_PERMALINK,
+				// Without this, core also emits rules for each leading
+				// segment of the struct — including a bare `([^/]+)/?$`
+				// catch-all that would swallow every root-level page.
+				'walk_dirs'  => false,
 			]
 		);
 

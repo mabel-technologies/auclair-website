@@ -53,7 +53,7 @@ class HelpTag extends AbstractTaxonomy {
 		$options = parent::get_options();
 
 		$options['rewrite'] = [
-			'slug'       => 'help/topic',
+			'slug'       => 'topic',
 			'with_front' => false,
 		];
 

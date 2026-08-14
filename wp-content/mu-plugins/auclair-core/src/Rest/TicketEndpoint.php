@@ -89,7 +89,7 @@ class TicketEndpoint implements ModuleInterface {
 
 		// Honeypot: bots that fill this hidden field get a fake success.
 		if ( ! empty( $request->get_param( 'website' ) ) ) {
-			return new WP_REST_Response( [ 'success' => true, 'redirect' => home_url( '/help/ticket-submitted/' ) ], 200 );
+			return new WP_REST_Response( [ 'success' => true, 'redirect' => home_url( '/ticket-submitted/' ) ], 200 );
 		}
 
 		$rate_limit_error = $this->check_rate_limit();
@@ -150,7 +150,7 @@ class TicketEndpoint implements ModuleInterface {
 		return new WP_REST_Response(
 			[
 				'success'  => true,
-				'redirect' => add_query_arg( 't', $token, home_url( '/help/ticket-submitted/' ) ),
+				'redirect' => add_query_arg( 't', $token, home_url( '/ticket-submitted/' ) ),
 			],
 			200
 		);

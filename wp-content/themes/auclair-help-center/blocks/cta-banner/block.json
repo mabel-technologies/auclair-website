@@ -21,7 +21,7 @@
 		},
 		"buttonUrl": {
 			"type": "string",
-			"default": "/help/raise-a-ticket/"
+			"default": "/raise-a-ticket/"
 		},
 		"accent": {
 			"type": "string",

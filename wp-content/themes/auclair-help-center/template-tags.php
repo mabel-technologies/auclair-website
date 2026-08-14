@@ -82,14 +82,15 @@ function get_icon_svg( string $key, int $size = 24 ): string {
 }
 
 /**
- * Get the URL of the Help Center home page (the page at `/help`).
+ * Get the URL of the Help Center home page.
+ *
+ * The Help Center is the whole site here (it used to be a `/help/`
+ * subsection), so its home is simply the site root.
  *
  * @return string
  */
 function get_help_home_url(): string {
-	$page = get_page_by_path( 'help' );
-
-	return $page ? get_permalink( $page ) : home_url( '/help/' );
+	return home_url( '/' );
 }
 
 /**

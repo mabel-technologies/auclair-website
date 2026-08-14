@@ -77,10 +77,11 @@ class HelpCategory extends AbstractTaxonomy {
 	public function get_options() {
 		$options = parent::get_options();
 
-		$options['rewrite'] = [
-			'slug'       => 'help',
-			'with_front' => false,
-		];
+		// Term archives live at the site root (`/{slug}/`). A generated
+		// taxonomy rewrite would emit a single-segment catch-all that
+		// swallows every page, so the rules are added explicitly per term
+		// in add_rules() instead.
+		$options['rewrite'] = false;
 
 		return $options;
 	}
@@ -100,6 +101,21 @@ class HelpCategory extends AbstractTaxonomy {
 	 * @return void
 	 */
 	public function after_register() {
+		// Priority 25 so the static-page rules (init 20) are inserted into
+		// `extra_rules_top` first and therefore match first — a page and a
+		// term sharing a slug must resolve to the page.
+		add_action( 'init', [ $this, 'add_rules' ], 25 );
+
+		// The rules are built from the term list, so it has to be rebuilt
+		// whenever that list changes.
+		add_action( 'created_' . self::NAME, [ $this, 'schedule_flush' ] );
+		add_action( 'edited_' . self::NAME, [ $this, 'schedule_flush' ] );
+		add_action( 'delete_' . self::NAME, [ $this, 'schedule_flush' ] );
+
+		// `rewrite => false` stops core generating pretty term links, so
+		// they're built here to match the rules added in add_rules().
+		add_filter( 'term_link', [ $this, 'filter_term_link' ], 10, 3 );
+
 		register_term_meta(
 			self::NAME,
 			'icon',
@@ -179,6 +195,75 @@ class HelpCategory extends AbstractTaxonomy {
 		add_action( self::NAME . '_edit_form_fields', [ $this, 'render_edit_form_fields' ] );
 		add_action( 'created_' . self::NAME, [ $this, 'save_term_meta' ] );
 		add_action( 'edited_' . self::NAME, [ $this, 'save_term_meta' ] );
+	}
+
+	/**
+	 * Get every term slug, for building rewrite rules.
+	 *
+	 * @return string[]
+	 */
+	public static function get_slugs() {
+		$slugs = get_terms(
+			[
+				'taxonomy'   => self::NAME,
+				'hide_empty' => false,
+				'fields'     => 'slugs',
+			]
+		);
+
+		return is_wp_error( $slugs ) ? [] : $slugs;
+	}
+
+	/**
+	 * Add one explicit root-level archive rule per term (`/{slug}/`, plus
+	 * its paged variant), ahead of the generic page rule.
+	 *
+	 * @return void
+	 */
+	public function add_rules() {
+		foreach ( self::get_slugs() as $slug ) {
+			$quoted = preg_quote( $slug, '/' );
+
+			add_rewrite_rule(
+				'^' . $quoted . '/page/([0-9]{1,})/?$',
+				'index.php?' . self::NAME . '=' . $slug . '&paged=$matches[1]',
+				'top'
+			);
+			add_rewrite_rule(
+				'^' . $quoted . '/?$',
+				'index.php?' . self::NAME . '=' . $slug,
+				'top'
+			);
+		}
+	}
+
+	/**
+	 * Point term links at the root-level archive (`/{slug}/`).
+	 *
+	 * @param string   $link     The term link core generated.
+	 * @param \WP_Term $term     The term.
+	 * @param string   $taxonomy The term's taxonomy.
+	 *
+	 * @return string
+	 */
+	public function filter_term_link( $link, $term, $taxonomy ) {
+		if ( self::NAME !== $taxonomy ) {
+			return $link;
+		}
+
+		return user_trailingslashit( home_url( '/' . $term->slug ), 'category' );
+	}
+
+	/**
+	 * Flush rewrite rules on the next request after the term list changes.
+	 *
+	 * Deferred rather than immediate: the rules are built on `init`, which
+	 * has already run by the time a term is saved.
+	 *
+	 * @return void
+	 */
+	public function schedule_flush() {
+		update_option( 'auclair_flush_rewrite', 1 );
 	}
 
 	/**

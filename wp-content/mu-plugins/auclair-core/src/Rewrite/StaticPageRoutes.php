@@ -1,9 +1,9 @@
 <?php
 /**
- * Top-priority rewrite rules for static `page`s nested one level under
- * `/help/`, which would otherwise be swallowed by the `help_category`
- * taxonomy's `help/%slug%` catch-all (taxonomy/post-type permastructs are
- * matched before WordPress's generic page fallback rule).
+ * Top-priority rewrite rules for the Help Center's static `page`s, which
+ * would otherwise be swallowed by the `help_category` term archives (those
+ * are registered as root-level `/{slug}/` rules, ahead of WordPress's
+ * generic page fallback rule).
  *
  * @package AuclairCore
  */
@@ -14,16 +14,16 @@ use TenupFramework\Module;
 use TenupFramework\ModuleInterface;
 
 /**
- * Registers explicit `help/{slug}` -> page rewrite rules, one per slug in
- * self::SLUGS, ahead of the `help_category` archive rule.
+ * Registers explicit `/{slug}` -> page rewrite rules, one per slug in
+ * self::SLUGS, ahead of the `help_category` archive rules.
  */
 class StaticPageRoutes implements ModuleInterface {
 
 	use Module;
 
 	/**
-	 * Page slugs living directly under `/help/` that must win over the
-	 * `help_category` term-archive catch-all.
+	 * Page slugs living at the site root that must win over the
+	 * `help_category` term-archive rules.
 	 *
 	 * @var string[]
 	 */
@@ -44,7 +44,10 @@ class StaticPageRoutes implements ModuleInterface {
 	 * @return void
 	 */
 	public function register() {
+		// Priority 20 — ahead of HelpCategory::add_rules() at 25, so these
+		// rules are inserted into `extra_rules_top` first and match first.
 		add_action( 'init', [ $this, 'add_rules' ], 20 );
+		add_action( 'wp_loaded', [ $this, 'maybe_flush' ] );
 	}
 
 	/**
@@ -55,10 +58,25 @@ class StaticPageRoutes implements ModuleInterface {
 	public function add_rules() {
 		foreach ( self::SLUGS as $slug ) {
 			add_rewrite_rule(
-				'^help/' . preg_quote( $slug, '/' ) . '/?$',
-				'index.php?pagename=help/' . $slug,
+				'^' . preg_quote( $slug, '/' ) . '/?$',
+				'index.php?pagename=' . $slug,
 				'top'
 			);
 		}
+	}
+
+	/**
+	 * Flush rewrite rules once, on the request after something that changes
+	 * the generated rule set (currently: editing `help_category` terms).
+	 *
+	 * @return void
+	 */
+	public function maybe_flush() {
+		if ( ! get_option( 'auclair_flush_rewrite' ) ) {
+			return;
+		}
+
+		delete_option( 'auclair_flush_rewrite' );
+		flush_rewrite_rules( false );
 	}
 }

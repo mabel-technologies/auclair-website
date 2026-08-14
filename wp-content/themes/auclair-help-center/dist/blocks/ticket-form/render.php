@@ -9,7 +9,7 @@
 
 use AuclairCore\Taxonomies\HelpCategory;
 
-$success_url    = ! empty( $attributes['successUrl'] ) ? $attributes['successUrl'] : '/help/ticket-submitted/';
+$success_url    = ! empty( $attributes['successUrl'] ) ? $attributes['successUrl'] : '/ticket-submitted/';
 $max_upload_mb  = ! empty( $attributes['maxUploadMb'] ) ? (float) $attributes['maxUploadMb'] : 5;
 $allowed_types  = ! empty( $attributes['allowedTypes'] ) ? (array) $attributes['allowedTypes'] : [ 'image/png', 'image/jpeg', 'image/webp', 'application/pdf' ];
 

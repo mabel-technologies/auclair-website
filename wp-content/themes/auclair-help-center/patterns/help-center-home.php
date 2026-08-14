@@ -9,7 +9,7 @@
  */
 
 ?>
-<!-- wp:auclair/logo-bar {"align":"full","homeUrl":"/help/"} /-->
+<!-- wp:auclair/logo-bar {"align":"full","homeUrl":"/"} /-->
 
 <!-- wp:auclair/help-hero {"align":"full","eyebrow":"Help Center","heading":"How can we help you today?","subheading":"Search our guides, or browse by topic below."} -->
 <div class="wp-block-auclair-help-hero auclair-help-hero alignfull">
@@ -65,7 +65,7 @@
 
 <!-- wp:auclair/top-queries {"source":"sticky","limit":10} /-->
 
-<!-- wp:auclair/cta-banner {"heading":"Still need help?","body":"Our support team is available 7 days a week.\nRaise a ticket and we will follow up asap.","buttonLabel":"Raise A Ticket","buttonUrl":"/help/raise-a-ticket/","accent":"#E9CA75"} -->
+<!-- wp:auclair/cta-banner {"heading":"Still need help?","body":"Our support team is available 7 days a week.\nRaise a ticket and we will follow up asap.","buttonLabel":"Raise A Ticket","buttonUrl":"/raise-a-ticket/","accent":"#E9CA75"} -->
 <div class="wp-block-auclair-cta-banner auclair-cta-banner auclair-ring-hover" style="--auclair-ring-accent:#E9CA75;--auclair-ring-from:140deg;--auclair-ring-gap-in:24deg;--auclair-ring-solid-start:90deg;--auclair-ring-solid-end:195deg;--auclair-ring-gap-out:250deg;--auclair-ring-lift:0px">
 	<span class="auclair-icon-tile is-large" style="--auclair-icon-accent:#E9CA75">
 		<span class="auclair-icon-tile__glow"></span>
@@ -78,6 +78,6 @@
 		<p class="auclair-cta-banner__text">Our support team is available 7 days a week.
 Raise a ticket and we will follow up asap.</p>
 	</div>
-	<a class="auclair-button is-primary auclair-cta-banner__button" href="/help/raise-a-ticket/">Raise A Ticket</a>
+	<a class="auclair-button is-primary auclair-cta-banner__button" href="/raise-a-ticket/">Raise A Ticket</a>
 </div>
 <!-- /wp:auclair/cta-banner -->
