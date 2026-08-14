@@ -138,7 +138,6 @@
 
 .auclair-cta-banner.auclair-cta-banner {
 	margin-block-start: 40px;
-	/* Prototype's banner box is 720px — 32px wider than the 688px content column. */
 	max-width: 720px;
 }
 

@@ -13,6 +13,15 @@
 	overflow: hidden;
 	text-decoration: none;
 	color: inherit;
+	transition: transform 0.2s ease;
+}
+
+/* Scale the card chrome only. Inverse-scale the glow below so its blur
+   spread stays the same size while the rest of the card grows. */
+.auclair-category-card:hover,
+.auclair-category-card:focus-visible {
+	z-index: 1;
+	transform: scale(1.03);
 }
 
 .auclair-category-card__icon-wrap {
@@ -34,6 +43,12 @@
 	filter: blur(20px);
 	border-radius: 50%;
 	pointer-events: none;
+	transition: transform 0.2s ease;
+}
+
+.auclair-category-card:hover .auclair-category-card__glow,
+.auclair-category-card:focus-visible .auclair-category-card__glow {
+	transform: scale(calc(1 / 1.03));
 }
 
 .auclair-category-card__icon {
@@ -79,6 +94,89 @@
 	display: inline-flex;
 	color: var(--wp--preset--color--foreground-secondary);
 	flex-shrink: 0;
+}
+
+/*
+ * Featured border: Figma colours on a spinning conic, clipped to a 1px rim.
+ * Chrome does not repaint conic/linear-gradient when an @property angle
+ * animates, so this rotates ::before with transform (same visual as
+ * walking the gradient angle). ::after is an inset surface fill so only
+ * the rim shows the gradient; card children sit above both.
+ */
+.auclair-category-card.is-featured {
+	isolation: isolate;
+	outline: none;
+	background: transparent;
+}
+
+.auclair-category-card.is-featured::before {
+	content: "";
+	position: absolute;
+	z-index: 0;
+	top: 50%;
+	left: 50%;
+	/* Square from the card's width so a wide mobile row still covers at
+	   every rotate angle. inset:-50% inherited the 358×78 aspect and
+	   left the long sides unpainted. translate is separate from rotate. */
+	width: 200%;
+	aspect-ratio: 1;
+	height: auto;
+	translate: -50% -50%;
+	background: conic-gradient(
+		from 136deg,
+		var(--wp--preset--color--category-hearing-test),
+		#073025,
+		var(--wp--preset--color--category-hearing-test)
+	);
+	animation: auclair-featured-border-spin 3s linear infinite;
+	pointer-events: none;
+}
+
+.auclair-category-card.is-featured::after {
+	content: "";
+	position: absolute;
+	inset: 1px;
+	z-index: 0;
+	border-radius: 11px;
+	background: var(--wp--preset--color--surface);
+	pointer-events: none;
+}
+
+.auclair-category-card.is-featured > * {
+	position: relative;
+	z-index: 1;
+}
+
+.auclair-category-card.is-featured .auclair-category-card__icon {
+	background: var(--wp--preset--color--category-hearing-test);
+	color: var(--wp--preset--color--background);
+}
+
+@keyframes auclair-featured-border-spin {
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.auclair-category-card,
+	.auclair-category-card__glow {
+		transition: none;
+	}
+
+	.auclair-category-card:hover,
+	.auclair-category-card:focus-visible {
+		transform: none;
+	}
+
+	.auclair-category-card:hover .auclair-category-card__glow,
+	.auclair-category-card:focus-visible .auclair-category-card__glow {
+		transform: none;
+	}
+
+	.auclair-category-card.is-featured::before {
+		animation: none;
+	}
 }
 
 @media (max-width: 720px) {

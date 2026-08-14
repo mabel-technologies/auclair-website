@@ -9,7 +9,7 @@
   "attributes": {
     "placeholder": {
       "type": "string",
-      "default": "Search for help…"
+      "default": "Search queries or topics"
     },
     "action": {
       "type": "string",
@@ -23,5 +23,6 @@
   "editorScript": "file:./index.js",
   "style": "file:./style.css",
   "viewScriptModule": "file:./view.js",
-  "version": "31ed99c345936b82c22bc278c22aa6686023867c65b84f23912bc3f724daa728"
+  "render": "file:./render.php",
+  "version": "eca8a9daa9f7df1dcf7c303141cec87270d0f7fd878b6bd9a32573eda9a0e34c"
 }

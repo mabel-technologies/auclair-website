@@ -44,7 +44,11 @@ $wrapper_attributes = get_block_wrapper_attributes(
 		echo render_block(
 			[
 				'blockName' => 'auclair/category-card',
-				'attrs'     => [ 'termId' => $term->term_id ],
+				'attrs'     => [
+					'termId'   => $term->term_id,
+					'animate'  => false,
+					'featured' => 'hearing-test' === $term->slug,
+				],
 			]
 		); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- render_block() output is trusted block markup.
 	}

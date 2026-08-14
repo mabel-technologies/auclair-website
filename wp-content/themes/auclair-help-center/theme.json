@@ -133,7 +133,7 @@
 		},
 		"layout": {
 			"allowCustomContentAndWideSize": false,
-			"contentSize": "min(688px, var(--wp--custom--site-content-width))",
+			"contentSize": "min(720px, var(--wp--custom--site-content-width))",
 			"wideSize": "min(1200px, var(--wp--custom--site-content-width))"
 		},
 		"spacing": {

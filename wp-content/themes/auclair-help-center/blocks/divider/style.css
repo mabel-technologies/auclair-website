@@ -9,3 +9,9 @@
 	margin-inline: var(--wp--preset--spacing--16);
 	width: calc(100% - (var(--wp--preset--spacing--16) * 2));
 }
+
+@media (max-width: 720px) {
+	.auclair-divider {
+		display: none;
+	}
+}

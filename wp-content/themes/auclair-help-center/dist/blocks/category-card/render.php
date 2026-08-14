@@ -21,8 +21,14 @@ $icon        = get_term_meta( $term_id, 'icon', true );
 $icon        = $icon ? $icon : 'life-buoy';
 $accent      = ! empty( $attributes['accent'] ) ? $attributes['accent'] : get_term_meta( $term_id, 'accent', true );
 $accent      = $accent ? $accent : '#E9CA75';
-$animate     = ! isset( $attributes['animate'] ) || $attributes['animate'];
-$card_class  = 'auclair-category-card' . ( $animate ? ' auclair-ring-hover' : '' );
+$featured    = ! empty( $attributes['featured'] );
+$animate     = ( ! isset( $attributes['animate'] ) || $attributes['animate'] ) && ! $featured;
+$card_class  = 'auclair-category-card';
+if ( $featured ) {
+	$card_class .= ' is-featured';
+} elseif ( $animate ) {
+	$card_class .= ' auclair-ring-hover';
+}
 
 /*
  * Per-accent glow color/opacity, taken verbatim from the design prototype —
@@ -53,8 +59,8 @@ $wrapper_attributes = get_block_wrapper_attributes(
 <a href="<?php echo esc_url( get_term_link( $term ) ); ?>" <?php echo $wrapper_attributes; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- pre-escaped. ?>>
 	<span class="auclair-category-card__icon-wrap" style="--auclair-icon-accent:<?php echo esc_attr( $accent ); ?>;">
 		<span class="auclair-category-card__glow" style="background:<?php echo esc_attr( $glow[0] ); ?>;--auclair-glow-alpha:<?php echo esc_attr( $glow[1] ); ?>;"></span>
-		<span class="auclair-category-card__icon" style="background:color-mix(in srgb, <?php echo esc_attr( $accent ); ?> 9%, transparent); color:<?php echo esc_attr( $accent ); ?>;">
-			<?php echo get_icon_svg( $icon, 20 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- trusted, static icon markup. ?>
+		<span class="auclair-category-card__icon"<?php echo $featured ? '' : ' style="background:color-mix(in srgb, ' . esc_attr( $accent ) . ' 9%, transparent); color:' . esc_attr( $accent ) . ';"'; ?>>
+			<?php echo get_icon_svg( $icon, 24 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- trusted, static icon markup. ?>
 		</span>
 	</span>
 	<span class="auclair-category-card__row">

@@ -79,3 +79,14 @@
 	flex-shrink: 0;
 	color: var(--wp--preset--color--foreground-secondary);
 }
+
+@media (max-width: 720px) {
+	.auclair-article-group__label {
+		font-size: 12px;
+		line-height: 15px;
+	}
+
+	.auclair-article-group__item a {
+		font-size: 16px;
+	}
+}

@@ -24,5 +24,5 @@
   "style": "file:./style.css",
   "viewScriptModule": "file:./view.js",
   "render": "file:./render.php",
-  "version": "24bada0e32acaa00043f143c36636372988e3fc1e9548fb601c28e78dac8fe3f"
+  "version": "afbf1cc53544dffd6c597c8f9080a16ee98703db624ab0a2bf2c74f60bf0440e"
 }

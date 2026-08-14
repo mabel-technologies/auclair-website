@@ -42,6 +42,10 @@
 	outline-offset: -1px;
 }
 
+.auclair-cta-banner .auclair-icon-tile__glow {
+	display: none;
+}
+
 .auclair-icon-tile__glow {
 	position: absolute;
 	inset: 0;

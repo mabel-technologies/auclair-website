@@ -68,6 +68,15 @@ $wrapper_attributes = get_block_wrapper_attributes( [ 'class' => 'auclair-search
 			aria-label="<?php esc_attr_e( 'Search queries or topics', 'auclair' ); ?>"
 			autofocus
 		/>
+		<button
+			type="button"
+			class="auclair-search-results__clear"
+			data-wp-on--mousedown="actions.clearSearch"
+			data-wp-on--click="actions.clearSearch"
+			aria-label="<?php esc_attr_e( 'Clear search', 'auclair' ); ?>"
+		>
+			<?php echo get_icon_svg( 'cancel-circle', 24 ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- trusted, static icon markup. ?>
+		</button>
 	</div>
 	<div class="auclair-search-results__results">
 		<?php if ( '' !== $query && ! empty( $results ) ) : ?>

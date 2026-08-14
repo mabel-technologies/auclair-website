@@ -24,16 +24,7 @@
 		<h1 class="auclair-help-hero__heading">How can we help you today?</h1>
 		<p class="auclair-help-hero__subheading">Search our guides, or browse by topic below.</p>
 
-		<!-- wp:auclair/search-bar {"placeholder":"Search queries or topics"} -->
-		<div class="wp-block-auclair-search-bar">
-			<div class="auclair-search-bar" data-wp-interactive="auclair" data-wp-context="{&quot;action&quot;:&quot;\/help\/search\/?q=%s&quot;}">
-				<span class="auclair-search-bar__icon" aria-hidden="true">
-					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-				</span>
-				<input type="text" class="auclair-search-bar__input" placeholder="Search queries or topics" data-wp-bind--value="state.searchQuery" data-wp-on--input="actions.setSearchQuery" data-wp-on--keydown="actions.handleSearchKeydown" aria-label="Search for help" />
-			</div>
-		</div>
-		<!-- /wp:auclair/search-bar -->
+		<!-- wp:auclair/search-bar {"placeholder":"Search queries or topics"} /-->
 
 		<!-- wp:auclair/quick-help-chips {"label":"Top Searches:","source":"popular","limit":3} /-->
 	</div>

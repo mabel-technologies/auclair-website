@@ -18,6 +18,10 @@
     "animate": {
       "type": "boolean",
       "default": true
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false
     }
   },
   "supports": {
@@ -27,5 +31,5 @@
   "editorScript": "file:./index.js",
   "style": "file:./style.css",
   "render": "file:./render.php",
-  "version": "eafe816fab3982ddd8fa50021f8d8c72c5534b7b679574d5762d6591f1822b44"
+  "version": "74be545bcad2b092efd2a030c83c835b6bd725aa3e870c0b3b8e00393fa8ce66"
 }
