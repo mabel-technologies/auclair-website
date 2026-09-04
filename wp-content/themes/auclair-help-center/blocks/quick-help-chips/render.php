@@ -12,9 +12,26 @@ use AuclairCore\Taxonomies\HelpTag;
 
 $source = ! empty( $attributes['source'] ) ? $attributes['source'] : 'popular';
 $limit  = ! empty( $attributes['limit'] ) ? (int) $attributes['limit'] : 4;
+$picked = ! empty( $attributes['posts'] ) ? array_map( 'absint', $attributes['posts'] ) : [];
 $chips  = [];
 
-if ( 'manual' === $source && ! empty( $attributes['items'] ) ) {
+// Hand-picked articles lead, in the order chosen; the source fills what's left.
+foreach ( $picked as $post_id ) {
+	$post = get_post( $post_id );
+
+	if ( $post && KbArticle::NAME === $post->post_type && 'publish' === $post->post_status ) {
+		$chips[] = [
+			'label' => get_the_title( $post ),
+			'url'   => get_permalink( $post ),
+		];
+	}
+}
+
+$remaining = $limit - count( $chips );
+
+if ( $remaining <= 0 || ( 'manual' === $source && ! empty( $picked ) ) ) {
+	$chips = array_slice( $chips, 0, $limit );
+} elseif ( 'manual' === $source && ! empty( $attributes['items'] ) ) {
 	foreach ( $attributes['items'] as $item ) {
 		$chips[] = [
 			'label' => $item['label'] ?? '',
@@ -27,7 +44,7 @@ if ( 'manual' === $source && ! empty( $attributes['items'] ) ) {
 			'taxonomy'   => HelpTag::NAME,
 			'orderby'    => 'count',
 			'order'      => 'DESC',
-			'number'     => $limit,
+			'number'     => $remaining,
 			'hide_empty' => true,
 		]
 	);
@@ -44,7 +61,8 @@ if ( 'manual' === $source && ! empty( $attributes['items'] ) ) {
 	$articles = get_posts(
 		[
 			'post_type'      => KbArticle::NAME,
-			'posts_per_page' => $limit,
+			'posts_per_page' => $remaining,
+			'post__not_in'   => $picked,
 			'meta_key'       => 'view_count',
 			'orderby'        => 'meta_value_num',
 			'order'          => 'DESC',

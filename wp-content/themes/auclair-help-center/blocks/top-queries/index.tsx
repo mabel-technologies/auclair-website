@@ -4,6 +4,7 @@ import { PanelBody, SelectControl, RangeControl } from '@wordpress/components';
 import ServerSideRender from '@wordpress/server-side-render';
 import { __ } from '@wordpress/i18n';
 import metadata from './block.json';
+import ArticlePicker from '../shared/ArticlePicker';
 
 const SOURCES = [
 	{ label: __( 'Sticky (is_top_query)', 'auclair' ), value: 'sticky' },
@@ -15,6 +16,7 @@ registerBlockType( metadata.name, {
 	edit: ( { attributes, setAttributes } ) => {
 		const source = attributes.source as string;
 		const limit = attributes.limit as number;
+		const posts = ( attributes.posts as number[] ) || [];
 		const blockProps = useBlockProps();
 
 		return (
@@ -33,6 +35,15 @@ registerBlockType( metadata.name, {
 							min={ 1 }
 							max={ 20 }
 							onChange={ ( limit?: number ) => setAttributes( { limit: limit || 10 } ) }
+						/>
+						<ArticlePicker
+							value={ posts }
+							onChange={ ( posts: number[] ) => setAttributes( { posts } ) }
+							help={
+								'manual' === source
+									? __( 'Only these articles are shown.', 'auclair' )
+									: __( 'Shown first; the source above fills the remaining items.', 'auclair' )
+							}
 						/>
 					</PanelBody>
 				</InspectorControls>

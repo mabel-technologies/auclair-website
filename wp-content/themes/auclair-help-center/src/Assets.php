@@ -92,6 +92,19 @@ class Assets implements ModuleInterface {
 			$this->get_asset_info( 'block-extensions', 'version' ),
 			true
 		);
+
+		// "Related queries" document panel — only meaningful on kb_article edit screens.
+		$screen = function_exists( 'get_current_screen' ) ? get_current_screen() : null;
+
+		if ( $screen && 'kb_article' === $screen->post_type ) {
+			wp_enqueue_script(
+				'auclair-help-center-related-articles-panel',
+				AU_CLAIR_HELP_CENTER_THEME_TEMPLATE_URL . '/dist/js/related-articles-panel.js',
+				$this->get_asset_info( 'related-articles-panel', 'dependencies' ),
+				$this->get_asset_info( 'related-articles-panel', 'version' ),
+				true
+			);
+		}
 	}
 
 	/**

@@ -4,6 +4,7 @@ import { PanelBody, TextControl, SelectControl, RangeControl } from '@wordpress/
 import ServerSideRender from '@wordpress/server-side-render';
 import { __ } from '@wordpress/i18n';
 import metadata from './block.json';
+import ArticlePicker from '../shared/ArticlePicker';
 
 const SOURCES = [
 	{ label: __( 'Most viewed', 'auclair' ), value: 'popular' },
@@ -16,6 +17,7 @@ registerBlockType( metadata.name, {
 		const label = attributes.label as string;
 		const source = attributes.source as string;
 		const limit = attributes.limit as number;
+		const posts = ( attributes.posts as number[] ) || [];
 		const blockProps = useBlockProps();
 
 		return (
@@ -40,9 +42,15 @@ registerBlockType( metadata.name, {
 							max={ 8 }
 							onChange={ ( limit?: number ) => setAttributes( { limit: limit || 4 } ) }
 						/>
-						{ 'manual' === source && (
-							<p>{ __( 'Manual items are edited via the Code Editor block attributes for now.', 'auclair' ) }</p>
-						) }
+						<ArticlePicker
+							value={ posts }
+							onChange={ ( posts: number[] ) => setAttributes( { posts } ) }
+							help={
+								'manual' === source
+									? __( 'Only these articles are shown.', 'auclair' )
+									: __( 'Shown first; the source above fills the remaining chips.', 'auclair' )
+							}
+						/>
 					</PanelBody>
 				</InspectorControls>
 				<div { ...blockProps }>

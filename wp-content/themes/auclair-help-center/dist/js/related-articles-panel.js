@@ -1,30 +1,25 @@
 /*
- * Hand-built from blocks/top-queries/index.tsx — this box has no Node toolchain.
- * `npm run build` regenerates an equivalent bundle; keep the TSX as source of truth.
+ * Hand-built from assets/js/related-articles-panel/index.tsx — this box has no
+ * Node toolchain. `npm run build` regenerates an equivalent bundle.
  */
 ( function () {
 	'use strict';
 
 	var el = wp.element.createElement;
-	var Fragment = wp.element.Fragment;
 	var useState = wp.element.useState;
 	var useEffect = wp.element.useEffect;
-	var registerBlockType = wp.blocks.registerBlockType;
-	var useBlockProps = wp.blockEditor.useBlockProps;
-	var InspectorControls = wp.blockEditor.InspectorControls;
-	var PanelBody = wp.components.PanelBody;
 	var BaseControl = wp.components.BaseControl;
 	var Button = wp.components.Button;
 	var Spinner = wp.components.Spinner;
 	var TextControl = wp.components.TextControl;
-	var SelectControl = wp.components.SelectControl;
-	var RangeControl = wp.components.RangeControl;
-	var ServerSideRender = wp.serverSideRender;
 	var apiFetch = wp.apiFetch;
 	var addQueryArgs = wp.url.addQueryArgs;
 	var decodeEntities = wp.htmlEntities.decodeEntities;
+	var registerPlugin = wp.plugins.registerPlugin;
+	var PluginDocumentSettingPanel = wp.editor.PluginDocumentSettingPanel;
+	var useEntityProp = wp.coreData.useEntityProp;
+	var useSelect = wp.data.useSelect;
 	var __ = wp.i18n.__;
-	var metadata = {"name": "auclair/top-queries"};
 
 	/* Shared ArticlePicker (blocks/shared/ArticlePicker.tsx), hand-built. */
 	var fetchArticles = function ( query ) {
@@ -34,6 +29,7 @@
 
 	var ArticlePicker = function ( props ) {
 		var value = props.value || [];
+		var exclude = props.exclude || [];
 		var s1 = useState( '' ), search = s1[ 0 ], setSearch = s1[ 1 ];
 		var s2 = useState( [] ), matches = s2[ 0 ], setMatches = s2[ 1 ];
 		var s3 = useState( {} ), titles = s3[ 0 ], setTitles = s3[ 1 ];
@@ -69,9 +65,9 @@
 			setSearch( '' );
 		};
 
-		var unpicked = matches.filter( function ( a ) { return value.indexOf( a.id ) === -1; } );
+		var unpicked = matches.filter( function ( a ) { return value.indexOf( a.id ) === -1 && exclude.indexOf( a.id ) === -1; } );
 
-		return el( BaseControl, { label: __( 'Articles (optional)', 'auclair' ), help: props.help, __nextHasNoMarginBottom: true },
+		return el( BaseControl, { label: props.label || __( 'Articles (optional)', 'auclair' ), help: props.help, __nextHasNoMarginBottom: true },
 			value.length > 0 && el( 'ul', { className: 'auclair-article-picker__selected' },
 				value.map( function ( id ) {
 					return el( 'li', { key: id },
@@ -102,50 +98,36 @@
 		);
 	};
 
-	var SOURCES = [
-		{ label: __( 'Sticky (is_top_query)', 'auclair' ), value: 'sticky' },
-		{ label: __( 'Most viewed', 'auclair' ), value: 'most-viewed' },
-		{ label: __( 'Manual', 'auclair' ), value: 'manual' },
-	];
+	var KB_ARTICLE_POST_TYPE = 'kb_article';
 
-	registerBlockType( metadata.name, {
-		edit: function ( props ) {
-			var attributes = props.attributes;
-			var setAttributes = props.setAttributes;
-			var source = attributes.source;
-			var posts = attributes.posts || [];
-			var blockProps = useBlockProps();
+	var RelatedArticlesPanel = function () {
+		var current = useSelect( function ( select ) {
+			var editor = select( 'core/editor' );
+			return { postType: editor.getCurrentPostType(), postId: editor.getCurrentPostId() };
+		}, [] );
 
-			return el( Fragment, null,
-				el( InspectorControls, null,
-					el( PanelBody, { title: __( 'Settings', 'auclair' ) },
-						el( SelectControl, {
-							label: __( 'Source', 'auclair' ),
-							value: source,
-							options: SOURCES,
-							onChange: function ( source ) { setAttributes( { source: source } ); },
-						} ),
-						el( RangeControl, {
-							label: __( 'Number of items', 'auclair' ),
-							value: attributes.limit,
-							min: 1,
-							max: 20,
-							onChange: function ( limit ) { setAttributes( { limit: limit || 10 } ); },
-						} ),
-						el( ArticlePicker, {
-							value: posts,
-							onChange: function ( posts ) { setAttributes( { posts: posts } ); },
-							help: 'manual' === source
-								? __( 'Only these articles are shown.', 'auclair' )
-								: __( 'Shown first; the source above fills the remaining items.', 'auclair' ),
-						} )
-					)
-				),
-				el( 'div', blockProps,
-					el( ServerSideRender, { block: metadata.name, attributes: attributes } )
-				)
-			);
+		var entity = useEntityProp( 'postType', KB_ARTICLE_POST_TYPE, 'meta' );
+		var meta = entity[ 0 ] || {};
+		var setMeta = entity[ 1 ];
+
+		if ( current.postType !== KB_ARTICLE_POST_TYPE ) {
+			return null;
+		}
+
+		return el( PluginDocumentSettingPanel, {
+			name: 'auclair-related-articles',
+			title: __( 'Related queries', 'auclair' ),
+			className: 'auclair-related-articles-panel',
 		},
-		save: function () { return null; },
-	} );
+			el( ArticlePicker, {
+				label: __( 'Related articles', 'auclair' ),
+				value: meta.related || [],
+				exclude: current.postId ? [ current.postId ] : [],
+				onChange: function ( related ) { setMeta( Object.assign( {}, meta, { related: related } ) ); },
+				help: __( 'Shown under "Related queries" on this article, in this order. Leave empty to show other articles from the same category.', 'auclair' ),
+			} )
+		);
+	};
+
+	registerPlugin( 'auclair-related-articles-panel', { render: RelatedArticlesPanel } );
 } )();

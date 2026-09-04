@@ -16,16 +16,15 @@ $columns  = ! empty( $attributes['columns'] ) ? (int) $attributes['columns'] : 4
 $query_args = [
 	'taxonomy'   => $taxonomy,
 	'hide_empty' => false,
-	'meta_key'   => 'order',
-	'orderby'    => 'meta_value_num',
-	'order'      => 'ASC',
 ];
 
 if ( ! empty( $include ) ) {
 	$query_args['include'] = $include;
 }
 
-$terms = get_terms( $query_args );
+// Ordered by the `order` term meta, keeping terms that have no such row —
+// see HelpCategory::ordered_terms().
+$terms = HelpCategory::ordered_terms( $query_args );
 
 if ( is_wp_error( $terms ) || empty( $terms ) ) {
 	return;
@@ -47,7 +46,7 @@ $wrapper_attributes = get_block_wrapper_attributes(
 				'attrs'     => [
 					'termId'   => $term->term_id,
 					'animate'  => false,
-					'featured' => 'hearing-test' === $term->slug,
+					'featured' => true,
 				],
 			]
 		); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- render_block() output is trusted block markup.

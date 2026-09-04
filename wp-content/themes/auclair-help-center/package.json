@@ -25,7 +25,8 @@
 			"editor-frame-style-overrides": "./assets/css/editor-frame-style-overrides.css",
 			"editor-canvas-style-overrides": "./assets/css/editor-canvas-style-overrides.css",
 			"frontend": "./assets/js/frontend.ts",
-			"block-extensions": "./assets/js/block-extensions.ts"
+			"block-extensions": "./assets/js/block-extensions.ts",
+			"related-articles-panel": "./assets/js/related-articles-panel/index.tsx"
 		},
 		"paths": {
 			"blocksDir": "./blocks"

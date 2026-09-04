@@ -12,23 +12,30 @@ use function AuclairHelpCenter\get_icon_svg;
 
 $source = ! empty( $attributes['source'] ) ? $attributes['source'] : 'sticky';
 $limit  = ! empty( $attributes['limit'] ) ? (int) $attributes['limit'] : 10;
+$picked = ! empty( $attributes['posts'] ) ? array_map( 'absint', $attributes['posts'] ) : [];
 $items  = [];
 
-if ( 'manual' === $source && ! empty( $attributes['posts'] ) ) {
-	foreach ( $attributes['posts'] as $post_id ) {
-		$post = get_post( (int) $post_id );
+// Hand-picked articles lead, in the order chosen; the source fills what's left.
+foreach ( $picked as $post_id ) {
+	$post = get_post( $post_id );
 
-		if ( $post ) {
-			$items[] = [
-				'title' => get_the_title( $post ),
-				'url'   => get_permalink( $post ),
-			];
-		}
+	if ( $post && KbArticle::NAME === $post->post_type && 'publish' === $post->post_status ) {
+		$items[] = [
+			'title' => get_the_title( $post ),
+			'url'   => get_permalink( $post ),
+		];
 	}
+}
+
+$remaining = $limit - count( $items );
+
+if ( $remaining <= 0 || 'manual' === $source ) {
+	$items = array_slice( $items, 0, $limit );
 } else {
 	$query_args = [
 		'post_type'      => KbArticle::NAME,
-		'posts_per_page' => $limit,
+		'posts_per_page' => $remaining,
+		'post__not_in'   => $picked,
 	];
 
 	if ( 'sticky' === $source ) {
@@ -51,12 +58,12 @@ if ( 'manual' === $source && ! empty( $attributes['posts'] ) ) {
 	$posts = get_posts( $query_args );
 
 	// Sticky source falls back to most-viewed if there aren't enough flagged articles.
-	if ( 'sticky' === $source && count( $posts ) < $limit ) {
-		$existing_ids = wp_list_pluck( $posts, 'ID' );
+	if ( 'sticky' === $source && count( $posts ) < $remaining ) {
+		$existing_ids = array_merge( $picked, wp_list_pluck( $posts, 'ID' ) );
 		$fallback     = get_posts(
 			[
 				'post_type'      => KbArticle::NAME,
-				'posts_per_page' => $limit - count( $posts ),
+				'posts_per_page' => $remaining - count( $posts ),
 				'post__not_in'   => $existing_ids,
 				'meta_key'       => 'view_count',
 				'orderby'        => 'meta_value_num',

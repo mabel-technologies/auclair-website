@@ -13,18 +13,25 @@ $success_url    = ! empty( $attributes['successUrl'] ) ? $attributes['successUrl
 $max_upload_mb  = ! empty( $attributes['maxUploadMb'] ) ? (float) $attributes['maxUploadMb'] : 5;
 $allowed_types  = ! empty( $attributes['allowedTypes'] ) ? (array) $attributes['allowedTypes'] : [ 'image/png', 'image/jpeg', 'image/webp', 'application/pdf' ];
 
-$terms = get_terms(
+$terms = HelpCategory::ordered_terms(
 	[
 		'taxonomy'   => HelpCategory::NAME,
 		'hide_empty' => false,
-		'meta_key'   => 'order', // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_key -- small, seeded taxonomy.
-		'orderby'    => 'meta_value_num',
-		'order'      => 'ASC',
+		/*
+		 * `in_ticket_form` is registered with a default of true, so a term
+		 * that has no row yet belongs in the dropdown — an `=` clause on its
+		 * own would exclude it.
+		 */
 		'meta_query' => [ // phpcs:ignore WordPress.DB.SlowDBQuery.slow_db_query_meta_query -- small, seeded taxonomy.
+			'relation' => 'OR',
 			[
 				'key'     => 'in_ticket_form',
 				'value'   => '1',
 				'compare' => '=',
+			],
+			[
+				'key'     => 'in_ticket_form',
+				'compare' => 'NOT EXISTS',
 			],
 		],
 	]

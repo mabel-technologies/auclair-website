@@ -22,6 +22,10 @@
 		"limit": {
 			"type": "number",
 			"default": 4
+		},
+		"posts": {
+			"type": "array",
+			"default": []
 		}
 	},
 	"supports": {

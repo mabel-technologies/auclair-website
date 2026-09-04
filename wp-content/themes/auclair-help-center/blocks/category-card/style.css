@@ -97,7 +97,8 @@
 }
 
 /*
- * Featured border: Figma colours on a spinning conic, clipped to a 1px rim.
+ * Featured border: the card's own accent on a spinning conic, clipped to a
+ * 1px rim. --auclair-ring-accent is set inline per card from term meta.
  * Chrome does not repaint conic/linear-gradient when an @property angle
  * animates, so this rotates ::before with transform (same visual as
  * walking the gradient angle). ::after is an inset surface fill so only
@@ -124,12 +125,21 @@
 	translate: -50% -50%;
 	background: conic-gradient(
 		from 136deg,
-		var(--wp--preset--color--category-hearing-test),
-		#073025,
-		var(--wp--preset--color--category-hearing-test)
+		var(--auclair-ring-accent),
+		color-mix(in srgb, var(--auclair-ring-accent) 20%, var(--wp--preset--color--background)),
+		var(--auclair-ring-accent)
 	);
-	animation: auclair-featured-border-spin 3s linear infinite;
+	/* Rim is hidden and still at rest; it fades in and spins on hover/focus. */
+	opacity: 0;
+	transition: opacity 0.2s ease;
+	animation: auclair-featured-border-spin 3s linear infinite paused;
 	pointer-events: none;
+}
+
+.auclair-category-card.is-featured:hover::before,
+.auclair-category-card.is-featured:focus-visible::before {
+	opacity: 1;
+	animation-play-state: running;
 }
 
 .auclair-category-card.is-featured::after {
@@ -148,7 +158,7 @@
 }
 
 .auclair-category-card.is-featured .auclair-category-card__icon {
-	background: var(--wp--preset--color--category-hearing-test);
+	background: var(--auclair-ring-accent);
 	color: var(--wp--preset--color--background);
 }
 

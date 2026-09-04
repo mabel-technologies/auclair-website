@@ -215,14 +215,101 @@ class HelpCategory extends AbstractTaxonomy {
 	}
 
 	/**
+	 * Get terms in display order, tolerating terms that have no `order` meta.
+	 *
+	 * Passing `meta_key => 'order'` to `get_terms()` makes WP_Meta_Query emit
+	 * an EXISTS clause, which is an INNER JOIN on `wp_termmeta` — any term
+	 * without an `order` row is dropped from the results entirely rather than
+	 * merely sorted last. Only the admin Add/Edit Category form writes that
+	 * row (`save_term_meta()` reads `$_POST`), so a term created by WP-CLI,
+	 * the REST API, or a direct SQL insert is invisible everywhere until
+	 * someone backfills the meta by hand. Sorting in PHP instead keeps every
+	 * term in the result set; the taxonomy is a handful of rows, so the cost
+	 * is nil.
+	 *
+	 * @param array $args Optional `get_terms()` args. `meta_key`/`meta_value`
+	 *                    and a `meta_value*` `orderby` are ignored; `number`
+	 *                    is applied after sorting.
+	 *
+	 * @return \WP_Term[]
+	 */
+	public static function ordered_terms( array $args = [] ) {
+		$args = wp_parse_args(
+			$args,
+			[
+				'taxonomy'   => self::NAME,
+				'hide_empty' => false,
+			]
+		);
+
+		unset( $args['meta_key'], $args['meta_value'] );
+
+		if ( isset( $args['orderby'] ) && in_array( $args['orderby'], [ 'meta_value', 'meta_value_num' ], true ) ) {
+			unset( $args['orderby'], $args['order'] );
+		}
+
+		// Truncating before the sort would cut on the database's order, not
+		// on ours, so slice after.
+		$number = isset( $args['number'] ) ? (int) $args['number'] : 0;
+		unset( $args['number'] );
+
+		$args['fields'] = 'all';
+
+		$terms = get_terms( $args );
+
+		if ( is_wp_error( $terms ) ) {
+			return [];
+		}
+
+		usort(
+			$terms,
+			static function ( $a, $b ) {
+				return [ self::term_order( $a->term_id ), $a->name ] <=> [ self::term_order( $b->term_id ), $b->name ];
+			}
+		);
+
+		return $number > 0 ? array_slice( $terms, 0, $number ) : $terms;
+	}
+
+	/**
+	 * Sort key for a term's grid position.
+	 *
+	 * `order` is registered with a default of 0, so `get_term_meta()` returns
+	 * 0 for a term that has no row at all — which would sort every unseeded
+	 * term to the front of the grid, ahead of "Getting started". Check for
+	 * the row itself and sort those terms last instead.
+	 *
+	 * @param int $term_id Term ID.
+	 *
+	 * @return int
+	 */
+	protected static function term_order( $term_id ) {
+		return metadata_exists( 'term', $term_id, 'order' )
+			? (int) get_term_meta( $term_id, 'order', true )
+			: PHP_INT_MAX;
+	}
+
+	/**
 	 * Add one explicit root-level archive rule per term (`/{slug}/`, plus
 	 * its paged variant), ahead of the generic page rule.
 	 *
 	 * @return void
 	 */
 	public function add_rules() {
+		/*
+		 * The generated rules only reach the router through the cached
+		 * `rewrite_rules` option, and the flush that rebuilds it is scheduled
+		 * from the created/edited/delete term hooks — which a direct SQL
+		 * insert never fires. Notice a term whose rule is missing from the
+		 * cache and schedule the flush here instead; `maybe_flush()` runs on
+		 * `wp_loaded`, so it is consumed on this same request.
+		 */
+		$cached  = get_option( 'rewrite_rules' );
+		$missing = false;
+
 		foreach ( self::get_slugs() as $slug ) {
 			$quoted = preg_quote( $slug, '/' );
+			$rule   = '^' . $quoted . '/?$';
 
 			add_rewrite_rule(
 				'^' . $quoted . '/page/([0-9]{1,})/?$',
@@ -230,10 +317,18 @@ class HelpCategory extends AbstractTaxonomy {
 				'top'
 			);
 			add_rewrite_rule(
-				'^' . $quoted . '/?$',
+				$rule,
 				'index.php?' . self::NAME . '=' . $slug,
 				'top'
 			);
+
+			if ( is_array( $cached ) && ! isset( $cached[ $rule ] ) ) {
+				$missing = true;
+			}
+		}
+
+		if ( $missing ) {
+			$this->schedule_flush();
 		}
 	}
 

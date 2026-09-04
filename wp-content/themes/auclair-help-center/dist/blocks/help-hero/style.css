@@ -125,6 +125,34 @@
 	margin-top: 4px;
 }
 
+/* Editor canvas only: InnerBlocks wraps its children in
+   .block-editor-inner-blocks > .block-editor-block-list__layout, so the
+   direct-child rules above never match there and the search bar / chips lose
+   their spacing. Make those wrappers behave like the content column and
+   re-apply the same gaps one level down. Saved markup is unaffected. */
+.auclair-help-hero__content > .block-editor-inner-blocks,
+.auclair-help-hero__content > .block-editor-inner-blocks > .block-editor-block-list__layout {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
+	width: 100%;
+}
+
+.auclair-help-hero__content .block-editor-block-list__layout > .wp-block-auclair-search-bar,
+.auclair-help-hero__content .block-editor-block-list__layout > .wp-block-auclair-quick-help-chips {
+	margin-block: 0;
+	width: 100%;
+}
+
+.auclair-help-hero__content .block-editor-block-list__layout > .wp-block-auclair-search-bar {
+	margin-top: 24px;
+}
+
+.auclair-help-hero__content .block-editor-block-list__layout > .wp-block-auclair-quick-help-chips {
+	margin-top: 4px;
+}
+
 @media (max-width: 720px) {
 	.auclair-help-hero {
 		padding-top: 44px;
