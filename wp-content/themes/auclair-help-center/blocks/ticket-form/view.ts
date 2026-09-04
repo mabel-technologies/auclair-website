@@ -33,6 +33,11 @@ interface Context {
 	successUrl: string;
 	maxUploadBytes: number;
 	allowedTypes: string[];
+	subjectMax: number;
+	descriptionMin: number;
+	// Fields the user has left once. Errors for a field stay hidden until
+	// it has been blurred, so typing a half-finished email isn't an error.
+	touched: Record< string, boolean >;
 	// Present only on a category <li>'s own data-wp-context.
 	categoryOptionId?: number;
 	categoryOptionLabel?: string;
@@ -44,30 +49,85 @@ let selectedFile: File | null = null;
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+type Field = 'category' | 'subject' | 'description' | 'email';
+
+/**
+ * Validate a single field. Returning undefined means the field is fine.
+ *
+ * Kept per-field so the same rules drive both the on-blur check and the
+ * full check on submit — one source of truth for the messages.
+ */
+function validateField( context: Context, field: Field ): string | undefined {
+	if ( 'category' === field ) {
+		return context.categoryId ? undefined : 'Select a category.';
+	}
+
+	if ( 'subject' === field ) {
+		if ( ! context.subject.trim() ) {
+			return 'Subject is required.';
+		}
+
+		return context.subject.length > context.subjectMax
+			? `Subject must be ${ context.subjectMax } characters or fewer.`
+			: undefined;
+	}
+
+	if ( 'description' === field ) {
+		const value = context.description.trim();
+
+		if ( ! value ) {
+			return 'Please add some details.';
+		}
+
+		return value.length < context.descriptionMin
+			? `Please add at least ${ context.descriptionMin } characters so we can help.`
+			: undefined;
+	}
+
+	const email = context.email.trim();
+
+	if ( ! email ) {
+		return 'Email is required.';
+	}
+
+	return EMAIL_PATTERN.test( email ) ? undefined : 'Enter a valid email address.';
+}
+
+const FIELDS: Field[] = [ 'category', 'subject', 'description', 'email' ];
+
 function validate( context: Context ): Errors {
 	const errors: Errors = {};
 
-	if ( ! context.categoryId ) {
-		errors.category = 'Select a category.';
-	}
+	FIELDS.forEach( ( field ) => {
+		const message = validateField( context, field );
 
-	if ( ! context.subject.trim() ) {
-		errors.subject = 'Subject is required.';
-	} else if ( context.subject.length > 120 ) {
-		errors.subject = 'Subject must be 120 characters or fewer.';
-	}
-
-	if ( ! context.description.trim() ) {
-		errors.description = 'Please add some details.';
-	}
-
-	if ( ! context.email.trim() ) {
-		errors.email = 'Email is required.';
-	} else if ( ! EMAIL_PATTERN.test( context.email.trim() ) ) {
-		errors.email = 'Enter a valid email address.';
-	}
+		if ( message ) {
+			errors[ field ] = message;
+		}
+	} );
 
 	return errors;
+}
+
+/**
+ * Re-check one field and show or clear its error.
+ *
+ * While the user is still typing (`live`), an error is only ever cleared —
+ * a field that has never been blurred stays quiet, and one already showing
+ * an error clears the moment it becomes valid.
+ */
+function refreshField( context: Context, field: Field, live: boolean ) {
+	const message = validateField( context, field );
+	const { [ field ]: current, ...rest } = context.errors;
+
+	if ( message && ( ! live || current ) && context.touched[ field ] ) {
+		context.errors = { ...rest, [ field ]: message };
+		return;
+	}
+
+	if ( ! message ) {
+		context.errors = rest;
+	}
 }
 
 store( 'auclair', {
@@ -79,6 +139,10 @@ store( 'auclair', {
 		get attachmentLabel(): string {
 			const context = getContext< Context >();
 			return context.fileName || context.attachmentPlaceholder;
+		},
+		get subjectCount(): string {
+			const context = getContext< Context >();
+			return `${ context.subject.length }/${ context.subjectMax }`;
 		},
 	},
 	actions: {
@@ -123,19 +187,38 @@ store( 'auclair', {
 			context.categoryId = context.categoryOptionId;
 			context.categoryLabel = context.categoryOptionLabel ?? '';
 			context.categoryOpen = false;
+			context.touched = { ...context.touched, category: true };
 			delete context.errors.category;
 		},
 		setSubject( event: InputEvent ) {
 			const context = getContext< Context >();
 			context.subject = ( event.target as HTMLInputElement ).value;
+			refreshField( context, 'subject', true );
 		},
 		setDescription( event: InputEvent ) {
 			const context = getContext< Context >();
 			context.description = ( event.target as HTMLTextAreaElement ).value;
+			refreshField( context, 'description', true );
 		},
 		setEmail( event: InputEvent ) {
 			const context = getContext< Context >();
 			context.email = ( event.target as HTMLInputElement ).value;
+			refreshField( context, 'email', true );
+		},
+		blurSubject() {
+			const context = getContext< Context >();
+			context.touched = { ...context.touched, subject: true };
+			refreshField( context, 'subject', false );
+		},
+		blurDescription() {
+			const context = getContext< Context >();
+			context.touched = { ...context.touched, description: true };
+			refreshField( context, 'description', false );
+		},
+		blurEmail() {
+			const context = getContext< Context >();
+			context.touched = { ...context.touched, email: true };
+			refreshField( context, 'email', false );
 		},
 		setWebsite( event: InputEvent ) {
 			const context = getContext< Context >();
@@ -185,6 +268,12 @@ store( 'auclair', {
 			const errors = validate( context );
 
 			if ( Object.keys( errors ).length > 0 ) {
+				// Submitting counts as touching every field, so errors that
+				// were being held back now show.
+				context.touched = FIELDS.reduce(
+					( acc, field ) => ( { ...acc, [ field ]: true } ),
+					{ ...context.touched }
+				);
 				context.errors = errors;
 				return;
 			}

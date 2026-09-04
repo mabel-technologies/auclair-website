@@ -240,6 +240,22 @@
 	color: #ff6b6b;
 }
 
+/* Error on the left, character count on the right; the count holds the
+   right edge on its own when there is no error to show. */
+.auclair-ticket-form__field-foot {
+	display: flex;
+	gap: 12px;
+	align-items: baseline;
+	justify-content: space-between;
+}
+
+.auclair-ticket-form__count {
+	margin-inline-start: auto;
+	font-size: 13px;
+	color: var(--wp--preset--color--foreground-muted, #adafaf);
+	font-variant-numeric: tabular-nums;
+}
+
 .auclair-ticket-form__submit-error {
 	font-size: 14px;
 	font-weight: 500;

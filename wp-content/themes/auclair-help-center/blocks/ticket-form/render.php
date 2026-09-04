@@ -8,6 +8,7 @@
  */
 
 use AuclairCore\Taxonomies\HelpCategory;
+use AuclairCore\Rest\TicketEndpoint;
 
 $success_url    = ! empty( $attributes['successUrl'] ) ? $attributes['successUrl'] : '/ticket-submitted/';
 $max_upload_mb  = ! empty( $attributes['maxUploadMb'] ) ? (float) $attributes['maxUploadMb'] : 5;
@@ -93,6 +94,9 @@ $context = [
 	'successUrl'            => esc_url_raw( $success_url ),
 	'maxUploadBytes'        => (int) ( $max_upload_mb * 1024 * 1024 ),
 	'allowedTypes'          => $allowed_types,
+	'subjectMax'            => TicketEndpoint::SUBJECT_MAX,
+	'descriptionMin'        => TicketEndpoint::DESCRIPTION_MIN,
+	'touched'               => new stdClass(),
 ];
 
 $wrapper_attributes = get_block_wrapper_attributes( [ 'class' => 'auclair-ticket-form' ] );
@@ -162,13 +166,17 @@ $wrapper_attributes = get_block_wrapper_attributes( [ 'class' => 'auclair-ticket
 			<input
 				type="text"
 				id="auclair-ticket-subject"
-				maxlength="120"
+				maxlength="<?php echo esc_attr( (string) TicketEndpoint::SUBJECT_MAX ); ?>"
 				placeholder="<?php esc_attr_e( 'Briefly describe the issue', 'auclair' ); ?>"
 				data-wp-bind--value="context.subject"
 				data-wp-on--input="actions.setSubject"
+				data-wp-on--blur="actions.blurSubject"
 			/>
 		</div>
-		<span class="auclair-ticket-form__error" hidden data-wp-text="context.errors.subject" data-wp-bind--hidden="!context.errors.subject"></span>
+		<div class="auclair-ticket-form__field-foot">
+			<span class="auclair-ticket-form__error" hidden data-wp-text="context.errors.subject" data-wp-bind--hidden="!context.errors.subject"></span>
+			<span class="auclair-ticket-form__count" aria-hidden="true" data-wp-text="state.subjectCount">0/<?php echo esc_html( (string) TicketEndpoint::SUBJECT_MAX ); ?></span>
+		</div>
 	</div>
 
 	<div class="auclair-ticket-form__field">
@@ -176,9 +184,11 @@ $wrapper_attributes = get_block_wrapper_attributes( [ 'class' => 'auclair-ticket
 		<div class="auclair-ticket-form__control auclair-ticket-form__control--textarea">
 			<textarea
 				id="auclair-ticket-description"
+				minlength="<?php echo esc_attr( (string) TicketEndpoint::DESCRIPTION_MIN ); ?>"
 				placeholder="<?php esc_attr_e( 'Add any details that will help us assist you faster', 'auclair' ); ?>"
 				data-wp-bind--value="context.description"
 				data-wp-on--input="actions.setDescription"
+				data-wp-on--blur="actions.blurDescription"
 			></textarea>
 		</div>
 		<span class="auclair-ticket-form__error" hidden data-wp-text="context.errors.description" data-wp-bind--hidden="!context.errors.description"></span>
@@ -194,6 +204,7 @@ $wrapper_attributes = get_block_wrapper_attributes( [ 'class' => 'auclair-ticket
 					placeholder="<?php esc_attr_e( 'Enter your email', 'auclair' ); ?>"
 					data-wp-bind--value="context.email"
 					data-wp-on--input="actions.setEmail"
+					data-wp-on--blur="actions.blurEmail"
 				/>
 			</div>
 			<span class="auclair-ticket-form__error" hidden data-wp-text="context.errors.email" data-wp-bind--hidden="!context.errors.email"></span>

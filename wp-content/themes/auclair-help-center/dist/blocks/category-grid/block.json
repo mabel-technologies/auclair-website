@@ -31,5 +31,5 @@
   "editorScript": "file:./index.js",
   "style": "file:./style.css",
   "render": "file:./render.php",
-  "version": "90c201570043a5cd95c3ddefbba743d95d62a2de039523c7306b8a379b73898c"
+  "version": "3539b8538f1f3b91eed9ca3162df6e0091cd3cbe41dcc57b35be3e176f5221a5"
 }

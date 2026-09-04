@@ -31,6 +31,13 @@ class TicketEndpoint implements ModuleInterface {
 	const MAX_UPLOAD_BYTES  = 5 * MB_IN_BYTES;
 
 	/**
+	 * Field length limits. The block passes these to the client so the form
+	 * and this endpoint enforce the same numbers.
+	 */
+	const SUBJECT_MAX     = 120;
+	const DESCRIPTION_MIN = 20;
+
+	/**
 	 * File types the endpoint will accept for the attachment, independent
 	 * of the block's `allowedTypes` attribute (server is the source of truth).
 	 *
@@ -208,12 +215,28 @@ class TicketEndpoint implements ModuleInterface {
 
 		if ( '' === $subject ) {
 			$errors->add( 'subject', __( 'Subject is required.', 'auclair' ) );
-		} elseif ( mb_strlen( $subject ) > 120 ) {
-			$errors->add( 'subject', __( 'Subject must be 120 characters or fewer.', 'auclair' ) );
+		} elseif ( mb_strlen( $subject ) > self::SUBJECT_MAX ) {
+			$errors->add(
+				'subject',
+				sprintf(
+					/* translators: %d: maximum number of characters. */
+					__( 'Subject must be %d characters or fewer.', 'auclair' ),
+					self::SUBJECT_MAX
+				)
+			);
 		}
 
 		if ( '' === $description ) {
 			$errors->add( 'description', __( 'Description is required.', 'auclair' ) );
+		} elseif ( mb_strlen( $description ) < self::DESCRIPTION_MIN ) {
+			$errors->add(
+				'description',
+				sprintf(
+					/* translators: %d: minimum number of characters. */
+					__( 'Please add at least %d characters so we can help.', 'auclair' ),
+					self::DESCRIPTION_MIN
+				)
+			);
 		}
 
 		if ( '' === $email || ! is_email( $email ) ) {
