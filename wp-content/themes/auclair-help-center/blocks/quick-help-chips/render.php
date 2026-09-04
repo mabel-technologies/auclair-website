@@ -69,6 +69,21 @@ if ( $remaining <= 0 || ( 'manual' === $source && ! empty( $picked ) ) ) {
 		]
 	);
 
+	// Articles nobody has opened yet have no view_count row at all, so a young
+	// site would show no chips. Top the list up with the newest articles.
+	if ( count( $articles ) < $remaining ) {
+		$articles = array_merge(
+			$articles,
+			get_posts(
+				[
+					'post_type'      => KbArticle::NAME,
+					'posts_per_page' => $remaining - count( $articles ),
+					'post__not_in'   => array_merge( $picked, wp_list_pluck( $articles, 'ID' ) ),
+				]
+			)
+		);
+	}
+
 	foreach ( $articles as $article ) {
 		$chips[] = [
 			'label' => get_the_title( $article ),

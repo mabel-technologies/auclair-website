@@ -26,7 +26,7 @@
 
 		<!-- wp:auclair/search-bar {"placeholder":"Search queries or topics"} /-->
 
-		<!-- wp:auclair/quick-help-chips {"label":"Top Searches:","source":"popular","limit":3} /-->
+		<!-- wp:auclair/quick-help-chips {"label":"Top Searches:","source":"popular","limit":4} /-->
 	</div>
 </div>
 <!-- /wp:auclair/help-hero -->
@@ -37,7 +37,7 @@
 </div>
 <!-- /wp:auclair/section-heading -->
 
-<!-- wp:auclair/top-queries {"source":"most-viewed","limit":4,"boxed":true} /-->
+<!-- wp:auclair/top-queries {"source":"manual","posts":[97,150,151,148],"limit":4,"boxed":true} /-->
 
 <!-- wp:auclair/section-heading {"title":"Browse by category"} -->
 <div class="wp-block-auclair-section-heading auclair-section-heading has-text-align-left">
@@ -54,7 +54,7 @@
 </div>
 <!-- /wp:auclair/section-heading -->
 
-<!-- wp:auclair/top-queries {"source":"sticky","limit":10} /-->
+<!-- wp:auclair/top-queries {"source":"manual","posts":[88,92,130,134,233,93,214,166,206,139],"limit":10} /-->
 
 <!-- wp:auclair/cta-banner {"heading":"Still need help?","body":"Our support team is available 7 days a week.\nRaise a ticket and we will follow up asap.","buttonLabel":"Raise A Ticket","buttonUrl":"/raise-a-ticket/","accent":"#E9CA75"} -->
 <div class="wp-block-auclair-cta-banner auclair-cta-banner auclair-ring-hover" style="--auclair-ring-accent:#E9CA75;--auclair-ring-from:140deg;--auclair-ring-gap-in:24deg;--auclair-ring-solid-start:90deg;--auclair-ring-solid-end:195deg;--auclair-ring-gap-out:250deg;--auclair-ring-lift:0px">
