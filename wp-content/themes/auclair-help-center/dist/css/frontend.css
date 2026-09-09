@@ -390,6 +390,20 @@ body .has-global-padding > .alignfull {
 	margin-top: 40px;
 }
 
+@media (max-width: 720px) {
+	.home .auclair-section-heading.auclair-section-heading {
+		margin-top: 24px;
+	}
+
+	.home .auclair-category-grid.auclair-category-grid {
+		padding-bottom: 16px;
+	}
+
+	.auclair-cta-banner.auclair-cta-banner {
+		margin-top: 24px;
+	}
+}
+
 .auclair-section-heading.auclair-section-heading + * {
 	margin-top: 16px;
 }
