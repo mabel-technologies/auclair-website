@@ -1,1 +1,36 @@
-.auclair-section-heading{display:flex;flex-direction:column;gap:4px}.auclair-section-heading.has-text-align-center{align-items:center;text-align:center}.auclair-section-heading.has-text-align-right{align-items:flex-end;text-align:right}.auclair-section-heading__title{color:var(--wp--preset--color--foreground-primary);font-size:var(--wp--preset--font-size--section);font-weight:700;line-height:1.2;margin:0}.auclair-section-heading__subtitle{color:var(--wp--preset--color--foreground-secondary);font-size:var(--wp--preset--font-size--meta);font-weight:400;margin:0}
+/*!**********************************************************************************************************************************************************************************************!*\
+  !*** css ../../node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!../../node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./blocks/section-heading/style.css ***!
+  \**********************************************************************************************************************************************************************************************/
+.auclair-section-heading {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.auclair-section-heading.has-text-align-center {
+	text-align: center;
+	align-items: center;
+}
+
+.auclair-section-heading.has-text-align-right {
+	text-align: right;
+	align-items: flex-end;
+}
+
+.auclair-section-heading__title {
+	margin: 0;
+	font-size: var(--wp--preset--font-size--section);
+	font-weight: 700;
+	line-height: 1.2;
+	color: var(--wp--preset--color--foreground-primary);
+}
+
+.auclair-section-heading__subtitle {
+	margin: 0;
+	font-size: var(--wp--preset--font-size--meta);
+	font-weight: 400;
+	color: var(--wp--preset--color--foreground-secondary);
+}
+
+
+/*# sourceMappingURL=style.css.map*/
