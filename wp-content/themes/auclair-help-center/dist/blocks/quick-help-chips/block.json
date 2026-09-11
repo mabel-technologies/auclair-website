@@ -36,5 +36,5 @@
   "style": "file:./style.css",
   "render": "file:./render.php",
   "viewScriptModule": "file:./view.js",
-  "version": "b765746316e39534ddf8b8ab054bd75519b1125de5fb2cccca4b19d4546163cf"
+  "version": "b8b10e461d4bd0585f81a8e5580f9f9257c1e79884d4633366c024ae9938db54"
 }

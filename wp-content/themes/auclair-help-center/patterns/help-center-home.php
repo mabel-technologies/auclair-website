@@ -26,7 +26,7 @@
 
 		<!-- wp:auclair/search-bar {"placeholder":"Search queries or topics"} /-->
 
-		<!-- wp:auclair/quick-help-chips {"label":"Top Searches:","source":"popular","limit":4} /-->
+		<!-- wp:auclair/quick-help-chips {"label":"Top Searches:","source":"popular","limit":3} /-->
 	</div>
 </div>
 <!-- /wp:auclair/help-hero -->
